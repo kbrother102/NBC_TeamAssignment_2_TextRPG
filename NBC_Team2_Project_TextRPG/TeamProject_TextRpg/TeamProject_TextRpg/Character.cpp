@@ -1,4 +1,4 @@
-#include "Character.h"
+﻿#include "Character.h"
 #include <iostream>
 
 //Charactor::Charactor(const std::string &name)
@@ -7,7 +7,7 @@
 //}
 
 //전투 완료시 경험치 획득 호출
-bool Charactor::GainExp(int exp)
+bool Character::GainExp(int exp)
 {	//최고 레벨 판정 함수 추가예정
 	//경험치 획득
 	Exp += exp;

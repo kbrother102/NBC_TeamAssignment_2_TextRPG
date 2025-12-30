@@ -77,9 +77,6 @@
     <ClInclude Include="Logger.h">
       <Filter>소스 파일\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Action.h">
       <Filter>소스 파일\Component</Filter>
     </ClInclude>
@@ -87,6 +84,9 @@
       <Filter>소스 파일\Character</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
+      <Filter>소스 파일\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>소스 파일\Character</Filter>
     </ClInclude>
   </ItemGroup>

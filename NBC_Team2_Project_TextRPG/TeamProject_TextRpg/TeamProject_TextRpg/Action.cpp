@@ -1,6 +1,6 @@
 ﻿#include "Action.h"
-#include "Monster.h"
 #include "Character.h"
+#include "Monster.h"
 #include "Item.h"
 #include "Inventory.h"
 #include "string"
@@ -27,10 +27,19 @@ void Action::Attack()
     //Log();
 }
 
+void Action::UseItem(Item* Item, Character* character)
+{
+    //TODO :  '아이템'의 Use 기능('누군가'에게 사용)을 사용한다
+}
+
+
+
+    
+
+
 
 //아이템 획득.
-void Action::PickUpItem(Item* item)
-{
+
     // 인벤토리에 아이템 추가.
 	//inventory->AddItem(item);
-}
+
