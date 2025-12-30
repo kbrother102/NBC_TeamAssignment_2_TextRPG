@@ -1,5 +1,6 @@
 ﻿#pragma once
-class Monster
+#include "Creature.h"
+class Monster : public Creature
 {
 };
 
