@@ -1,6 +1,6 @@
 ﻿#include "MonsterSpawner.h"
 #include "Monster.h"
-#include "Goblin.h"
+#include "Mob1.h"
 #include "Random.h"
 
 Monster* MonsterSpawner::Spawn()
