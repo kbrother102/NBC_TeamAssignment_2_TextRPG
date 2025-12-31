@@ -54,6 +54,13 @@ void StatComponent::SetLevel(int level)
     Level_ = level;
 }
 
+void StatComponent::SetMaxLevel(int maxlevel)
+{
+    // 레벨은 최소 1
+    if (maxlevel < 1) maxlevel = 1;
+    MaxLevel_ = maxlevel;
+}
+
 void StatComponent::SetExp(int exp)
 {
     // 음수체크

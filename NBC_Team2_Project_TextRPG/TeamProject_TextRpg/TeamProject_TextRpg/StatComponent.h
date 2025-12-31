@@ -63,6 +63,7 @@ public:
     int GetMaxHp() const { return MaxHp_; }
     int GetAttack() const { return Attack_; }
     int GetLevel() const { return Level_; }
+    int GetMaxLevel() const { return MaxLevel_; }
     int GetExp() const { return Exp_; }
     int GetGold() const { return Gold_; }
 
@@ -71,6 +72,7 @@ public:
     void SetMaxHp(int maxHp);
     void SetAttack(int attack);
     void SetLevel(int level);
+    void SetMaxLevel(int level);
     void SetExp(int exp);
     void SetMaxExp(int maxExp);
     void SetGold(int gold);
@@ -86,6 +88,7 @@ private:
 
     // [3] 성장 및 재화
     int Level_;        // 레벨
+    int MaxLevel_;      // 최대레벨
     int Exp_;          // 현재 경험치
     int MaxExp_;       // 다음 레벨까지 필요한 경험치
     int Gold_;         // 보유 골드(포인트)

@@ -1,4 +1,5 @@
 ﻿#include "Logger.h"
+#include "Logger.h"
 #include <iostream>
 
 // 색상 코드
@@ -17,6 +18,12 @@ using std::vector; // vector도 추가했습니다.
 // static 변수 메모리 할당
 vector<string> Logger::Logs;
 
+void Logger::Add(const string& msg)
+{
+    // 타입을 입력 안 하면 자동으로 UI 타입으로 처리해서 넘김
+    Add(UI, msg);
+}
+
 void Logger::Add(LogType type, const string& msg)
 {
     string Prefix = ""; // 기본값 빈 문자열
@@ -25,7 +32,7 @@ void Logger::Add(LogType type, const string& msg)
     switch (type) // 태그에 따른 로그 말머리 및 컬러지정
     {
     case INFO:
-        Prefix = "[정보] "; 
+        Prefix = "[정보] ";
         ColorCode = COLOR_CYAN;
         break;
 
@@ -59,8 +66,8 @@ void Logger::Add(LogType type, const string& msg)
     }
 }
 
-// 추후 UI 변경시를 위한 벡터 문자열 저장
 
+// 추후 UI 변경시를 위한 벡터 문자열 저장
 const vector<string>& Logger::GetLogs()
 {
     return Logs;
