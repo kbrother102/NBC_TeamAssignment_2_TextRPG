@@ -1,9 +1,7 @@
 ﻿#pragma once
-#include <iostream>
-#include <random>
-#include <string>
+#include "Creature.h"
+class Monster : public Creature
 
-class Monster
 {
 public:
 	virtual std::string GetName() = 0;
