@@ -1,47 +1,65 @@
 ﻿#include "Action.h"
-#include "Character.h"
 #include "Monster.h"
+#include "Character.h"
 #include "Item.h"
+#include "Creature.h"
 #include "Inventory.h"
-#include "string"
+#include <string>
+#include <random>
 
-//공격. TODO : 공격자 매개변수, 타겟 매개변수
-void Action::Attack(mosnter player)
+
+//공격.
+void Action::Attack()
 {
     // 몬스터가 타깃일 때
-    if (monster)         
-    {
+    //if (monster)
+    //{
         //monster->TakeDamage(dmg);
-    }
+    //}
     // 캐릭터가 타깃일 때
-    else if (character)   
-    {
-        //character->TakeDamage(dmg); 
-    }
+    //else if (character)
+    //{
+        //character->TakeDamage(dmg);
+    //}
     // 타깃 없음
-    else
-    {
-        return; 
-    }
+    //else
+    //{
+        //return;
+    //}
     //로그 공격했다 구현
     //Log();
 }
 
 
-
-void Action::UseItem(Item* Item, Character* character)
+//아이템 획득.
+void Action::RandUseItem(Item* item, Inventory* inventory)
 {
-    //TODO :  '아이템'의 Use 기능('누군가'에게 사용)을 사용한다
+    std::uniform_int_distribution<int> dist(0, 99);
+    std::default_random_engine engine((unsigned int)time(nullptr));
+    int r = dist(engine);
+    //인벤토리에 있는 아이템 사용
+    if (inventory && item)
+    {
+        //30% 확률로 아이템 사용,로그 구현;
+        if (r < 30)
+        {
+            //inventory->UseItem(item);
+            //Log();
+        }
+    }
 }
-
-
-
-    
 
 
 
 //아이템 획득.
 
+void Action::AddItem(Item* item)
+{
     // 인벤토리에 아이템 추가.
-	//inventory->AddItem(item);
+  //inventory->AddItem(item);
+}
 
+void Action::TakeDamage(int dmg)
+{
+
+}
