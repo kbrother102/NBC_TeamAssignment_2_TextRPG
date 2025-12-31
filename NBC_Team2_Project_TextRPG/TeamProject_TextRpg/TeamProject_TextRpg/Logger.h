@@ -1,21 +1,24 @@
 ﻿#pragma once
-#include <vector>
 #include <string>
+#include <vector>
+
+enum LogType
+{
+    INFO,
+    COMBAT,
+    ERROR
+};
 
 class Logger
 {
 private:
-    static std::vector<std::string> _logs;
+    static std::vector<std::string> logs;
+    static const int MAX_LOG_COUNT = 50;
 
 public:
-    // 로그 추가 
-    static void Add(const std::string& msg);
+    // ★ 여기가 반드시 'Add' 라고 되어 있어야 합니다! ★
+    static void Add(LogType type, const std::string& msg);
 
-    // 저장된 로그 전체 가져오기
     static const std::vector<std::string>& GetLogs();
+    static void Clear();
 };
-
-출력함수를 만들면
-
-다른분들이
-
