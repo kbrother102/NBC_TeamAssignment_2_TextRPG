@@ -12,14 +12,15 @@ public:
 
 	void SpawnMob(int level);
 	void DieMob();
-	void TakeDamaged(int damage);
+	void TakeDamage(int dmg);
 
+	//게터함수
+	std::string GetType() { return Type_; }
 	std::string GetName() { return name_; }
 	int GetHealth() { return health_; }
 	int GetAttack() { return attack_; }
 	int GetExp() { return exp_; }
 	int GetGold() { return gold_; }
-	//std::string GetType();
 
 	~ChangMinKong()
 	{
