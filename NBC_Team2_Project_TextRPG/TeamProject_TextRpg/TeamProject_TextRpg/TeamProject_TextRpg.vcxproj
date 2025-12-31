@@ -134,6 +134,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="StatComponent.cpp" />
+    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextRpg.cpp" />
   </ItemGroup>
   <ItemGroup>
