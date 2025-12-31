@@ -5,8 +5,8 @@
 #include "Inventory.h"
 #include "string"
 
-//공격.
-void Action::Attack()
+//공격. TODO : 공격자 매개변수, 타겟 매개변수
+void Action::Attack(mosnter player)
 {
     // 몬스터가 타깃일 때
     if (monster)         
@@ -26,6 +26,8 @@ void Action::Attack()
     //로그 공격했다 구현
     //Log();
 }
+
+
 
 void Action::UseItem(Item* Item, Character* character)
 {

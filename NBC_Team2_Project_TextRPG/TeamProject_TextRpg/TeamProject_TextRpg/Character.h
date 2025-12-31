@@ -29,4 +29,6 @@ private:
 	int Exp = 0;
 	int Point = 0;
 	std::string CharacterName;
+	
 };
+

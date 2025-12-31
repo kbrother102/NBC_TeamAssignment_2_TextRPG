@@ -18,3 +18,4 @@ public:
     int GetAtk() const { return _attack; }
     bool IsDead() const { return _curHp <= 0; }
 };
+

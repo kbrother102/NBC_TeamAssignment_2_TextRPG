@@ -14,3 +14,8 @@ public:
     // 저장된 로그 전체 가져오기
     static const std::vector<std::string>& GetLogs();
 };
+
+출력함수를 만들면
+
+다른분들이
+
