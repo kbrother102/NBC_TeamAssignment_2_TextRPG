@@ -1,22 +1,15 @@
 ﻿#include "Goblin.h"
+#include "Random.h"
 
 void ChangMinKong::SpawnMob(int level)
 {
-	std::cout << "changmin 수업시작" << std::endl;
 	// 몬스터가 살아있는지 체크
 	if (bIsAlive_ == false)
 	{
-		//std::srand((unsigned int)time(NULL));
-
-		std::random_device rd;
-		std::mt19937 gen(rd());
-		std::uniform_int_distribution<int> dis(20, 30);
-
-		health_ = (level * dis(rd));
-		attack_ = (level * dis(rd));
+		//전달받은 캐릭터의 레벨에따라 범위안에 능력치 랜덤부여
+		health_ = (level * Random::GetRandInt(20,30));
+		attack_ = (level * Random::GetRandInt(5,10));
 		bIsAlive_ = true;
-
-		std::cout << health_ << " " << attack_ << " " << std::endl;
 	}
 	else return;
 }
@@ -28,13 +21,12 @@ void ChangMinKong::DieMob()
 	{
 		bIsAlive_ = false;
 		//사망 메세지 출력 후 경험치 골드 전달.
-		std::cout << "고생하셨습니다 여러분 젭에서 뵈어요! 안녕~~" << std::endl;
 	}
 	else return;
 }
 
-void ChangMinKong::TakeDamaged(int damage)
+void ChangMinKong::TakeDamage(int dmg)
 {
-	health_ -= damage;
+	health_ -= dmg;
 	if (health_ <= 0);
 }

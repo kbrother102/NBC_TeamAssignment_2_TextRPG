@@ -1,25 +1,28 @@
 ﻿#include "RewardManager.h"
 #include "Random.h"
 #include "Item.h"
+#include "Creature.h"
+#include "Monster.h"
+#include "Character.h"
 
-void RewardManager::ProcessReward(Creature* Monster, Creature* Player)
+void RewardManager::ProcessReward(Monster* Monster, Character* Player)
 {
     //몬스터 스탯 컴포넌트에서 경험치, 돈을 가져옴
     //GetExp() 는 몬스터의 경험치를 출력해주는 함수, component의 getexp()를 출력
-    // int MonsterExp = monster->GetExp();
-    // int MOnsterGold = monster->GetGold();
+    //int MonsterExp = Monster->GetExp();
+   //int MOnsterGold = Monster->GetGold();
     
      
     //플레이어에게 추가
     //set함수라면
-    //Player->SetExp(Player.GetExp() + MonsterExp);
+    Player->SetExp(Player->GetExp() + MonsterExp);
     //add함수라면
-    //Player->AddExp(MonsterExp);
+    Player->AddExp(MonsterExp);
     
-    //set함수라면
-    //Player->SetGold(Player.GetGold() + MonsterGold);
+   // set함수라면
+    Player->SetGold(Player->GetGold() + MonsterGold);
     //add함수라면
-    //Player->AddGold(MonsterGold);
+    Player->AddGold(MonsterGold);
 
 }
 

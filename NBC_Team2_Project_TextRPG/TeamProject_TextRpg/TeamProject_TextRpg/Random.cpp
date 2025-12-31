@@ -9,6 +9,7 @@ int Random::GetRandInt(int min, int max)
     std::uniform_int_distribution<int> dist(min, max);
     return dist(gen);
 }
+//사용법 Random::GetRandInt(최솟값, 최댓값);
 
 // 0.0f ~ 1.0f 사이 실수
 float Random::GetRandFloat()
@@ -21,3 +22,4 @@ float Random::GetRandFloat()
 
     return dist(gen);
 }
+//사용법 Random::GetRandfloat();

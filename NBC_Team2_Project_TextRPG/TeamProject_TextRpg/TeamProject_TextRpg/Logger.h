@@ -13,11 +13,13 @@
     Logger::Add(LogType::COMBAT, "메시지 내용"); // 전투 로그 (빨간색)
     Logger::Add(LogType::ERROR,  "메시지 내용"); // 에러 확인 (노란색)
     Logger::Add(LogType::UI,     "메시지 내용"); // 말머리 없는 순수 텍스트
+    Logger::Add(                 "메시지 내용"); // 타입 작성 없는 순수 텍스트
 
  3. 예시 코드
     Logger::Add(COMBAT, "슬라임에게 10의 데미지!");
     Logger::Add(INFO,   "포션을 획득했습니다.");
     Logger::Add(UI,     "========== [ 상태창 ] ==========");
+    Logger::Add("메시지 출력");
 
  4. 주의사항
     - #include "Logger.h" 를 꼭 해주세요.
@@ -44,8 +46,9 @@ private:
     static const int MAX_LOG_COUNT = 50; // 로그 최대 저장 갯수 
 
 public:
-    
-    static void Add(LogType type, const std::string& msg);
+
+    static void Add(const std::string& msg);                // 일반 출력 (단순 텍스트)
+    static void Add(LogType type, const std::string& msg);  // 타입 출력 (말머리 + 텍스트)
     static const std::vector<std::string>& GetLogs();
     static void Clear();
 };
