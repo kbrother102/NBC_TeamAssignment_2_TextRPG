@@ -1,13 +1,10 @@
-﻿#include "HealthPotion.h"
-#include "Character.h"
-std::string HealthPotion::GetName()
-{
-    //TODO : 함수완성하기
-    return "null";
-}
+#include "HealthPotion.h"
+#include "StatComponent.h"
 
-void HealthPotion::Use(Character* character)
-{
-    //GetHp와 SetHp가 설정되면 작성하기
-    //character->SetHp(character.GetHp())
-}
+HealthPotion::HealthPotion() : Item("체력 포션", 18) {}
+
+//회복 포션 사용 설정 - 스텟에서 회복 관련 함수 필요
+//void HealthPotion::Use(StatComponent* stats)
+//{	//효과 부여
+//	stats.Heal(50);
+//}
