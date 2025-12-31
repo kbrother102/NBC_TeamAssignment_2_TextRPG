@@ -1,11 +1,12 @@
-#pragma once
+﻿#pragma once
+#include "Creature.h"
 #include <iostream>
 #include <string>
 //사용 할 두 클래스 전방 선언
 class Inventory;
 class StatComponent;
 
-class Character
+class Character : public Creature
 {
 public:
 	//호출 시 캐릭터 이름 변경 및 인스턴스 생성

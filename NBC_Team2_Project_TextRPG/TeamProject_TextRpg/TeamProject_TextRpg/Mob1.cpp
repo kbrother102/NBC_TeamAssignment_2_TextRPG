@@ -1,4 +1,4 @@
-﻿#include "Goblin.h"
+﻿#include "Mob1.h"
 #include "Random.h"
 
 void ChangMinKong::SpawnMob(int level)
