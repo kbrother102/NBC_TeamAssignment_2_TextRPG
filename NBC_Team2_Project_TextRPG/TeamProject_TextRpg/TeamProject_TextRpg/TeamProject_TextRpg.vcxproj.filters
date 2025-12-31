@@ -57,6 +57,9 @@
     <ClCompile Include="HealthPotion.cpp">
       <Filter>소스 파일\Character</Filter>
     </ClCompile>
+    <ClCompile Include="ChangMinKong.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>소스 파일\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangMinKong.h">
+      <Filter>소스 파일\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
