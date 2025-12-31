@@ -89,11 +89,13 @@
     <ClInclude Include="Inventory.h">
       <Filter>소스 파일\Character</Filter>
     </ClInclude>
+
     <ClInclude Include="Item.h">
       <Filter>소스 파일\Character</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
       <Filter>헤더 파일</Filter>
+
     </ClInclude>
   </ItemGroup>
 </Project>
