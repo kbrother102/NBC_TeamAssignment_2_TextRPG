@@ -2,11 +2,11 @@
 #include "Monster.h"
 #include "StatComponent.h"
 
-class BongJaeKong : public Monster
+class JoEunKong : public Monster
 {
 public:
 
-	BongJaeKong() 
+	JoEunKong()
 	{
 		monasterStat_ = new StatComponent();
 	}
@@ -31,7 +31,7 @@ public:
 	bool GetAlive() { return monasterStat_->GetIsDead(); }
 	bool GetIsBoss() { return bIsBoss_; }
 
-	~BongJaeKong()
+	~JoEunKong()
 	{
 		//소멸자
 		delete monasterStat_;
@@ -39,7 +39,7 @@ public:
 
 private:
 	class StatComponent* monasterStat_;
-	std::string name_ = "mob2";
+	std::string name_ = "mob3";
 	bool bIsBoss_ = false;
 };
 

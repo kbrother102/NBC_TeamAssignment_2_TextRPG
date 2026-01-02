@@ -135,11 +135,19 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Mob2.cpp" />
+    <ClCompile Include="Mob3.cpp" />
+    <ClCompile Include="Mob4.cpp" />
+    <ClCompile Include="Mob5.cpp" />
+    <ClCompile Include="Mob6.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MonsterSpawner.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RewardManager.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="SpacialMob.cpp" />
+=======
     <ClCompile Include="Shop.cpp" />
+>>>>>>> develop
     <ClCompile Include="StatComponent.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextRpg.cpp" />
@@ -157,11 +165,19 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Mob2.h" />
+    <ClInclude Include="Mob3.h" />
+    <ClInclude Include="Mob4.h" />
+    <ClInclude Include="Mob5.h" />
+    <ClInclude Include="Mob6.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterSpawner.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RewardManager.h" />
+<<<<<<< HEAD
+    <ClInclude Include="SpacialMob.h" />
+=======
     <ClInclude Include="Shop.h" />
+>>>>>>> develop
     <ClInclude Include="StatComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

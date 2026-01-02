@@ -4,6 +4,6 @@
 class MonsterSpawner
 {
 public:
-	void Spawn(std::vector<Monster*>& box);
+	void Spawn(std::vector<class Monster*>& box);
 };
 

@@ -4,41 +4,46 @@
 void ChangMinKong::SpawnMob(int level)
 {
 	// 몬스터가 살아있는지 체크
-	if (bIsAlive_ == false)
+	if (monasterStat_->GetIsDead() == true)
 	{
-		if (level > 9 && bIsBoss_ == false)
+		if (level > 9 && bIsBoss_ == true)
 		{
 			//보스 몬스터 카페인충전한 창민튜터님
-			health_ = (level * Random::GetRandInt(30, 45));
-			attack_ = (level * Random::GetRandInt(8, 15));
-			bIsAlive_ = true;
+			name_ = "카페인충전한 키부츠지 창민튜터님";
+			monasterStat_->SetType("Boss");
+			monasterStat_->SetHp(level * Random::GetRandInt(30, 45));
+			monasterStat_->SetAttack(level * Random::GetRandInt(8, 15));
+			monasterStat_->SetGold(9999);
+			monasterStat_->SetExp(9999);
+			monasterStat_->SetIsDead(false);
 			bIsBoss_ = true;
 		}
 		else
 		{
+			//일반몬스터 일반 창민튜터님
 			//전달받은 캐릭터의 레벨에따라 범위안에 능력치 랜덤부여
-			health_ = (level * Random::GetRandInt(20,30));
-			attack_ = (level * Random::GetRandInt(5,10));
-			bIsAlive_ = true;
-			bIsBoss_ = false;
+			name_ = "창민튜터님";
+			monasterStat_->SetType("Monster");
+			monasterStat_->SetHp(level * Random::GetRandInt(20, 30));
+			monasterStat_->SetAttack(level * Random::GetRandInt(5, 10));
+			monasterStat_->SetGold(Random::GetRandInt(10, 20));
+			monasterStat_->SetExp(50);
+			monasterStat_->SetIsDead(false);
+			bIsBoss_ = true;
 		}
 	}
 	else return;
 }
 
-void ChangMinKong::DieMob()
+void ChangMinKong::UseSkill()
 {
-
-	if (bIsAlive_ == true)
-	{
-		bIsAlive_ = false;
-		//몬스터처치 메세지 출력
-	}
-	else return;
+	//Logger::Add(LogType::Battle, "아 배고파서 잠시 삶은달걀 먹방을 좀 해보겠습니다~");
+	
 }
 
 void ChangMinKong::TakeDamage(int dmg)
 {
-	health_ -= dmg;
-	if (health_ <= 0);
+	monasterStat_->SetHp(monasterStat_->GetHp() - dmg);
+	if (monasterStat_->GetHp() <= 0)
+		monasterStat_->SetIsDead(true);
 }

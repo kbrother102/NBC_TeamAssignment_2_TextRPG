@@ -75,8 +75,25 @@
     <ClCompile Include="Mob2.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Mob3.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Mob4.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Mob5.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Mob6.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="SpacialMob.cpp">
+      <Filter>소스 파일\Monster</Filter>
+=======
     <ClCompile Include="AttackBoost.cpp">
       <Filter>소스 파일\Character</Filter>
+>>>>>>> develop
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,8 +139,25 @@
     <ClInclude Include="Mob2.h">
       <Filter>소스 파일\Monster</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Mob3.h">
+      <Filter>소스 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Mob4.h">
+      <Filter>소스 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Mob5.h">
+      <Filter>소스 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Mob6.h">
+      <Filter>소스 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="SpacialMob.h">
+      <Filter>소스 파일\Monster</Filter>
+=======
     <ClInclude Include="AttackBoost.h">
       <Filter>소스 파일\Character</Filter>
+>>>>>>> develop
     </ClInclude>
   </ItemGroup>
 </Project>
