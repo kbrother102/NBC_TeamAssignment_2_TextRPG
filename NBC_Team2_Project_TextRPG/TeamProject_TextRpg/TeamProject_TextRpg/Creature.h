@@ -5,7 +5,7 @@ class StatComponent;
 class Creature
 {
 protected:
-
+    
 public:
     virtual ~Creature() {};
     //타입: Monster, Player (일단기본)
