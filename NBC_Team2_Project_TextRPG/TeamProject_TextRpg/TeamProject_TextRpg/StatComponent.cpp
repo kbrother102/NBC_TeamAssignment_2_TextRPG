@@ -44,7 +44,7 @@ void StatComponent::SetIsDead(bool bIsDead)
         if (Hp_ <= 0)
         {
             Hp_ = 1;
-            Logger::Add(LogType::ERROR, "HP가 0인 상태에서 부활했습니다. HP를 1로 조정합니다.");
+            Logger::Add(LogType::WARNING, "HP가 0인 상태에서 부활했습니다. HP를 1로 조정합니다.");
         }
     }
 }
@@ -54,13 +54,13 @@ void StatComponent::SetType(string type)
 {
     // [최적화] 함수가 불릴 때마다 벡터를 새로 만들지 않도록 static const 사용
     // 예외처리용 "Normal" 타입 추가
-    static const std::vector<string> allowedTypes = { "Normal", "Player", "Monster", "Boss" };
+    static const std::vector<string> allowedTypes = { "Normal", "Player", "Monster", "Boss", "SpacialMob", "SpacialBoss"};
 
     // [예외처리 1] 빈 문자열 입력 방지
     if (type.empty())
     {
         // Logger가 있다면 사용, 없다면 오류 로그 출력
-        Logger::Add(LogType::ERROR, "타입 이름이 비어있습니다. 기본값(Normal)으로 설정합니다.");
+        Logger::Add(LogType::WARNING, "타입 이름이 비어있습니다. 기본값(Normal)으로 설정합니다.");
         
         // 빈 값이면 '일반'으로 강제 설정
         Type_ = "Normal";
@@ -72,7 +72,7 @@ void StatComponent::SetType(string type)
     if (it == allowedTypes.end())
     {
         // 오타 발생 시 (예: "Bose")
-        Logger::Add(LogType::ERROR, "정의되지 않은 타입 이름입니다." + type + "->'Normal'로 대체합니다.");
+        Logger::Add(LogType::WARNING, "정의되지 않은 타입 이름입니다." + type + "->'Normal'로 대체합니다.");
 
         Type_ = "Normal";
         return;
@@ -167,13 +167,13 @@ void StatComponent::ShowInfo(string name)
     Logger::Add(UI, info);
 }
 
-// [수정] 경험치 획득 시 '누가' 먹었는지 알기 위해 name 받음
-void StatComponent::AddExp(int amount, string name)
+// [수정] string name 삭제
+void StatComponent::AddExp(int amount)
 {
     Exp_ += amount;
 
     // 로그 기록: 받아온 name 사용
-    Logger::Add(INFO, name + "(이)가 경험치를 " + to_string(amount) + " 얻었습니다.");
+    Logger::Add(INFO, "플레이어가 경험치를 " + to_string(amount) + " 얻었습니다.");
 
     // 레벨업 루프
     while (Exp_ >= MaxExp_)
@@ -188,7 +188,7 @@ void StatComponent::AddExp(int amount, string name)
         MaxExp_ += 50;
 
         // 레벨업 축하 로그 (name 사용)
-        Logger::Add(COMBAT, "====== [ " + name + " 레벨 업! (" + to_string(Level_) + ") ] ======");
+        Logger::Add(COMBAT, "====== [ 플레이어 레벨 업! (" + to_string(Level_) + ") ] ======");
     }
 }
 
