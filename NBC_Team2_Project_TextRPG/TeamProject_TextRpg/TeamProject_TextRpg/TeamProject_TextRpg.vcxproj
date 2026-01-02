@@ -143,11 +143,8 @@
     <ClCompile Include="MonsterSpawner.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RewardManager.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="SpacialMob.cpp" />
-=======
     <ClCompile Include="Shop.cpp" />
->>>>>>> develop
     <ClCompile Include="StatComponent.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextRpg.cpp" />
@@ -173,11 +170,8 @@
     <ClInclude Include="MonsterSpawner.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RewardManager.h" />
-<<<<<<< HEAD
     <ClInclude Include="SpacialMob.h" />
-=======
     <ClInclude Include="Shop.h" />
->>>>>>> develop
     <ClInclude Include="StatComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
