@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include "Creature.h"
-#include <iostream>
-#include <random>
 #include <string>
 
 class Monster : public Creature

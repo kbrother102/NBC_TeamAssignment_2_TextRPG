@@ -1,14 +1,14 @@
-﻿#include "Mob1.h"
+﻿#include "Mob2.h"
 #include "Random.h"
 
-void ChangMinKong::SpawnMob(int level)
+void BongJaeKong::SpawnMob(int level)
 {
 	// 몬스터가 살아있는지 체크
 	if (bIsAlive_ == false)
 	{
 		if (level > 9 && bIsBoss_ == false)
 		{
-			//보스 몬스터 카페인충전한 창민튜터님
+			//보스 몬스터 모자를 벗은 봉재튜터님
 			health_ = (level * Random::GetRandInt(30, 45));
 			attack_ = (level * Random::GetRandInt(8, 15));
 			bIsAlive_ = true;
@@ -16,9 +16,10 @@ void ChangMinKong::SpawnMob(int level)
 		}
 		else
 		{
+			//일반몬스터 일반 봉재튜터님
 			//전달받은 캐릭터의 레벨에따라 범위안에 능력치 랜덤부여
-			health_ = (level * Random::GetRandInt(20,30));
-			attack_ = (level * Random::GetRandInt(5,10));
+			health_ = (level * Random::GetRandInt(20, 30));
+			attack_ = (level * Random::GetRandInt(5, 10));
 			bIsAlive_ = true;
 			bIsBoss_ = false;
 		}
@@ -26,7 +27,7 @@ void ChangMinKong::SpawnMob(int level)
 	else return;
 }
 
-void ChangMinKong::DieMob()
+void BongJaeKong::DieMob()
 {
 
 	if (bIsAlive_ == true)
@@ -37,7 +38,7 @@ void ChangMinKong::DieMob()
 	else return;
 }
 
-void ChangMinKong::TakeDamage(int dmg)
+void BongJaeKong::TakeDamage(int dmg)
 {
 	health_ -= dmg;
 	if (health_ <= 0);
