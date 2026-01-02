@@ -5,10 +5,7 @@ class ChangMinKong : public Monster
 {
 public:
 
-	ChangMinKong() : name_("창민튜터님"),
-		health_(0), attack_(0), bIsAlive_(false),
-		exp_(0), gold_(0) {
-	}
+	ChangMinKong() {}
 
 	void SpawnMob(int level);
 	void DieMob();
@@ -21,17 +18,20 @@ public:
 	int GetAttack() { return attack_; }
 	int GetExp() { return exp_; }
 	int GetGold() { return gold_; }
+	bool GetAlive() { return bIsAlive_; }
+	bool GetIsBoss() { return bIsBoss_; }
 
 	~ChangMinKong()
 	{
-		std::cout << "고생하셨습니다 Zep에서 뵈어요!" << std::endl;
+		//소멸자
 	}
 private:
-	std::string name_;
-	int health_;
-	int attack_;
-	bool bIsAlive_;
-	int exp_;
-	int gold_;
+	std::string name_ = "mob1";
+	int health_ = 0;
+	int attack_ = 0;
+	int exp_ = 0;
+	int gold_ = 0;
+	bool bIsAlive_ = false;
+	bool bIsBoss_ = false;
 };
 

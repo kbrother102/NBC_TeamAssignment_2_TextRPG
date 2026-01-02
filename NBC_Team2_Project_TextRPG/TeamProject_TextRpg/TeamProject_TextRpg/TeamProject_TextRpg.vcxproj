@@ -132,6 +132,7 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Mob2.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MonsterSpawner.cpp" />
     <ClCompile Include="Random.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Mob2.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterSpawner.h" />
     <ClInclude Include="Random.h" />
