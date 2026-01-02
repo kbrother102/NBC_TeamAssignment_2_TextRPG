@@ -12,13 +12,17 @@ std::unique_ptr<Character> Character::Create(const std::string& name) //캐릭�
 		return nullptr;
 	}
 	return std::make_unique<Character>(name);
-
 }
 Character::Character(const std::string& name)
 	: CharacterName_(name),
 	stats_(std::make_unique<StatComponent>()),   // 기본 생성자 → 1레벨 스탯
 	inventory_(std::make_unique<Inventory>())
 {
+}
+
+std::string Creature::GetType()
+{
+	return "Player";
 }
 
 //캐릭터명 유효성 판정
@@ -33,31 +37,58 @@ bool Character::IsValidName(const std::string& name)
 	}
 	return true;
 }
-////캐릭터 경험치 획득 //stat에서 매개변수 수정시 주석 해제
-//bool Character::GainExp(int exp)
-//{
-//	return stats_->AddExp(exp);
-//}
-////맥스 레벨 함수가 들어오면 주석해제
-////캐릭터 최고 레벨 판정
-//bool Character::IsMaxLv() const
-//{
-//	return stats_->GetMaxLevel();
-//}
+
+StatComponent* Character::GetStatComponent()
+{
+	return stats_.get();
+}
+
+Inventory* Character::GetInventory()
+{
+	return inventory_.get();
+}
+
+const Inventory* Character::GetInventory() const
+{
+	return inventory_.get();
+}
+
+void Character::GainGold(int amount)
+{
+	if (amount <= 0) return; // 이상값 방어
+
+	stats_->GainGold(amount);
+}
+
+void Character::SpendGold(int amount)
+{
+	return stats_->SpendGold(amount);
+}
+
+void Character::AddExp(int amount)
+{
+	stats_->AddExp(amount);
+}
+
+void Character::AddGold(int amount)
+{
+	stats_->GainGold(amount);
+}
 
 
-/*
 //캐릭터 공격 함수
-int Character::Attack()
+int Character::Attack() const
 {
 	return stats_->GetAttack();
 }
-*/
+
 //캐릭터 피격 함수
 void Character::TakeDamage(int dmg)
 {
 	stats_->SetHp(stats_->GetHp() - dmg);
 }
+
+
 
 //캐릭터의 아이템 사용 함수
 bool Character::UseItem(int index)
@@ -78,28 +109,3 @@ int Character::GetLv() const { return stats_->GetLevel(); }
 int Character::GetExp() const { return stats_->GetExp(); }
 int Character::GetGold() const { return stats_->GetGold(); }
 const std::string Character::GetName() const { return CharacterName_; }
-
-/*
-//전투 완료시 경험치 획득 호출 역할은 스텟 컴포넌트로 이전
-bool Character::GainExp(int exp)
-{	//최고 레벨 판정 함수 추가예정
-	bool reachMaxLv = false;
-	//경험치 획득
-	Exp_ += exp;
-	//레벨업 체크
-	while (Exp_ >= 100 && Lv_ < MaxLv_)
-	{
-		Exp_ -= 100;
-		Lv_++;
-		MaxHp_ += Lv_ * 20;
-		Atk_ += Lv_ * 5;
-		Hp_ = MaxHp_;
-
-		if (Lv_ == MaxLv_)
-		{
-			reachMaxLv = true;
-		}
-	}
-	return IsMaxLv;
-}
-*/

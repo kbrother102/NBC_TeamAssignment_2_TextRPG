@@ -75,6 +75,7 @@
     <ClCompile Include="Mob2.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Mob3.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
@@ -89,6 +90,10 @@
     </ClCompile>
     <ClCompile Include="SpacialMob.cpp">
       <Filter>소스 파일\Monster</Filter>
+=======
+    <ClCompile Include="AttackBoost.cpp">
+      <Filter>소스 파일\Character</Filter>
+>>>>>>> develop
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,15 +133,13 @@
     <ClInclude Include="RewardManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="MonsterSpawner.h">
       <Filter>소스 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Mob2.h">
       <Filter>소스 파일\Monster</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Mob3.h">
       <Filter>소스 파일\Monster</Filter>
     </ClInclude>
@@ -151,6 +154,10 @@
     </ClInclude>
     <ClInclude Include="SpacialMob.h">
       <Filter>소스 파일\Monster</Filter>
+=======
+    <ClInclude Include="AttackBoost.h">
+      <Filter>소스 파일\Character</Filter>
+>>>>>>> develop
     </ClInclude>
   </ItemGroup>
 </Project>
