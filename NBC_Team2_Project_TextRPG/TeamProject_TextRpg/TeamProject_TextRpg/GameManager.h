@@ -1,6 +1,16 @@
 ﻿#pragma once
+#include "Character.h"
+#include "Monster.h"
+#include <string>
 class Character;
 class Monster;
+
+enum class BattleResult
+{
+	PlayerWin,
+	PlayerLose
+};
+
 
 class GameManager
 {
@@ -24,7 +34,7 @@ private:
 	void GenerateMonster();
 
 	// 전투 로직
-	void Battle(Character* player);
+	BattleResult Battle();
 
 	// 보상 시스템
 	void GiveReward();
@@ -35,9 +45,6 @@ private:
 	// 상점 방문
 	bool OpenShop();
 
-	// 게임 종료
-	void GameOver();
-
 	// === 게임 유틸 ===
 
 	Monster* GenerateMonster(int Level);
@@ -45,7 +52,9 @@ private:
 
 private:
 	Character* player_;
-	Monster* monster_;
+	std::string name_;
+	std::vector<Monster*> mobBox_;
+	Monster* curMons_;
 
 };
 
