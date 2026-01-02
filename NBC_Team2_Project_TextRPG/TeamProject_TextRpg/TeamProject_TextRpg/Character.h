@@ -11,6 +11,8 @@ class Character : public Creature
 public:
 	//호출 시 캐릭터 이름 변경 및 인스턴스 생성
 	//Character(const std::string& name);
+	// 크리쳐 타입 추가
+	std::string GetType() override;
 	//Create를 통해서만 생성하게 변경
 	static std::unique_ptr<Character> Create(const std::string& name);
 	//캐릭터 명 부적합 판정
@@ -23,9 +25,21 @@ public:
 	void TakeDamage(int dmg);
 	//아이템 사용 함수
 	bool UseItem(int index); //player.UseItem(0); 으로 사용 호출 가능.
+	//골드 획득
+	void GainGold(int amount);
+	//골드 사용
+	void SpendGold(int amount);
+
+	StatComponent* GetStatComponent() override;
+	Inventory* GetInventory();
+	const Inventory* GetInventory() const;
+
+	//Reward 연계 함수
+	void AddExp(int amount);
+	void AddGold(int amount);
 
 	//공격 함수
-	int Attack();
+	int Attack() const;
 	//최대 레벨 판정
 	bool IsMaxLv() const;
 	//사망 판정 함수
@@ -38,7 +52,7 @@ public:
 	int GetLv() const;
 	int GetExp() const;
 	int GetGold() const;
-	const std::string GetName() const;
+	const std::string GetName() const;// override;
 
 private:
 	//외부 생성 차단
