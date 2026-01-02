@@ -26,29 +26,42 @@ void Action::Attack(Creature* target)
     //로그 공격했다 구현
     Logger::Add(LogType::COMBAT, owner_->GetName()+ "가"+ target->GetName()+ "을(를) 공격했다!");
     Logger::Add(LogType::COMBAT, "데미지 : " + owner_->GetStatComponent()->GetAttack());
+	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(target->GetStatComponent()->GetHp()));
+    
     
 }
 
 
 //아이템 획득.
-void Action::RandUseItem(Inventory* inventory)
+void Action::RandUseItem()
 {
-    int r = Random::GetRandInt(0, 99);
-
-    //인벤토리에 없고 인벤 사이즈가 0이면 종료
-    if (!inventory || !owner_)
+    
+    Character* player = dynamic_cast<Character*>(owner_);
+	//플레이어가 아니면 종료
+    if (!player)
     {
         return;
     }
-
-	//TODO: 아이템 개수 체크
-    //  if (inventory->GetItemCount() == 0)   return;
-    //30% 확률로 아이템 사용
+    // 인벤토리 없으면 종료
+    /*Inventory* inventory = player->GetInventory();
+    if(inventory == nullptr)
+    {
+        return;
+	}
+    */
+	//아이템 개수가 0인지 체크
+    //if (inventory->GetItemCount() == 0)   
+    // {
+    //      return;
+    // }
+	//TODO: 30% 확률로 아이템 사용한 뒤 로그 출력
+	//0~99까지 일정한 확률 랜덤 생성
+    int r = Random::GetRandInt(0, 99);
     if (r < 30)
     {
 
-        //인벤토리에서 랜덤으로 아이템 선택 , 0, inventory->GetSize()-1);
-       //TODO :int random = Random::GetRandInt(0, inventory.());
+        //인벤토리에서 0~에서 인벤토리 사이즈만큼의 랜덤을 돌려 아이템 선택;
+       //TODO :int random = Random::GetRandInt(0, inventory->>GetItemCount());
         //아이템을 랜덤으로 선택한것을 저장.
        /*TODO Item* item = inventory->GetItemAt(random);
 
@@ -56,19 +69,23 @@ void Action::RandUseItem(Inventory* inventory)
         {
             return;
 		}
- 
+        if(owner_->GetStatComponent()->GetMaxHp() == owner_->GetStatComponent()->GetHp() && item->ItemType() == "HealthPotion")
+        {
+            return;
+		}
         inventory->UseItem(random, *owner_->GetStatComponent());*/
 
 
 
         /*로그 아이템을 사용했다 구현
-        if (item->GetName() == "HpPotion")
+        if (item->ItemType() == "HealthPotion")
         {
-            std::cout << "체력이 회복되었다!" << std::endl;
+			Logger::Add(LogType::INFO, "체력이 회복되었다!" );
+			Logger::Add(LogType::INFO, std::to_string(owner_->GetStatComponent()->GetMaxHp() +" : " + std::to_string(owner_->GetStatComponent()->GetHp()));
         }
-        if (item->GetName() == "AttackPotion")
+        if (item->ItemType() == "AttackBoost")
         {
-            std::cout << "공격력이 상승했다!" << std::endl;
+		   Logger::Add(LogType::INFO, "공격력" +item->미정()  + "이 상승했다!" );
         }
         Logger::Add(LogType::INFO, owner_->GetName() + "가 " + item->GetName() + "을(를) 사용했다!");
         */
@@ -86,8 +103,8 @@ void Action::Die()
     //사망.
 	owner_->GetStatComponent()->SetIsDead(true);
 
-	//로그 사망했다 구현
-    Logger::Add(LogType::INFO, owner_->GetName() + "이(가) 사망했다!");
+	//로그 사망했다 구현    
+    Logger::Add(LogType::INFO, owner_->GetName() + "튜터님의 과제를 완료했다.");
 }
 
 
