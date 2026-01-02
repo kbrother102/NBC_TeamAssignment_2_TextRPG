@@ -1,11 +1,10 @@
 ﻿#pragma once
 #include "Monster.h"
-
-class ChangMinKong : public Monster
+class BongJaeKong : public Monster
 {
 public:
 
-	ChangMinKong() {}
+	BongJaeKong() {}
 
 	void SpawnMob(int level);
 	void DieMob();
@@ -21,12 +20,12 @@ public:
 	bool GetAlive() { return bIsAlive_; }
 	bool GetIsBoss() { return bIsBoss_; }
 
-	~ChangMinKong()
+	~BongJaeKong()
 	{
 		//소멸자
 	}
 private:
-	std::string name_ = "mob1";
+	std::string name_ = "mob2";
 	int health_ = 0;
 	int attack_ = 0;
 	int exp_ = 0;
