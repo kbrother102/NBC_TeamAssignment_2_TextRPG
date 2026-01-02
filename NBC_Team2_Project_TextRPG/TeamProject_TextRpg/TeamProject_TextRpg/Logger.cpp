@@ -1,5 +1,4 @@
 ﻿#include "Logger.h"
-#include "Logger.h"
 #include <iostream>
 
 // 색상 코드
@@ -41,7 +40,7 @@ void Logger::Add(LogType type, const string& msg)
         ColorCode = COLOR_RED;
         break;
 
-    case ERROR:
+    case WARNING:
         Prefix = "[오류] ";
         ColorCode = COLOR_YELLOW;
         break;

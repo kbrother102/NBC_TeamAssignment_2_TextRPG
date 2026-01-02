@@ -11,7 +11,7 @@
 
     Logger::Add(LogType::INFO,   "메시지 내용"); // 일반 정보 (청록색)
     Logger::Add(LogType::COMBAT, "메시지 내용"); // 전투 로그 (빨간색)
-    Logger::Add(LogType::ERROR,  "메시지 내용"); // 에러 확인 (노란색)
+    Logger::Add(LogType::WARNING,  "메시지 내용"); // 에러 확인 (노란색)
     Logger::Add(LogType::UI,     "메시지 내용"); // 말머리 없는 순수 텍스트
     Logger::Add(                 "메시지 내용"); // 타입 작성 없는 순수 텍스트
 
@@ -35,7 +35,7 @@ enum LogType
 {
     INFO,
     COMBAT,
-    ERROR,
+    WARNING,
     UI
 };
 
