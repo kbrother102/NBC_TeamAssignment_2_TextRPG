@@ -1,9 +1,11 @@
 ﻿#include "RewardManager.h"
 #include "Random.h"
-#include "Item.h"
 #include "Creature.h"
 #include "Monster.h"
 #include "Character.h"
+#include "HealthPotion.h"
+#include "Inventory.h"
+#include <memory>
 
 void RewardManager::ProcessReward(Monster* Monster, Character* Player)
 {
@@ -11,18 +13,38 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
     //GetExp() 는 몬스터의 경험치를 출력해주는 함수, component의 getexp()를 출력
     //int MonsterExp = Monster->GetExp();
    //int MOnsterGold = Monster->GetGold();
-    
-     
+
     //플레이어에게 추가
-    //set함수라면
-    Player->SetExp(Player->GetExp() + MonsterExp);
-    //add함수라면
-    Player->AddExp(MonsterExp);
-    
-   // set함수라면
-    Player->SetGold(Player->GetGold() + MonsterGold);
-    //add함수라면
-    Player->AddGold(MonsterGold);
+    Player->GainExp(Monster->GetExp());
+   //TODO : GainGold 있으면 주석해제
+    //Player->GainGold(Monster->GetGold());
+
+    if (isItemDrop() == true)
+    {
+        int select = Random::GetRandInt(0, 1);
+        ItemType ItemT = static_cast<ItemType>(select);
+
+        switch (ItemT)
+        {
+        
+        case ItemType::HealthPotion:
+        {
+            std::unique_ptr<class HealthPotion> potion = std::make_unique<class HealthPotion>();
+            // TODO : GetInvetory()함수가 있으면 주석해제
+            //Player->GetInventory()->AddItem(std::move(potion));
+            break;
+        }
+        case ItemType::AttackBoost:
+        {
+            //TODO : AttackBoost 구현시 주석해제
+            //std::unique_ptr<AttackBoost> potion = std::make_unique<AttackBoost>();
+            // TODO : GetInvetory()함수가 있으면 주석해제
+            //Player->GetInventory()->AddItem(std::move(potion));
+            break;
+        }
+        }
+        
+    }
 
 }
 
