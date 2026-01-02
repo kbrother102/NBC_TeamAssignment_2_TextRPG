@@ -29,25 +29,13 @@ public:
    
     // 생성자 1. (캐릭터 초기화 담당)
     StatComponent()
-        : Hp_(200), MaxHp_(200), Attack_(0),
+        : bIsDead_(true), Hp_(200), MaxHp_(200), Attack_(0),
         Level_(1), MaxLevel_(10), Exp_(0), MaxExp_(0), Gold_(0)
     {
         // 생성자 멤버 초기화 
         // HP 200, Attack 30, 레벨 1, 경험치 0, 경험치통 100은 고정값으로 시작합니다.
     }
 
-    //==========================================
-    // 생성자 2. (몬스터 오버로딩 초기화 - 취소)
-    /*
-    StatComponent(int hp, int atk, int exp, int gold)
-        : Hp_(hp), MaxHp_(hp), Attack_(atk), // 받은 값으로 초기화
-        Level_(1), Exp_(exp), MaxExp_(100), Gold_(gold)
-    {
-        // 생성자 멤버 초기화 
-        // HP 200, Attack 30, 레벨 1, 경험치 0, 경험치통 100은 고정값으로 시작합니다.
-    }
-    */
-    //==========================================
 
     // [기능] 스탯 출력 (정보창 그리기)
     void ShowInfo(std::string name);
@@ -55,10 +43,17 @@ public:
     // [기능] 경험치 획득 (레벨업 로직 포함)
     void AddExp(int amount, std::string name);
 
-    // [기능] 골드 변경 (획득은 양수, 사용은 음수)
-    void AddGold(int amount);
+    // [기능] 골드 변경 (골드 획득은 양수, 상점 등에서 골드 사용은 음수)
+    // GainGold  (더하기)     양수만 받아서 현재 골드에 양수를 더함 / 음수 입력시 0으로 받음
+    void GainGold(int gainamount);
+
+    // SpendGold (뺴기)       음수만 받아서 현재 골드에 음수를 더함 / 양수 입력시 0으로 받음
+    void SpendGold(int spendamount);
+
 
     // [Getter] (읽기 전용) ==========================================
+    bool GetIsDead() const { return bIsDead_; }
+    std::string GetType() const { return Type_; }
     int GetHp() const { return Hp_; }
     int GetMaxHp() const { return MaxHp_; }
     int GetAttack() const { return Attack_; }
@@ -67,7 +62,10 @@ public:
     int GetExp() const { return Exp_; }
     int GetGold() const { return Gold_; }
 
+
     // [Setter] (쓰기 전용) ==========================================
+    void SetIsDead(bool bIsDead);
+    void SetType(std::string type);
     void SetHp(int hp);
     void SetMaxHp(int maxHp);
     void SetAttack(int attack);
@@ -77,8 +75,11 @@ public:
     void SetMaxExp(int maxExp);
     void SetGold(int gold);
 
+
 private:
     // [1] 기본 정보
+    bool bIsDead_;
+    std::string Type_;
     // 이름 - 제외됨. 캐릭터에서 관리함.
 
     // [2] 전투 스탯
