@@ -75,7 +75,7 @@ void Action::RandUseItem(Inventory* inventory)
 
     }
 }
-
+//죽음.
 void Action::Die()
 {
     //없으면 종료
@@ -83,6 +83,8 @@ void Action::Die()
     {
         return;
     }
+    //사망.
+	owner_->GetStatComponent()->SetIsDead(true);
 
 	//로그 사망했다 구현
     Logger::Add(LogType::INFO, owner_->GetName() + "이(가) 사망했다!");
@@ -92,20 +94,3 @@ void Action::Die()
 
 
 
-/*
-void Action::TakeDamage(int dmg)
-{
-	//없으면 종료
-    if(owner_ == nullptr)
-    {
-        return;
-	}
-     //데미지가 실제로 들어가는 부분
-	  owner_->SetHp(owner_->GetHp() - damage);
-	if (owner_->GetHp() <= 0)
-     {
-	  owner_->SetHp(0);
-     };
-    //필요없음.
-}
-*/
