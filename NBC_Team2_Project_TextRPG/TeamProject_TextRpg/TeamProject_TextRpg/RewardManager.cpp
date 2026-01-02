@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "HealthPotion.h"
 #include "Inventory.h"
+
 #include <memory>
 
 void RewardManager::ProcessReward(Monster* Monster, Character* Player)
@@ -14,8 +15,8 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
    //int MOnsterGold = Monster->GetGold();
 
     //플레이어에게 추가
-    Player->GainExp(Monster->GetExp());
-   //TODO : Character에 GainGold 있으면 주석해제
+    //Player->GainExp(Monster->GetExp());
+    //TODO : Character에 GainGold 있으면 주석해제
     //Player->GainGold(Monster->GetGold())
 
     if (isItemDrop() == true)
@@ -29,15 +30,15 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
         case ItemType::HealthPotion:
         {
             std::unique_ptr<class HealthPotion> potion = std::make_unique<class HealthPotion>();
-            // TODO : GetInvetory()함수가 있으면 주석해제
-            //Player->GetInventory()->AddItem(std::move(potion));
+            
+            Player->GetInventory()->AddItem(std::move(potion));
             break;
         }
         case ItemType::AttackBoost:
         {
-            //TODO : AttackBoost 구현시 주석해제
+            
             //std::unique_ptr<class AttackBoost> potion = std::make_unique<class AttackBoost>();
-            // TODO : GetInvetory()함수가 있으면 주석해제
+            //TODO: 오류수정하기
             //Player->GetInventory()->AddItem(std::move(potion));
             break;
         }

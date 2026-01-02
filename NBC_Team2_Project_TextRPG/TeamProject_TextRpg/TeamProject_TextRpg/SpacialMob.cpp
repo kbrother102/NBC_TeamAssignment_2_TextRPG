@@ -18,7 +18,7 @@ void HoYeongJou::SpawnMob(int level)
 			monasterStat_->SetExp(11111);
 			monasterStat_->SetIsDead(false);
 			bIsBoss_ = true;
-			Logger::Add(LogType::ERROR, "자자 여러분 화이팅 여러분은 할 수 있습니다!!");
+			Logger::Add(LogType::WARNING, "자자 여러분 화이팅 여러분은 할 수 있습니다!!");
 		}
 		else
 		{
@@ -32,7 +32,7 @@ void HoYeongJou::SpawnMob(int level)
 			monasterStat_->SetExp(200);
 			monasterStat_->SetIsDead(false);
 			bIsBoss_ = true;
-			Logger::Add(LogType::ERROR, "안녕하세요 여러분 조호영튜텁니다!!!");
+			Logger::Add(LogType::WARNING, "안녕하세요 여러분 조호영튜텁니다!!!");
 		}
 	}
 	else return;

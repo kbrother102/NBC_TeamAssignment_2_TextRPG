@@ -40,6 +40,7 @@ public:
 	}
 
 private:
+	//TODO : 공통된 변수 몬스터(Monster.h)에 넣기
 	class StatComponent* monasterStat_;
 	std::string name_ = "mob1";
 	bool bIsBoss_ = false;

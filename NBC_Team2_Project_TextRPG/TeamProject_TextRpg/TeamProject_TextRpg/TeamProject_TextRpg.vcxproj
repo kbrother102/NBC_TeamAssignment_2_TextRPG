@@ -146,7 +146,6 @@
     <ClCompile Include="SpacialMob.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="StatComponent.cpp" />
-    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TextRpg.cpp" />
   </ItemGroup>
   <ItemGroup>

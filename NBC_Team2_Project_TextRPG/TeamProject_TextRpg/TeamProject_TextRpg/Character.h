@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Creature.h"
 #include <string>
 #include <memory>
@@ -52,11 +52,12 @@ public:
 	int GetLv() const;
 	int GetExp() const;
 	int GetGold() const;
-	const std::string GetName() const;// override;
+	std::string GetName() const;// override;
 
+	explicit Character(const std::string& name);
 private:
 	//외부 생성 차단
-	explicit Character(const std::string& name);
+	
 
 	std::string CharacterName_;
 	std::unique_ptr<Inventory> inventory_;

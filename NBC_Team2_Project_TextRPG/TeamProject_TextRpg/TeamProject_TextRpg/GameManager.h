@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "Monster.h"
 #include <string>
+#include <vector>
 class Character;
 class Monster;
 
@@ -32,6 +33,7 @@ private:
 
 	// 몬스터 생성
 	void GenerateMonster();
+	Monster* GetMonster(int Level);
 
 	// 전투 로직
 	BattleResult Battle();

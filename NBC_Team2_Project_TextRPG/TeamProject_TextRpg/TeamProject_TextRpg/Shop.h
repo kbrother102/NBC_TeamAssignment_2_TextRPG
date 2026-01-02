@@ -3,12 +3,15 @@
 #include <vector>
 #include <memory>
 
+
+class Character;
+
 class Shop
 {
 public:
     Shop() {};
 
-    void RunShop();
+    void RunShop(Character* Player);
     void Initialize();
     void ShowItemList();
     void SellItem(class Character* Player);

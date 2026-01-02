@@ -24,9 +24,10 @@ void Action::Attack(Creature* target)
 	target->TakeDamage(owner_->GetStatComponent()->GetAttack());
     
     //로그 공격했다 구현
-    Logger::Add(LogType::COMBAT, owner_->GetName()+ "가"+ target->GetName()+ "을(를) 공격했다!");
+    Logger::Add(LogType::COMBAT, owner_->GetName()+ "가 "+ target->GetName()+ "을(를) 공격했다! ");
     Logger::Add(LogType::COMBAT, "데미지 : " + owner_->GetStatComponent()->GetAttack());
-	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(target->GetStatComponent()->GetHp()));
+	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(target->GetStatComponent()->GetHp()) + " ");
+    Logger::Add(LogType::COMBAT, "==================================");
     
     
 }

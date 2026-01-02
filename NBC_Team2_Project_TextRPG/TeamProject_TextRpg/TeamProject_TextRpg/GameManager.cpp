@@ -10,7 +10,9 @@
 void GameManager::Run()
 {
 	// 0번 키를 누르면 게임 종료
-	while ()
+	// 
+	//TODO : 진행 좀더~
+	while (1)
 	{
 		StartGame();
 		PlayerInputLogic();
@@ -18,10 +20,12 @@ void GameManager::Run()
 		GenerateMonster();
 		Battle();
 		
-		if ((Battle() == BattleResult::PlayerLose())) continue;
+		if ((Battle() == BattleResult::PlayerLose)) continue;
 	}
 }
 
+
+//TODO : cout을 Logger::Add("메시지 출력"); 로 변경
 void GameManager::StartGame()
 {
 	std::cout << "게임 시작" << std::endl;
@@ -37,6 +41,7 @@ void GameManager::CreateCharacter()
 {
 	player_ = new Character(name_);
 	std::cout << "생성된 이름: " << player_->GetName();
+	
 }
 
 void GameManager::GenerateMonster()
@@ -45,25 +50,33 @@ void GameManager::GenerateMonster()
 	MonsterSpawner.Spawn(mobBox_);
 }
 
+Monster* GameManager::GetMonster(int Level)
+{
+	curMons_ = mobBox_[Random::GetRandInt(0, 6)];
+	curMons_->SpawnMob(Level);
+	return curMons_;
+}
+
 BattleResult GameManager::Battle()
 {
-	curMons_ = GenerateMonster(player_->GetLv()); // player의 레벨? monster의 레벨?
+	GetMonster(player_->GetLv()); // player의 레벨? monster의 레벨?
 
 	Action playeraction;
-	playeraction.SetOwner(player);
+	playeraction.SetOwner(player_);
 
 	Action monsteraction;
-	monsteraction.SetOwner(monster);
+	monsteraction.SetOwner(curMons_);
 
-	while (player_->!IsDead())
+	while (!(player_->IsDead()))
 	{
+		//TODO 몬스터~ 액션에 있는 다이함수 쓰기~
 		playeraction.Attack(curMons_);
-		if (curMons_->DieMob()) break;
+		//if (curMons_->DieMob()) break;
 
 		monsteraction.Attack(player_);
 	}
 
-	if (player_->!IsDead())
+	if (!(player_->IsDead()))
 	{
 		std::cout << "전투 승리, 보상을 받으세요." << std::endl;
 		GiveReward();
@@ -79,7 +92,7 @@ BattleResult GameManager::Battle()
 
 void GameManager::GiveReward()
 {
-	RewardManager::GetInstance().ProcessReward();
+	RewardManager::GetInstance().ProcessReward(curMons_, player_);
 }
 
 bool GameManager::IsLevel10()
@@ -95,7 +108,7 @@ bool GameManager::OpenShop()
 Monster* GameManager::GenerateMonster(int Level)
 {
 	curMons_ = mobBox_[Random::GetRandInt(0, 1)];
-	curMons_->SpawnMob(level);
+	curMons_->SpawnMob(Level);
 	return curMons_;
 }
 

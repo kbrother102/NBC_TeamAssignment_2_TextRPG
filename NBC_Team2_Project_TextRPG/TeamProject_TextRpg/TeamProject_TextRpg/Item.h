@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 
 class StatComponent;
@@ -15,9 +15,9 @@ public:
     virtual bool Use(StatComponent& stats) = 0;
 
 protected:
-    Item(const std::string& name, int price) : name_(name), price_(price_) {}
+    Item(const std::string& name, int price) : name_(name), price_(price) {}
 
 private:
     const std::string name_;
-    int price_;
+    int price_ = 0 ;
 };

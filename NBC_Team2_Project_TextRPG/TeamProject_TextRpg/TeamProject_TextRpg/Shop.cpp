@@ -3,6 +3,8 @@
 #include "Logger.h"
 #include "Console.h"
 #include "Character.h"
+#include "Inventory.h"
+
 void Shop::Initialize()
 {
     
@@ -29,10 +31,10 @@ void Shop::SellItem(Character* Player)
     switch (select)
     {
     case 1 :
-        if (Product_ != nullptr)
+        if (Product_[0] != nullptr)
         {
-            //TODO :GetInVectory() 생기면 해제
-            //Player->GetInvectory()->AddItem(move(Product_[0]));
+            
+            Player->GetInventory()->AddItem(move(Product_[0]));
             Product_[0] = nullptr;
         }
         else
@@ -47,12 +49,12 @@ void Shop::BuyItem(Character* Player)
 }
 
 
-void Shop::RunShop()
+void Shop::RunShop(Character* Player)
 {
     int select = 0;
     Initialize();
     ShowItemList();
-    BuyItem();
+    BuyItem(Player);
     
 
 }

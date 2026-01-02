@@ -1,8 +1,14 @@
-#include "Character.h"
+﻿#include "Character.h"
 #include "Inventory.h"
 #include "StatComponent.h"
 #include <memory>
 #include <cctype>
+
+std::string Character::GetType()
+{
+	return std::string();
+}
+
 //생성자
 std::unique_ptr<Character> Character::Create(const std::string& name) //캐릭터는 이름/스텟(컴포넌트의)/인벤토리 를 상속받음
 {
@@ -20,10 +26,7 @@ Character::Character(const std::string& name)
 {
 }
 
-std::string Creature::GetType()
-{
-	return "Player";
-}
+
 
 //캐릭터명 유효성 판정
 bool Character::IsValidName(const std::string& name)
@@ -108,4 +111,4 @@ int Character::GetAtk() const { return stats_->GetAttack(); }
 int Character::GetLv() const { return stats_->GetLevel(); }
 int Character::GetExp() const { return stats_->GetExp(); }
 int Character::GetGold() const { return stats_->GetGold(); }
-const std::string Character::GetName() const { return CharacterName_; }
+std::string Character::GetName() const { return CharacterName_; }

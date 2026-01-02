@@ -1,5 +1,8 @@
 ﻿#pragma once
 class Creature;
+class Monster;
+class Character;
+
 class RewardManager
 {
 public: 

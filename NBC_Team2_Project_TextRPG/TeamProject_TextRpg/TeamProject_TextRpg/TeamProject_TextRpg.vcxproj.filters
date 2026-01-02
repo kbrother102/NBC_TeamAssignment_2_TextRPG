@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\Component">
       <UniqueIdentifier>{9d958562-db83-4510-8bb7-519de04cf44c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Manager">
+      <UniqueIdentifier>{266eac0b-25b8-433e-bd9f-f8ab0d89315c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextRpg.cpp">
@@ -39,9 +42,6 @@
     <ClCompile Include="StatComponent.cpp">
       <Filter>소스 파일\Component</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>소스 파일\Component</Filter>
     </ClCompile>
@@ -58,15 +58,6 @@
       <Filter>소스 파일\Character</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Test.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="RewardManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Random.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MonsterSpawner.cpp">
@@ -89,9 +80,24 @@
     </ClCompile>
     <ClCompile Include="SpacialMob.cpp">
       <Filter>소스 파일\Monster</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="AttackBoost.cpp">
       <Filter>소스 파일\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="RewardManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +112,6 @@
     </ClInclude>
     <ClInclude Include="StatComponent.h">
       <Filter>소스 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>소스 파일\Component</Filter>
@@ -126,9 +129,6 @@
       <Filter>소스 파일\Character</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="RewardManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MonsterSpawner.h">
@@ -151,9 +151,24 @@
     </ClInclude>
     <ClInclude Include="SpacialMob.h">
       <Filter>소스 파일\Monster</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="AttackBoost.h">
       <Filter>소스 파일\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>소스 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>소스 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="RewardManager.h">
+      <Filter>소스 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>소스 파일\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

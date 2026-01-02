@@ -2,6 +2,8 @@
 #include "Creature.h"
 #include <string>
 
+class Action;
+
 class Monster : public Creature
 {
 public:
@@ -14,4 +16,6 @@ public:
 	virtual void SpawnMob(int level) = 0;
 	virtual void UseSkill() = 0;
 	virtual StatComponent* GetStatComponent() = 0;
+private:
+	Action* MonAct_;
 };
