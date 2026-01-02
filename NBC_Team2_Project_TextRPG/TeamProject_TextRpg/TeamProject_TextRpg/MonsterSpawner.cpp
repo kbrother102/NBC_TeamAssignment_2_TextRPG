@@ -1,17 +1,13 @@
 ﻿#include "MonsterSpawner.h"
 #include "Monster.h"
 #include "Mob1.h"
+#include "Mob2.h"
 #include "Random.h"
 
-Monster* MonsterSpawner::Spawn()
+void MonsterSpawner::Spawn(std::vector<Monster*>& box)
 {
-	int num;
-	std::vector<Monster*> mobs;
-	Monster* ChangMin = new ChangMinKong();
-	mobs.push_back(ChangMin);
-
-	//랜덤난수생성
-	num = Random::GetRandInt(0,1);
-
-	return mobs[num];
+	Monster* mob1 = new ChangMinKong();
+	Monster* mob2 = new BongJaeKong();
+	box.push_back(mob1);
+	box.push_back(mob2);
 }
