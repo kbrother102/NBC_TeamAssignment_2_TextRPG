@@ -3,7 +3,7 @@ class Creature;
 class RewardManager
 {
 public: 
-    void ProcessReward(Creature* monster, Creature* Player);
+    void ProcessReward(Monster* Monster, Character* Player);
     //싱글턴 패턴 - getinstance로 객체생성
     static RewardManager& GetInstance();
 
@@ -17,6 +17,10 @@ private:
     //내부계산용 함수
     bool isItemDrop();
 
+    enum ItemType {
+        HealthPotion,
+        AttackBoost
+    };
 
 
 };
