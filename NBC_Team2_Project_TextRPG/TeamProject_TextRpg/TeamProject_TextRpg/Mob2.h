@@ -1,36 +1,45 @@
 ﻿#pragma once
 #include "Monster.h"
+#include "StatComponent.h"
+
 class BongJaeKong : public Monster
 {
 public:
 
-	BongJaeKong() {}
+	BongJaeKong() 
+	{
+		monasterStat_ = new StatComponent();
+	}
 
 	void SpawnMob(int level);
-	void DieMob();
 	void TakeDamage(int dmg);
+	StatComponent* GetStatComponent() { return monasterStat_; }
+	void UseSkill();
 
 	//게터함수
-	std::string GetType() { return Type_; }
-	std::string GetName() { return name_; }
-	int GetHealth() { return health_; }
-	int GetAttack() { return attack_; }
-	int GetExp() { return exp_; }
-	int GetGold() { return gold_; }
-	bool GetAlive() { return bIsAlive_; }
+	//string
+	std::string GetType() { return monasterStat_->GetType(); }
+	std::string GetName() const { return name_; }
+
+	//int
+	int GetHealth() { return monasterStat_->GetHp(); }
+	int GetAttack() { return monasterStat_->GetAttack(); }
+	int GetExp() { return monasterStat_->GetExp(); }
+	int GetGold() { return monasterStat_->GetGold(); }
+
+	//bool
+	bool GetAlive() { return monasterStat_->GetIsDead(); }
 	bool GetIsBoss() { return bIsBoss_; }
 
 	~BongJaeKong()
 	{
 		//소멸자
+		delete monasterStat_;
 	}
+
 private:
+	class StatComponent* monasterStat_;
 	std::string name_ = "mob2";
-	int health_ = 0;
-	int attack_ = 0;
-	int exp_ = 0;
-	int gold_ = 0;
-	bool bIsAlive_ = false;
 	bool bIsBoss_ = false;
 };
 
