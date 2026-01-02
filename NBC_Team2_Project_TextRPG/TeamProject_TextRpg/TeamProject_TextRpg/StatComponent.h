@@ -30,7 +30,7 @@ public:
     // 생성자 1. (캐릭터 초기화 담당)
     StatComponent()
         : Hp_(200), MaxHp_(200), Attack_(0),
-        Level_(1), Exp_(0), MaxExp_(0), Gold_(0)
+        Level_(1), MaxLevel_(10), Exp_(0), MaxExp_(0), Gold_(0)
     {
         // 생성자 멤버 초기화 
         // HP 200, Attack 30, 레벨 1, 경험치 0, 경험치통 100은 고정값으로 시작합니다.
@@ -88,7 +88,7 @@ private:
 
     // [3] 성장 및 재화
     int Level_;        // 레벨
-    int MaxLevel_;      // 최대레벨
+    int MaxLevel_;     // 최대레벨
     int Exp_;          // 현재 경험치
     int MaxExp_;       // 다음 레벨까지 필요한 경험치
     int Gold_;         // 보유 골드(포인트)
