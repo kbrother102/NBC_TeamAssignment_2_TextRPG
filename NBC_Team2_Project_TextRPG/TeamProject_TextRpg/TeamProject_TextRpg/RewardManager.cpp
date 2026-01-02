@@ -3,6 +3,7 @@
 #include "Monster.h"
 #include "Character.h"
 #include "HealthPotion.h"
+#include "AttackBoost.h"
 #include "Inventory.h"
 
 #include <memory>
@@ -12,7 +13,7 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
     //몬스터 스탯 컴포넌트에서 경험치, 돈을 가져옴
     //GetExp() 는 몬스터의 경험치를 출력해주는 함수, component의 getexp()를 출력
     //int MonsterExp = Monster->GetExp();
-   //int MOnsterGold = Monster->GetGold();
+   //int MonsterGold = Monster->GetGold();
 
     //플레이어에게 추가
     //Player->GainExp(Monster->GetExp());
@@ -37,9 +38,9 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
         case ItemType::AttackBoost:
         {
             
-            //std::unique_ptr<class AttackBoost> potion = std::make_unique<class AttackBoost>();
+            std::unique_ptr<class AttackBoost> potion = std::make_unique<class AttackBoost>();
             //TODO: 오류수정하기
-            //Player->GetInventory()->AddItem(std::move(potion));
+            Player->GetInventory()->AddItem(std::move(potion));
             break;
         }
         }
