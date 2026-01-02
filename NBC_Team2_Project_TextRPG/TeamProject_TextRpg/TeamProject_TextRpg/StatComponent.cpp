@@ -14,8 +14,6 @@ int StatComponent::ClampZero(int value)
     return value;
 }
 
-
-
 // [Setter] ==========================================
 void StatComponent::SetIsDead(bool bIsDead)
 {

@@ -29,7 +29,7 @@ public:
    
     // 생성자 1. (캐릭터 초기화 담당)
     StatComponent()
-        : bIsDead_(true), Hp_(200), MaxHp_(200), Attack_(0),
+        : bIsDead_(true), Type_("Normal"), Hp_(200), MaxHp_(200), Attack_(0),
         Level_(1), MaxLevel_(10), Exp_(0), MaxExp_(0), Gold_(0)
     {
         // 생성자 멤버 초기화 
