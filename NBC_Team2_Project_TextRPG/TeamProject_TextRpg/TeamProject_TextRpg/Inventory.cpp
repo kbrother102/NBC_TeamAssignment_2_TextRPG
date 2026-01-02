@@ -1,4 +1,5 @@
 #include "Inventory.h"
+#include "Item.h"
 
 bool Inventory::AddItem(std::unique_ptr<Item> item)
 {
@@ -11,7 +12,10 @@ bool Inventory::UseItem(int index, StatComponent& stats)
 {
 	if (index < 0 || index >= items_.size()) return false;
 
-	items_[index]->Use(stats);
-	items_.erase(items_.begin() + index);
-	return true;
+	if (items_[index]->Use(stats))
+	{
+		items_.erase(items_.begin() + index);
+		return true;
+	}
+	return false;
 }

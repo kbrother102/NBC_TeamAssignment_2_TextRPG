@@ -6,15 +6,18 @@ class StatComponent;
 class Item
 {
 public:
-    Item(std::string name, int price);
+
     virtual ~Item() = default;
-    std::string GetName() const;
-    int GetPrice() const;
+    const std::string GetName() const { return name_; }
+    int GetPrice() const { return price_; }
 
     //아이템 효과(사용)
-    virtual void Use(StatComponent& stats) = 0;
+    virtual bool Use(StatComponent& stats) = 0;
 
 protected:
-    std::string name_;
+    Item(const std::string& name, int price) : name_(name), price_(price_) {}
+
+private:
+    const std::string name_;
     int price_;
 };
