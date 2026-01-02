@@ -5,8 +5,10 @@
 #include "Creature.h"
 #include "Inventory.h"
 #include "StatComponent.h"
-#include <string>
 #include "Random.h"
+#include "Logger.h"
+#include <string>
+
 
 
 //공격.
@@ -20,18 +22,16 @@ void Action::Attack(Creature* target)
    
      
 	//타겟의 체력에서 공격자의 공격력만큼 차감
-	//target->TakeDamage(owner_->GetAttack());
-    //이것도 다시해야함.
+	target->TakeDamage();
+    
     
 	
 
    
     //로그 공격했다 구현
-    //Log();
-
-    //std::cout << owner_->GetName() << "가 " << target->GetName() << "을(를) 공격했다!" << std::endl;
-    //std::cout << "데미지 : " << owner_->GetDamage() << std::endl; 
-    //로그는 나둬도 될듯.
+    Logger::Add(LogType::COMBAT, owner_->GetName()+ "가"+ target->GetName()+ "을(를) 공격했다!");
+    Logger::Add(LogType::COMBAT, "데미지 : " + owner_->GetDamage());
+    
 }
 
 
@@ -41,26 +41,23 @@ void Action::RandUseItem(Item* item, Inventory* inventory)
     int r = Random::GetRandInt(0, 99);
 	
     //인벤토리에 없고 인벤 사이즈가 0이면 종료
-    /*if (!inventory || inventory->GetSize() == 0)
+    if (!inventory || inventory->GetPoint() == 0)
     {
         return;
     }
-    */
+    
     //30% 확률로 아이템 사용
-    //if (r < 30)
-    //{
+    if (r < 30)
+    {
 
-   //인벤토리에서 랜덤으로 아이템 선택
-    int random = Random::GetRandInt(0, 1);//0, inventory->GetSize()-1);
-   //item = inventory->GetItemAt(random);
-   // 후 사용 UseItem 에서  아이템 제거
-   // item->UseItem(character_);  
+   //인벤토리에서 랜덤으로 아이템 선택 , 0, inventory->GetSize()-1);
+    int random = Random::GetRandInt(0, inventory->GetPoint());
+   //item = inventory->UseItem(random,stats); 
   
   
  
    //로그 아이템을 사용했다 구현
    //Log();
-    //std::cout << owner_->GetName() << "가 " << item->GetName() << "을(를) 사용했다!" << std::endl;
     if(item->GetName() == "HpPotion")
     {
       std::cout << "체력이 회복되었다!" << std::endl;
@@ -69,8 +66,8 @@ void Action::RandUseItem(Item* item, Inventory* inventory)
     {
       std::cout << "공격력이 상승했다!" << std::endl;
     }
-        
-    //}
+	Logger::Add(LogType::INFO, owner_->GetName() + "가 " + item->GetName() + "을(를) 사용했다!");
+    
    
 }
 
@@ -92,6 +89,6 @@ void Action::TakeDamage(int dmg)
      {
 	  owner_->SetHp(0);
      };
-    //다시해야함.
+    //필요없음.
 }
 */
