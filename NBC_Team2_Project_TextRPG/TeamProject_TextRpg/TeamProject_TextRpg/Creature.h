@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include <string>
+
+class StatComponent;
 class Creature
 {
 protected:
@@ -10,5 +12,6 @@ public:
     virtual std::string GetType() = 0 ;
     virtual std::string GetName() = 0;
     virtual void TakeDamage(int dmg) = 0;
+    virtual StatComponent* GetStatComponent() =0;
 };
 
