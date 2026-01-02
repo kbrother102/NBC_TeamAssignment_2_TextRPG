@@ -41,7 +41,7 @@ public:
     void ShowInfo(std::string name);
 
     // [기능] 경험치 획득 (레벨업 로직 포함)
-    void AddExp(int amount, std::string name);
+    void AddExp(int amount);
 
     // [기능] 골드 변경 (골드 획득은 양수, 상점 등에서 골드 사용은 음수)
     // GainGold  (더하기)     양수만 받아서 현재 골드에 양수를 더함 / 음수 입력시 0으로 받음
