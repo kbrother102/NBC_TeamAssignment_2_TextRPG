@@ -75,6 +75,9 @@
     <ClCompile Include="Mob2.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="AttackBoost.cpp">
+      <Filter>소스 파일\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="Mob2.h">
       <Filter>소스 파일\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackBoost.h">
+      <Filter>소스 파일\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
