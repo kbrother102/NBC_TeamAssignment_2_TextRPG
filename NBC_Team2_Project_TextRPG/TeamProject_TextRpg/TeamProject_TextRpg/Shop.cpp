@@ -115,7 +115,7 @@ void Shop::BuyItem(Character* Player)
     case 2:
         if (Product_[1] != nullptr)
         {
-            if (Player->GetGold() >= Product_[0].get()->GetPrice())
+            if (Player->GetGold() >= Product_[1].get()->GetPrice())
             {
                 //TODO :체인지골드 생기면 주석해제
                 //Player->ChangeGold(-(Product_[1].get()->GetPrice()));
