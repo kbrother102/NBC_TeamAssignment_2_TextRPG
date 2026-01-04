@@ -16,6 +16,9 @@ public:
 	//void AddGold(int amount);
 	//bool SpendGold(int amount);
 
+	std::string GetItemName(int index) const;
+	bool IsEmptySlot(int index) const;
+
 	int GetItemCount() const;
 	const Item* GetItem(int index) const;
 
