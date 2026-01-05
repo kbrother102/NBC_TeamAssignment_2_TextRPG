@@ -140,7 +140,7 @@ void BasicMob::SpawnMob(int Level)
 			if (Level > 9)
 			{
 				mobNum_ = 6;
-				SetStatHoYoung(Level);
+				SetStatHoYoungBoss(Level);
 				name_ = "풀무장한 호영튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
@@ -151,7 +151,7 @@ void BasicMob::SpawnMob(int Level)
 			else
 			{
 				mobNum_ = 6;
-				SetStatHoYoungBoss(Level);
+				SetStatHoYoung(Level);
 				name_ = "새천년 건강체조를 시작한 호영튜터님";
 				Logger::Add(LogType::WARNING, "특수 일반몬스터 : " + GetName() +
 					"출현! 체력 : " + std::to_string(monStat_->GetHp()) + " 물리력 : " + std::to_string(monStat_->GetAttack()));
