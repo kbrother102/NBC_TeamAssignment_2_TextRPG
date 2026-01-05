@@ -48,12 +48,21 @@ void Character::StartCharacterStat(int Level)
 //캐릭터명 유효성 판정
 bool Character::IsValidName(const std::string& name)
 {	//비어있으면 실격
-	if (name.empty()) return false;
+	if (name.empty())
+	{
+		return false;
+	}
 	//16자 미만 제한
-	if (name.length() > 16) return false;
+	if (name.length() > 16)
+	{
+		return false;
+	}
 	//빈 공간이 있으면 실격
 	for (char c : name) {
-		if (isspace(c)) return false;
+		if (std::isspace(c))
+		{
+			return false;
+		}
 	}
 	return true;
 }

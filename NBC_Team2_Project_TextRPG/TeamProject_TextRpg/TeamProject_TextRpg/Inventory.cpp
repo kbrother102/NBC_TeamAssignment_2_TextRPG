@@ -7,6 +7,16 @@ bool Inventory::AddItem(std::unique_ptr<Item> item)
 	{
 		return false;
 	}
+	//빈칸이 있다면 우선 대입
+	for (auto& slot : items_)
+	{
+		if (slot == nullptr)
+		{
+			slot = std::move(item);
+			return true;
+		}
+	}
+	//빈칸이 없으면 뒤에 추가
 	items_.push_back(std::move(item));
 	{
 		return true;
