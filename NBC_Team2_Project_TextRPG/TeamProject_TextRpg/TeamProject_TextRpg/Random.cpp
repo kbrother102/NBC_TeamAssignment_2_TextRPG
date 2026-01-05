@@ -1,5 +1,5 @@
 ﻿#include "Random.h"
-#include <random>
+
 
 //min~max 까지 정수
 int Random::GetRandInt(int min, int max)
