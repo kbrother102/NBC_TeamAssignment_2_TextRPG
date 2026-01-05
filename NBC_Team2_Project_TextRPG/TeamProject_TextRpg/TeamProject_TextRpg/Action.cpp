@@ -20,13 +20,31 @@ void Action::Attack(Creature* target)
   {
       return;
   }
-	//타겟의 체력에서 공격자의 공격력만큼 차감//여기 대미지 계산확실하게
-	target->TakeDamage(owner_->GetStatComponent()->GetAttack());
+	
+	
     
+	//이름이 비어있으면 종료
+    if(owner_->GetName() == "" || target->GetName() == "")
+    {
+        return;
+	}
+	StatComponent* ownerStats = owner_->GetStatComponent();
+	StatComponent* targetStats = target->GetStatComponent();
+	//죽은 상태면 종료
+    if (ownerStats->GetIsDead() || targetStats->GetIsDead())
+    {
+        return;
+    }
+    //타겟의 체력에서 공격자의 공격력만큼 차감//여기 대미지 계산확실하게
+    target->TakeDamage(ownerStats->GetAttack());
+
+	//TODO: 타입을 받아서 플레이어와 몬스터가 공격했을 때 로그 다르게 출력(미정)
+    //if(ownerStats->GetType == "")
     //로그 공격했다 구현
+	Logger::Add(LogType::COMBAT, "==================================");
     Logger::Add(LogType::COMBAT, owner_->GetName()+ "가 "+ target->GetName()+ "을(를) 공격했다! ");
-    Logger::Add(LogType::COMBAT, "데미지 : " + std::to_string(owner_->GetStatComponent()->GetAttack()));
-	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(target->GetStatComponent()->GetHp()) + " ");
+    Logger::Add(LogType::COMBAT, "데미지 : " + std::to_string(ownerStats->GetAttack()));
+	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(targetStats->GetHp()) + " ");
     Logger::Add(LogType::COMBAT, "==================================");
     
     
@@ -58,20 +76,21 @@ void Action::RandUseItem()
 	//TODO: 30% 확률로 아이템 사용한 뒤 로그 출력
 	//0~99까지 일정한 확률 랜덤 생성
     int r = Random::GetRandInt(0, 99);
-    /*
+   
     if (r < 30)
     {
 
         //인벤토리에서 0~에서 인벤토리 사이즈만큼의 랜덤을 돌려 아이템 선택;
-       int random = Random::GetRandInt(0, inventory->>GetItemCount());
+       int random = Random::GetRandInt(0, inventory->GetItemCount()-1);
         //아이템을 랜덤으로 선택한것을 저장.
-       Item* item = inventory->GetItem(random);
-
+       const Item* item = inventory->GetItem(random);
+	   std::string itemName = item->GetName();
+	   StatComponent* stats = owner_->GetStatComponent();
         if(!item)
         {
             return;
 		}
-        if(owner_->GetStatComponent()->GetMaxHp() == owner_->GetStatComponent()->GetHp() && item->ItemType() == "HealthPotion")
+        if(stats->GetMaxHp() == stats->GetHp() && itemName == "회복 포션")
         {
             return;
 		}
@@ -80,19 +99,19 @@ void Action::RandUseItem()
 
 
         //로그 아이템을 사용했다 구현
-        if (item->ItemType() == "HealthPotion")
+        if (itemName == "회복 포션")
         {
 			Logger::Add(LogType::INFO, "체력이 회복되었다!" );
-			Logger::Add(LogType::INFO, std::to_string(owner_->GetStatComponent()->GetMaxHp() +" : " + std::to_string(owner_->GetStatComponent()->GetHp()));
+			Logger::Add(LogType::INFO, std::to_string(stats->GetMaxHp()) +" : " + std::to_string(stats->GetHp()));
         }
-        if (item->ItemType() == "AttackBoost")
+        if (itemName == "공격력 증폭제")
         {
-		   Logger::Add(LogType::INFO, "공격력" +item->미정()  + "이 상승했다!" );
+            Logger::Add(LogType::INFO, "코딩력이 30이 증가했다!");
         }
-        Logger::Add(LogType::INFO, owner_->GetName() + "가 " + item->GetName() + "을(를) 사용했다!");
+        Logger::Add(LogType::INFO, owner_->GetName() + "가 " + itemName + "을(를) 사용했다!");
         
 
-    }*/
+    }
 }
 //죽음.
 void Action::Die()
@@ -107,15 +126,16 @@ void Action::Die()
 
 	//로그 사망했다 구현    
     Logger::Add(LogType::INFO, owner_->GetName() + "튜터님의 과제를 완료했다.");
-    //각자의 네임코드를 가져와 출력.
-    if(owner_->GetName() == "Monster")
-    {
-        Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
-	}
-    if (owner_->GetName() == "Player")
-    {
-        Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
-    }
+
+    //각자의 네임코드를 가져와 출력(미정)
+    //if(owner_->GetName() == "Monster")
+    //{
+    //    Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
+	//}
+    //else if (owner_->GetName() == "Player")
+    //{
+    //    Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
+    //}
 }
 
 
