@@ -4,7 +4,7 @@ class Creature;
 class Action
 {
 public:
-	//소유자 결정.
+	//소유자 결정. //TODO: 참조로 변경.
 	Action(Creature* owner) : owner_(owner) {}
 	//공격.
 	void Attack(Creature* target);
