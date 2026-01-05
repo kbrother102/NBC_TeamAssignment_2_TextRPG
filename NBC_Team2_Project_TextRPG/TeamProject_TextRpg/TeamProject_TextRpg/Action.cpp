@@ -107,6 +107,15 @@ void Action::Die()
 
 	//로그 사망했다 구현    
     Logger::Add(LogType::INFO, owner_->GetName() + "튜터님의 과제를 완료했다.");
+    //각자의 네임코드를 가져와 출력.
+    if(owner_->GetName() == "Monster")
+    {
+        Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
+	}
+    if (owner_->GetName() == "Player")
+    {
+        Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
+    }
 }
 
 
