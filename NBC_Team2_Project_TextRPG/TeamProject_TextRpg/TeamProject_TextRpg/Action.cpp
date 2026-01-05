@@ -18,6 +18,7 @@ void Action::Attack(Creature* target)
     
     if(owner_ == nullptr || target == nullptr)
   {
+        Logger::Add(LogType::WARNING, "(owner_ == nullptr || target == nullptr");
       return;
   }
 	
@@ -26,6 +27,7 @@ void Action::Attack(Creature* target)
 	//이름이 비어있으면 종료
     if(owner_->GetName() == "" || target->GetName() == "")
     {
+        Logger::Add(LogType::WARNING, "이름이 없습니다.");
         return;
 	}
 	StatComponent* ownerStats = owner_->GetStatComponent();
@@ -33,10 +35,10 @@ void Action::Attack(Creature* target)
 	//죽은 상태면 종료
     if (ownerStats->GetIsDead() || targetStats->GetIsDead())
     {
+        Logger::Add(LogType::WARNING, "플레이어나 타겟 no.");
         return;
     }
-    //타겟의 체력에서 공격자의 공격력만큼 차감//여기 대미지 계산확실하게
-    target->TakeDamage(ownerStats->GetAttack());
+   
 
 	//TODO: 타입을 받아서 플레이어와 몬스터가 공격했을 때 로그 다르게 출력(미정)
     //if(ownerStats->GetType == "")
@@ -46,7 +48,8 @@ void Action::Attack(Creature* target)
     Logger::Add(LogType::COMBAT, "데미지 : " + std::to_string(ownerStats->GetAttack()));
 	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(targetStats->GetHp()) + " ");
     Logger::Add(LogType::COMBAT, "==================================");
-    
+    //타겟의 체력에서 공격자의 공격력만큼 차감//여기 대미지 계산확실하게
+    target->TakeDamage(ownerStats->GetAttack());
     
 }
 
@@ -61,6 +64,7 @@ void Action::RandUseItem()
     {
         return;
     }
+
     // 인벤토리 없으면 종료
     Inventory* inventory = player->GetInventory();
     if(inventory == nullptr)
@@ -90,6 +94,7 @@ void Action::RandUseItem()
         {
             return;
 		}
+
         if(stats->GetMaxHp() == stats->GetHp() && itemName == "회복 포션")
         {
             return;
@@ -97,14 +102,13 @@ void Action::RandUseItem()
 		int beforeAttack = stats->GetAttack();
         inventory->UseItem(random, *owner_->GetStatComponent());
 
-
-
         //로그 아이템을 사용했다 구현
         if (itemName == "회복 포션")
         {
 			Logger::Add(LogType::INFO, "체력이 회복되었다!" );
 			Logger::Add(LogType::INFO, std::to_string(stats->GetMaxHp()) +" : " + std::to_string(stats->GetHp()));
         }
+
         if (itemName == "공격력 증폭제")
         {
             Logger::Add(LogType::INFO, "코딩력이 증가했다!");
@@ -123,6 +127,7 @@ void Action::Die()
     {
         return;
     }
+
     //사망.
 	owner_->GetStatComponent()->SetIsDead(true);
 
