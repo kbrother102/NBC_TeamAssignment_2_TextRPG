@@ -8,8 +8,14 @@ class Item
 public:
 
     virtual ~Item() = default;
-    const std::string GetName() const { return name_; }
-    int GetPrice() const { return price_; }
+    const std::string GetName() const
+    { 
+        return name_; 
+    }
+    int GetPrice() const 
+    { 
+        return price_;
+    }
 
     //아이템 효과(사용)
     virtual bool Use(StatComponent& stats) = 0;

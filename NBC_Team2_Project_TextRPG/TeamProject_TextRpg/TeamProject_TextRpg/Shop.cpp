@@ -73,9 +73,10 @@ void Shop::SellItem(Character* Player)
         Player->GetStatComponent()->ChangeGold(Player->GetInventory()->GetItem(select)->GetPrice());
 
 
-        Logger::Add("아이템" + SelectItem->GetName() + "을 판매하고" + std::to_string(SelectItem->GetPrice()) + "를 얻었습니다.");
+        Logger::Add(INFO, "아이템" + SelectItem->GetName() + "을 판매하고 " + std::to_string(SelectItem->GetPrice()) + "를 얻었습니다.");
         // TODO : 아이템 변경 함수 필요 - 인벤토리에서 하던가 플레이어에게 요청 
-        //Player->GetInventory()->GetItem(select) = nullptr;
+        Player->GetInventory()->RemoveItem(select);
+        
 
 
     }
