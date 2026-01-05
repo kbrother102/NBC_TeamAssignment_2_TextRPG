@@ -25,7 +25,7 @@ void Action::Attack(Creature* target)
     
     //로그 공격했다 구현
     Logger::Add(LogType::COMBAT, owner_->GetName()+ "가 "+ target->GetName()+ "을(를) 공격했다! ");
-    Logger::Add(LogType::COMBAT, "데미지 : " + owner_->GetStatComponent()->GetAttack());
+    Logger::Add(LogType::COMBAT, "데미지 : " + std::to_string(owner_->GetStatComponent()->GetAttack()));
 	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(target->GetStatComponent()->GetHp()) + " ");
     Logger::Add(LogType::COMBAT, "==================================");
     
@@ -44,27 +44,28 @@ void Action::RandUseItem()
         return;
     }
     // 인벤토리 없으면 종료
-    /*Inventory* inventory = player->GetInventory();
+    Inventory* inventory = player->GetInventory();
     if(inventory == nullptr)
     {
         return;
 	}
-    */
+    
 	//아이템 개수가 0인지 체크
-    //if (inventory->GetItemCount() == 0)   
-    // {
-    //      return;
-    // }
+    if (inventory->GetItemCount() == 0)   
+     {
+          return;
+     }
 	//TODO: 30% 확률로 아이템 사용한 뒤 로그 출력
 	//0~99까지 일정한 확률 랜덤 생성
     int r = Random::GetRandInt(0, 99);
+    /*
     if (r < 30)
     {
 
         //인벤토리에서 0~에서 인벤토리 사이즈만큼의 랜덤을 돌려 아이템 선택;
-       //TODO :int random = Random::GetRandInt(0, inventory->>GetItemCount());
+       int random = Random::GetRandInt(0, inventory->>GetItemCount());
         //아이템을 랜덤으로 선택한것을 저장.
-       /*TODO Item* item = inventory->GetItemAt(random);
+       Item* item = inventory->GetItem(random);
 
         if(!item)
         {
@@ -74,11 +75,11 @@ void Action::RandUseItem()
         {
             return;
 		}
-        inventory->UseItem(random, *owner_->GetStatComponent());*/
+        inventory->UseItem(random, *owner_->GetStatComponent());
 
 
 
-        /*로그 아이템을 사용했다 구현
+        //로그 아이템을 사용했다 구현
         if (item->ItemType() == "HealthPotion")
         {
 			Logger::Add(LogType::INFO, "체력이 회복되었다!" );
@@ -89,9 +90,9 @@ void Action::RandUseItem()
 		   Logger::Add(LogType::INFO, "공격력" +item->미정()  + "이 상승했다!" );
         }
         Logger::Add(LogType::INFO, owner_->GetName() + "가 " + item->GetName() + "을(를) 사용했다!");
-        */
+        
 
-    }
+    }*/
 }
 //죽음.
 void Action::Die()
@@ -106,6 +107,15 @@ void Action::Die()
 
 	//로그 사망했다 구현    
     Logger::Add(LogType::INFO, owner_->GetName() + "튜터님의 과제를 완료했다.");
+    //각자의 네임코드를 가져와 출력.
+    if(owner_->GetName() == "Monster")
+    {
+        Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
+	}
+    if (owner_->GetName() == "Player")
+    {
+        Logger::Add(LogType::INFO, "몬스터가 죽었습니다.");
+    }
 }
 
 
