@@ -4,8 +4,7 @@
 
 void BasicMob::SpawnMob(int Level)
 {
-	//mobNum_ = Random::GetRandInt(0, 6);
-	mobNum_ = 6;
+	mobNum_ = Random::GetRandInt(0, 6);
 	if ((monStat_->GetIsDead() == true))
 	{
 		switch ((TuterName)mobNum_)

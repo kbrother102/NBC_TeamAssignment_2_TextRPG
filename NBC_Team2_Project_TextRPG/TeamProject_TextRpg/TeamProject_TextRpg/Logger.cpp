@@ -50,7 +50,7 @@ void Logger::Add(LogType type, const string& msg)
 
     case COMBAT:
         Prefix = "[전투] ";
-        ColorCode = COLOR_BG_RED;
+        ColorCode = COLOR_BOLD_RED;
         DelayMs = 200; // 전투 로그 딜레이 0.5초
         break;
 
