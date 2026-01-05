@@ -18,6 +18,8 @@ public:
 
 	std::string GetItemName(int index) const;
 	bool IsEmptySlot(int index) const;
+	
+	void SellItem();
 
 	int GetItemCount() const;
 	const Item* GetItem(int index) const;

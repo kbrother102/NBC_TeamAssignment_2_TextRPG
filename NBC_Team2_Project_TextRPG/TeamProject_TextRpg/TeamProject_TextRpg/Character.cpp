@@ -22,8 +22,17 @@ std::unique_ptr<Character> Character::Create(const std::string& name) //캐릭�
 Character::Character(const std::string& name)
 	: CharacterName_(name),
 	stats_(std::make_unique<StatComponent>()),   // 기본 생성자 → 1레벨 스탯
-	inventory_(std::make_unique<Inventory>())
-{
+	inventory_(std::make_unique<Inventory>()),
+	action_(std::make_unique<Action>(*this))
+{	//스텟 초기값 재초기화(오류방지)
+	stats_->SetLevel(1);
+	stats_->SetMaxLevel(10);
+	stats_->SetExp(0);
+	stats_->SetMaxExp(100);
+	stats_->SetHp(200);
+	stats_->SetMaxHp(200);
+	stats_->SetAttack(30);
+	stats_->SetGold(0);
 }
 
 
@@ -66,6 +75,11 @@ void Character::GainGold(int amount)
 void Character::SpendGold(int amount)
 {
 	return stats_->SpendGold(amount);
+}
+
+void Character::ChangeGold(int amount)
+{
+	return stats_->ChangeGold(amount);
 }
 
 void Character::AddExp(int amount)
