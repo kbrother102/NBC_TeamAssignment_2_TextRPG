@@ -9,22 +9,31 @@
 #include "RewardManager.h"
 #include "Logger.h"
 #include "Shop.h"
+#include "Console.h"
 
 void GameManager::Run()
 {
-	StartGame();
-	PlayerInputLogic();
-	CreateCharacter();
 	while (true)
 	{
-		BattleResult result = Battle();
+		StartGame();
+		PlayerInputLogic();
+		CreateCharacter();
+		while (true)
+		{
+			BattleResult result = Battle();
 
-		if ((result == BattleResult::PlayerLose)) continue;
+			if ((result == BattleResult::PlayerLose))
+			{
+				delete player_;
+				player_ = nullptr;
+				break;
+			}
+			DisplayInventory(player_);
+			OpenShop();
+		}
 	}
 }
 
-
-//TODO : cout을 Logger::Add("메시지 출력"); 로 변경
 void GameManager::StartGame()
 {
 	Logger::Add(LogType::INFO, "게임시작");
@@ -108,11 +117,48 @@ bool GameManager::IsLevel10()
 	return true;
 }
 
-bool GameManager::OpenShop()
+void GameManager::OpenShop()
 {
-	return true;
+	Logger::Add(LogType::INFO, "상점에 진입하시겠습니까? (1: 예 / 2: 아니오)");
+	int input;
+	Console::Input(input);
+
+	if (input == 1)
+	{
+		Shop shop;
+		shop.RunShop(player_);
+	}
 }
 
 void GameManager::DisplayInventory(Character* player)
 {
+	Logger::Add(LogType::INFO, "인벤토리를 확인하시겠습니까? (1: 예 / 2: 아니오)");
+
+	int input;
+	Console::Input(input);
+
+	if (input == 1)
+	{
+		// 재화 정보
+		int currentGold = player_->GetStatComponent()->GetGold();
+		Logger::Add("보유 골드: " + std::to_string(currentGold) + " G");
+
+		// 아이템 정보
+		Inventory* inventory = player_->GetInventory();
+		int itemCount = inventory->GetItemCount();
+
+		if (itemCount == 0)
+		{
+			Logger::Add("가방이 비어 있습니다.");
+		}
+		else
+		{
+			for (int i = 0; i < itemCount; ++i)
+			{
+				std::string itemName = inventory->GetItemName(i);
+				Logger::Add(std::to_string(i + 1) + ". " + itemName);
+			}
+		}
+	}
 }
+
