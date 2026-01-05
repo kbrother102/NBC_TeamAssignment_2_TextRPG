@@ -1,9 +1,11 @@
 ﻿#pragma once
 #include <vector>
 
+class Monster;
+
 class MonsterSpawner
 {
 public:
-	void Spawn(std::vector<class Monster*>& box);
+	Monster* Spawn();
 };
 
