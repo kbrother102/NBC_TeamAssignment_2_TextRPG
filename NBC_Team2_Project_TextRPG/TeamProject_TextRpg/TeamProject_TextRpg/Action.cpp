@@ -94,6 +94,7 @@ void Action::RandUseItem()
         {
             return;
 		}
+		int beforeAttack = stats->GetAttack();
         inventory->UseItem(random, *owner_->GetStatComponent());
 
 
@@ -106,7 +107,8 @@ void Action::RandUseItem()
         }
         if (itemName == "공격력 증폭제")
         {
-            Logger::Add(LogType::INFO, "코딩력이 30이 증가했다!");
+            Logger::Add(LogType::INFO, "코딩력이 증가했다!");
+			Logger::Add(LogType::INFO, std::to_string(beforeAttack) + "-> " + std::to_string(stats->GetAttack()));
         }
         Logger::Add(LogType::INFO, owner_->GetName() + "가 " + itemName + "을(를) 사용했다!");
         
