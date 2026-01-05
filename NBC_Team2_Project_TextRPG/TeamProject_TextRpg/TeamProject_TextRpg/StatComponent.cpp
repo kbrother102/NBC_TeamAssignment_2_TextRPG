@@ -170,6 +170,10 @@ void StatComponent::ShowInfo(string name)
 // [수정] string name 삭제
 void StatComponent::AddExp(int amount)
 {
+    //최대레벨(10) 체크
+    if (Level_ >= MaxLevel_) return;
+
+
     Exp_ += amount;
 
     // 로그 기록: 받아온 name 사용
@@ -178,6 +182,12 @@ void StatComponent::AddExp(int amount)
     // 레벨업 루프
     while (Exp_ >= MaxExp_)
     {
+        if (Level_ >= MaxLevel_)
+        {
+            Exp_ = 0; 
+            break;    
+        }
+
         Exp_ -= MaxExp_;
         Level_++;
 
