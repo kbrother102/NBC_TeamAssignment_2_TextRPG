@@ -9,7 +9,7 @@ class Character;
 class Shop
 {
 public:
-    Shop() {};
+    Shop() : bIsExit_(false) {};
 
     void RunShop(Character* Player);
     void Initialize();
