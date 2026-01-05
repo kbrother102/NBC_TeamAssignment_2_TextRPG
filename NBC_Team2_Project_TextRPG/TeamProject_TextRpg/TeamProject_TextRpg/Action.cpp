@@ -43,11 +43,23 @@ void Action::Attack(Creature* target)
 	//TODO: 타입을 받아서 플레이어와 몬스터가 공격했을 때 로그 다르게 출력,이,가 나눠서 출력. 
     //if(ownerStats->GetType == "")
     //로그 공격했다 구현
-	Logger::Add(LogType::COMBAT, "==================================");
-    Logger::Add(LogType::COMBAT, owner_->GetName()+ "가 "+ target->GetName()+ "을(를) 공격했다! ");
-    Logger::Add(LogType::COMBAT, "데미지 : " + std::to_string(ownerStats->GetAttack()));
-	Logger::Add(LogType::COMBAT, target->GetName() + "의 남은 체력 : " + std::to_string(targetStats->GetHp()) + " ");
-    Logger::Add(LogType::COMBAT, "==================================");
+    if(ownerStats->GetType() == "Player")
+    {
+        Logger::Add(LogType::COMBAT_PLAYER, "==================================");
+        Logger::Add(LogType::COMBAT_PLAYER, owner_->GetName() + "가 " + target->GetName() + "을(를) 공격했다! ");
+        Logger::Add(LogType::COMBAT_PLAYER, "데미지 : " + std::to_string(ownerStats->GetAttack()));
+        Logger::Add(LogType::COMBAT_PLAYER, target->GetName() + "의 남은 체력 : " + std::to_string(targetStats->GetHp()) + " ");
+        Logger::Add(LogType::COMBAT_PLAYER, "==================================");
+    }
+    else if (targetStats->GetType() == "Monster")
+    {
+        Logger::Add(LogType::COMBAT_ENEMY, "==================================");
+        Logger::Add(LogType::COMBAT_ENEMY, owner_->GetName() + "가 " + target->GetName() + "을(를) 공격했다! ");
+        Logger::Add(LogType::COMBAT_ENEMY, "데미지 : " + std::to_string(ownerStats->GetAttack()));
+        Logger::Add(LogType::COMBAT_ENEMY, target->GetName() + "의 남은 체력 : " + std::to_string(targetStats->GetHp()) + " ");
+        Logger::Add(LogType::COMBAT_ENEMY, "==================================");
+	}
+	
     //타겟의 체력에서 공격자의 공격력만큼 차감//여기 대미지 계산확실하게
     target->TakeDamage(ownerStats->GetAttack());
     
@@ -129,11 +141,21 @@ void Action::Die()
     }
 
     //사망.
+	StatComponent* ownerStats = owner_->GetStatComponent();
+    
 	owner_->GetStatComponent()->SetIsDead(true);
 
+    if (ownerStats->GetType() == "Player")
+    {
+        Logger::Add(LogType::COMBAT, (owner_->GetName()) + "(은)는 과제를 실패했다.");
+    }
+    else
+    {
+        Logger::Add(LogType::COMBAT, (owner_->GetName()) + "의 과제를 완료했다.");
+    }
 	//로그 사망했다 구현    
 	//TODO: 타입을 받아서 플레이어와 몬스터가 죽었을 때 로그 다르게 출력
-    Logger::Add(LogType::INFO,(owner_->GetName()) + "의 과제를 완료했다.");
+ 
 
     //각자의 네임코드를 가져와 출력(미정)
     //if(owner_->GetName() == "Monster")
