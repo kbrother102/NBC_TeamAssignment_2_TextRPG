@@ -51,7 +51,7 @@ void Action::Attack(Creature* target)
         Logger::Add(LogType::COMBAT_PLAYER, target->GetName() + "의 남은 체력 : " + std::to_string(targetStats->GetHp()) + " ");
         Logger::Add(LogType::COMBAT_PLAYER, "==================================");
     }
-    else if (targetStats->GetType() == "Monster")
+    else
     {
         Logger::Add(LogType::COMBAT_ENEMY, "==================================");
         Logger::Add(LogType::COMBAT_ENEMY, owner_->GetName() + "가 " + target->GetName() + "을(를) 공격했다! ");
