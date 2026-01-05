@@ -97,8 +97,6 @@ void Action::RandUseItem()
 		int beforeAttack = stats->GetAttack();
         inventory->UseItem(random, *owner_->GetStatComponent());
 
-
-
         //로그 아이템을 사용했다 구현
         if (itemName == "회복 포션")
         {
@@ -123,6 +121,7 @@ void Action::Die()
     {
         return;
     }
+
     //사망.
 	owner_->GetStatComponent()->SetIsDead(true);
 
