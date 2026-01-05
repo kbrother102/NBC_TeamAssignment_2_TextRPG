@@ -61,6 +61,7 @@ public:
     int GetLevel() const { return Level_; }
     int GetMaxLevel() const { return MaxLevel_; }
     int GetExp() const { return Exp_; }
+    int GetMaxExp() const { return MaxExp_; }
     int GetGold() const { return Gold_; }
 
 

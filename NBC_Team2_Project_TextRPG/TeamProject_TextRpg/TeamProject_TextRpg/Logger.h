@@ -36,6 +36,7 @@ enum LogType
     INFO,
     COMBAT,
     WARNING,
+    TALK,
     UI
 };
 
