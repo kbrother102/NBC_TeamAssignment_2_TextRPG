@@ -79,10 +79,10 @@ void Shop::SellItem(Character* Player)
         const Item* SelectItem = Player->GetInventory()->GetItem(select);
 
         //TODO ::ChangeGold 나오면 주석해제  / 지금 내장꺼내쓰는거라 나중에수정할수도
-        Player->GetStatComponent()->ChangeGold(Player->GetInventory()->GetItem(select)->GetPrice());
+        Player->GetStatComponent()->ChangeGold((int)(SelectItem->GetPrice()*0.6));
 
 
-        Logger::Add(INFO, "아이템" + SelectItem->GetName() + "을 판매하고 " + std::to_string(SelectItem->GetPrice()) + "를 얻었습니다.");
+        Logger::Add(INFO, "아이템" + SelectItem->GetName() + "을 판매하고 " + std::to_string((int)(SelectItem->GetPrice()*0.6)) + "를 얻었습니다.");
         // TODO : 아이템 변경 함수 필요 - 인벤토리에서 하던가 플레이어에게 요청 
         Player->GetInventory()->RemoveItem(select);
         

@@ -55,6 +55,21 @@ std::string Inventory::GetItemName(int index) const
 	return  items_[index]->GetName();
 }
 
+bool Inventory::IsEmpty() const
+{
+	for (const auto& item : items_) // 모든 아이템을 하나씩 꺼내서
+	{
+		if (item != nullptr) // "어? 물건이 하나라도 들어있네?"
+		{
+			return false; // 그럼 텅 빈 게 아님! (함수 즉시 종료)
+		}
+	}
+
+	// 끝까지 다 뒤져봤는데 전부 nullptr이었다면
+	return true;
+
+}
+
 int Inventory::GetItemCount() const
 {	//아이템의 개수 반환
 	return static_cast<int>(items_.size());
