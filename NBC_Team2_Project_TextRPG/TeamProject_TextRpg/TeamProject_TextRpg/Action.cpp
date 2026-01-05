@@ -40,7 +40,7 @@ void Action::Attack(Creature* target)
     }
    
 
-	//TODO: 타입을 받아서 플레이어와 몬스터가 공격했을 때 로그 다르게 출력(미정)
+	//TODO: 타입을 받아서 플레이어와 몬스터가 공격했을 때 로그 다르게 출력,이,가 나눠서 출력. 
     //if(ownerStats->GetType == "")
     //로그 공격했다 구현
 	Logger::Add(LogType::COMBAT, "==================================");
@@ -132,7 +132,8 @@ void Action::Die()
 	owner_->GetStatComponent()->SetIsDead(true);
 
 	//로그 사망했다 구현    
-    Logger::Add(LogType::INFO, owner_->GetName() + "튜터님의 과제를 완료했다.");
+	//TODO: 타입을 받아서 플레이어와 몬스터가 죽었을 때 로그 다르게 출력
+    Logger::Add(LogType::INFO,(owner_->GetName()) + "의 과제를 완료했다.");
 
     //각자의 네임코드를 가져와 출력(미정)
     //if(owner_->GetName() == "Monster")
