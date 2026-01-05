@@ -6,6 +6,7 @@
 #define COLOR_RED     "\033[31m"
 #define COLOR_YELLOW  "\033[33m"
 #define COLOR_CYAN    "\033[36m"
+#define COLOR_GREEN   "\033[1m\033[32m" /* 녹색 */
 
 // 자주 쓰는 것들 선언 (여기서 선언했으니, 아래에서는 std:: 빼고 씁니다)
 using std::cout;
@@ -43,6 +44,11 @@ void Logger::Add(LogType type, const string& msg)
     case WARNING:
         Prefix = "[오류] ";
         ColorCode = COLOR_YELLOW;
+        break;
+
+    case TALK:
+        Prefix = "[대사] ";
+        ColorCode = COLOR_GREEN;
         break;
 
     case UI:
