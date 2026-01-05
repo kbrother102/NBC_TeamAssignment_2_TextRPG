@@ -5,6 +5,7 @@
 //사용 할 두 클래스 전방 선언
 class Inventory;
 class StatComponent;
+class Action;
 
 class Character : public Creature
 {
@@ -25,6 +26,8 @@ public:
 	void TakeDamage(int dmg);
 	//아이템 사용 함수
 	bool UseItem(int index); //player.UseItem(0); 으로 사용 호출 가능.
+	//골드 변경
+	void ChangeGold(int amount);
 	//골드 획득
 	void GainGold(int amount);
 	//골드 사용
@@ -33,6 +36,9 @@ public:
 	StatComponent* GetStatComponent() override;
 	Inventory* GetInventory();
 	const Inventory* GetInventory() const;
+
+	Action* GetAction();
+	const Action* GetAction() const;
 
 	//Reward 연계 함수
 	void AddExp(int amount);
@@ -62,6 +68,7 @@ private:
 	std::string CharacterName_;
 	std::unique_ptr<Inventory> inventory_;
 	std::unique_ptr<StatComponent> stats_;
+	std::unique_ptr<Action> action_;
 	//StatComponent쪽 수정이 확인되면 아래는 주석 예정
 	//int Hp_ = 200;
 	//int MaxHp_ = 200;

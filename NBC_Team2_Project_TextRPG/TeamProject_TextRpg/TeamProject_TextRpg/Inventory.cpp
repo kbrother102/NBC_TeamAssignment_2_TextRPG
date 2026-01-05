@@ -27,3 +27,17 @@ std::string Inventory::GetItemName(int index) const
 	if (!items_[index]) return "빈칸입니다.";
 	return  items_[index]->GetName();
 }
+
+int Inventory::GetItemCount() const
+{	//아이템의 개수 반환
+	return static_cast<int>(items_.size());
+}
+
+const Item* Inventory::GetItem(int index) const
+{
+	if (index < 0 || index >= items_.size())
+	{
+		return nullptr;
+	}
+	return items_[index].get();
+}
