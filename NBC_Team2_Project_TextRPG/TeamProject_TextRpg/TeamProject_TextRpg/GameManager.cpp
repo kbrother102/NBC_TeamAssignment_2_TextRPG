@@ -41,7 +41,7 @@ void GameManager::Run()
 
 				int choice;
 				Console::Input(choice);
-
+				
 				switch (choice)
 				{
 				case 1:
