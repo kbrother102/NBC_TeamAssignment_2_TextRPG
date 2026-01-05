@@ -1,6 +1,7 @@
 ﻿#include "Character.h"
 #include "Inventory.h"
 #include "StatComponent.h"
+#include "Action.h"
 #include <memory>
 #include <cctype>
 
@@ -23,7 +24,7 @@ Character::Character(const std::string& name)
 	: CharacterName_(name),
 	stats_(std::make_unique<StatComponent>()),   // 기본 생성자 → 1레벨 스탯
 	inventory_(std::make_unique<Inventory>()),
-	action_(std::make_unique<Action>(*this))
+	action_(std::make_unique<Action>(this)) //*this로 넘기기 위해 참조로 바꾸는 것이 누수방지등에 유리함
 {	//스텟 초기값 재초기화(오류방지)
 	stats_->SetLevel(1);
 	stats_->SetMaxLevel(10);
