@@ -4,6 +4,7 @@
 #include "Action.h"
 #include <memory>
 #include <cctype>
+#include <cassert>
 
 std::string Character::GetType()
 {
@@ -11,7 +12,7 @@ std::string Character::GetType()
 }
 
 //생성자
-std::unique_ptr<Character> Character::Create(const std::string& name) //캐릭터는 이름/스텟(컴포넌트의)/인벤토리 를 상속받음
+std::unique_ptr<Character> Character::Create(const std::string& name)
 {
 	//즉시 이름 유효성 판정
 	if (!IsValidName(name))
@@ -20,6 +21,7 @@ std::unique_ptr<Character> Character::Create(const std::string& name) //캐릭�
 	}
 	return std::make_unique<Character>(name);
 }
+//캐릭터는 이름/스텟(컴포넌트의)/인벤토리/액션을 상속받음
 Character::Character(const std::string& name)
 	: CharacterName_(name),
 	stats_(std::make_unique<StatComponent>()),   // 기본 생성자 → 1레벨 스탯
@@ -83,6 +85,18 @@ void Character::ChangeGold(int amount)
 	return stats_->ChangeGold(amount);
 }
 
+Action* Character::GetAction()
+{	//const버전의 GetAction을 const만 제거해서 재활용 하고싶다는 구문
+	return const_cast<Action*>	//되돌려지는 const Action*에서 const제거
+		(static_cast<const Character*>(this)->GetAction()); //const타입에서 참조
+}
+
+const Action* Character::GetAction() const
+{	//만약 action_이 nullptr이 되면 빌드 단계에서 확인 가능
+	assert(action_);
+	return action_.get();
+}
+
 void Character::AddExp(int amount)
 {
 	stats_->AddExp(amount);
@@ -93,9 +107,15 @@ void Character::AddExp(int amount)
 //	stats_->GainGold(amount);
 //}
 
+bool Character::IsMaxLv() const
+{	//만약 stats_가 nullptr이 되면 빌드 단게에서 확인 가능
+	assert(stats_);
+	//Level이 MaxLevel이 넘는지를 반환(오버되면 참)
+	return stats_->GetLevel() >= stats_->GetMaxLevel();
+}
 
 //캐릭터 공격 함수
-int Character::Attack() const
+int Character::GetAttack() const
 {
 	return stats_->GetAttack();
 }

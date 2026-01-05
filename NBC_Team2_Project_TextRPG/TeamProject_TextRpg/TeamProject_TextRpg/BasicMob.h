@@ -20,7 +20,7 @@ public:
 		monStat_->SetIsDead(true);
 		bIsBoss_ = false;
 	}
-	~BasicMob() override 
+	~BasicMob() override
 	{
 		delete monAct_;
 	}
@@ -28,22 +28,23 @@ public:
 	void SpawnMob(int Level);
 	void TakeDamage(int dmg);
 	void UseSkill();
+	void GetDie();
 
 
 	//getter
 		//string
 	std::string GetName() const { return name_; }
 
-		//int
+	//int
 	int GetAttack() const { return monStat_->GetAttack(); }
 	int GetHealth() const { return monStat_->GetHp(); }
 	int GetGold() const { return monStat_->GetGold(); }
 	int GetExp() const { return monStat_->GetExp(); }
 
-		//bool
+	//bool
 	bool GetIsDead() const { return monStat_->GetIsDead(); }
 
-		//component
+	//component
 	class StatComponent* GetStatComponent() { return monStat_; }
 	class Action* GetActionComponent() { return monAct_; }
 
@@ -57,7 +58,9 @@ public:
 
 protected:
 	std::string name_;
+	int mobNum_;
 	bool bIsBoss_;
+	bool bUseSkill_;
 	Action* monAct_ = new Action(this);
 };
 

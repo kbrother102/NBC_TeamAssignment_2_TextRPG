@@ -42,10 +42,10 @@ public:
 
 	//Reward 연계 함수
 	void AddExp(int amount);
-	void AddGold(int amount);
+	//void AddGold(int amount); //상단의 ChangeGold로 병합
 
 	//공격 함수
-	int Attack() const;
+	int GetAttack() const;
 	//최대 레벨 판정
 	bool IsMaxLv() const;
 	//사망 판정 함수
@@ -62,13 +62,11 @@ public:
 
 	explicit Character(const std::string& name);
 private:
-	//외부 생성 차단
-	
-
 	std::string CharacterName_;
 	std::unique_ptr<Inventory> inventory_;
 	std::unique_ptr<StatComponent> stats_;
 	std::unique_ptr<Action> action_;
+
 	//StatComponent쪽 수정이 확인되면 아래는 주석 예정
 	//int Hp_ = 200;
 	//int MaxHp_ = 200;

@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include "Character.h"
-#include "Monster.h"
+#include "MonsterSpawner.h"
 #include <string>
-#include <vector>
 class Character;
 class Monster;
 
@@ -32,8 +31,8 @@ private:
 	void CreateCharacter();
 
 	// 몬스터 생성
-	void GenerateMonster();
-	Monster* GetMonster(int Level);
+	void SpawnMonster();
+	void GetMonster(int Level);
 
 	// 전투 로직
 	BattleResult Battle();
@@ -49,14 +48,13 @@ private:
 
 	// === 게임 유틸 ===
 
-	Monster* GenerateMonster(int Level);
 	void DisplayInventory(Character* player);
 
 private:
 	Character* player_;
 	std::string name_;
-	std::vector<Monster*> mobBox_;
-	Monster* curMons_;
-
+	Monster* curMons_ = nullptr;
+	MonsterSpawner mobSpawn_;
+	Shop* shop_;
 };
 
