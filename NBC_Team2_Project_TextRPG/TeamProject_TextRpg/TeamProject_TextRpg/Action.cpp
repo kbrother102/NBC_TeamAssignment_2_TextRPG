@@ -112,10 +112,10 @@ void Action::RandUseItem()
 
 	   std::string itemName = item->GetName();
 	   StatComponent* stats = owner_->GetStatComponent();
-        if(!item)
-        {
-            return;
-		}
+  //      if(!item)
+  //      {
+  //          return;
+		//}
 
         if(stats->GetMaxHp() == stats->GetHp() && itemName == "회복 포션")
         {
@@ -125,10 +125,11 @@ void Action::RandUseItem()
         inventory->UseItem(random, *owner_->GetStatComponent());
 
         //로그 아이템을 사용했다 구현
+        Logger::Add(LogType::INFO, owner_->GetName() + "가 " + itemName + "을(를) 사용했다!");
         if (itemName == "회복 포션")
         {
 			Logger::Add(LogType::INFO, "체력이 회복되었다!" );
-			Logger::Add(LogType::INFO, std::to_string(stats->GetMaxHp()) +" : " + std::to_string(stats->GetHp()));
+			Logger::Add(LogType::INFO, std::to_string(stats->GetMaxHp()) +" / " + std::to_string(stats->GetHp()));
         }
 
         if (itemName == "공격력 증폭제")
@@ -136,7 +137,7 @@ void Action::RandUseItem()
             Logger::Add(LogType::INFO, "코딩력이 증가했다!");
 			Logger::Add(LogType::INFO, std::to_string(beforeAttack) + "-> " + std::to_string(stats->GetAttack()));
         }
-        Logger::Add(LogType::INFO, owner_->GetName() + "가 " + itemName + "을(를) 사용했다!");
+        
         
 
     }
