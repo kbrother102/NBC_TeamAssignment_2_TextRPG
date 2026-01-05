@@ -27,8 +27,14 @@ Character::Character(const std::string& name)
 	stats_(std::make_unique<StatComponent>()),   // 기본 생성자 → 1레벨 스탯
 	inventory_(std::make_unique<Inventory>()),
 	action_(std::make_unique<Action>(this)) //*this로 넘기기 위해 참조로 바꾸는 것이 누수방지등에 유리함
-{	//스텟 초기값 재초기화(오류방지)
-	stats_->SetLevel(1);
+{	//1레벨 스텟으로 초기화
+	StartCharacterStat(1);
+}
+
+//레벨(1/10) 경험치(0/100) 체력(200/200) 공격력(30) 골드(0) 으로 설정함수
+void Character::StartCharacterStat(int Level)
+{	//스텟 초기값 재초기화
+	stats_->SetLevel(Level);
 	stats_->SetMaxLevel(10);
 	stats_->SetExp(0);
 	stats_->SetMaxExp(100);
@@ -37,7 +43,6 @@ Character::Character(const std::string& name)
 	stats_->SetAttack(30);
 	stats_->SetGold(0);
 }
-
 
 
 //캐릭터명 유효성 판정
