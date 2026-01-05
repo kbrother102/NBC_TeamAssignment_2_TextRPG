@@ -192,6 +192,15 @@ void StatComponent::AddExp(int amount)
     }
 }
 
+
+// [ChangeGold로 통합]
+void StatComponent::ChangeGold(int changeamount)
+{
+    int FinalGold = GetGold() + changeamount;
+    SetGold(FinalGold);
+    Logger::Add(INFO, to_string(changeamount) + " G를 획득했습니다. (현재: " + to_string(Gold_) + " G)");
+}
+
 // [유지] 골드는 굳이 이름 없어도 되면 그대로 둠 (필요하면 여기도 name 추가 가능)
 void StatComponent::GainGold(int gainamount)
 {
