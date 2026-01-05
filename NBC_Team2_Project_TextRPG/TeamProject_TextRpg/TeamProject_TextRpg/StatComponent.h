@@ -29,7 +29,7 @@ public:
    
     // 생성자 1. (캐릭터 초기화 담당)
     StatComponent()
-        : bIsDead_(true), Type_("Normal"), Hp_(200), MaxHp_(200), Attack_(0),
+        : bIsDead_(false), Type_("Normal"), Hp_(200), MaxHp_(200), Attack_(0),
         Level_(1), MaxLevel_(10), Exp_(0), MaxExp_(0), Gold_(0)
     {
         // 생성자 멤버 초기화 
@@ -44,6 +44,7 @@ public:
     void AddExp(int amount);
 
     // [기능] 골드 변경 (골드 획득은 양수, 상점 등에서 골드 사용은 음수)
+    void ChangeGold(int chaingeamount);
     // GainGold  (더하기)     양수만 받아서 현재 골드에 양수를 더함 / 음수 입력시 0으로 받음
     void GainGold(int gainamount);
 

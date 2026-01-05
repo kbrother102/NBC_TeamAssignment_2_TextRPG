@@ -21,5 +21,6 @@ public:
 
 private:
     std::vector<std::unique_ptr<Item>> Product_;
+    bool bIsExit_;
 };
 
