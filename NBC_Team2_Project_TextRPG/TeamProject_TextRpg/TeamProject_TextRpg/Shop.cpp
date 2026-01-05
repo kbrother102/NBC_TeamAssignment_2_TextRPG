@@ -6,6 +6,7 @@
 #include "Character.h"
 #include "Inventory.h"
 #include "StatComponent.h"
+#include <string>
 
 void Shop::Initialize()
 {
@@ -22,14 +23,22 @@ void Shop::ShowItemList()
 
 
     if (Product_[0] == nullptr)
+    {
         Logger::Add("1. 품절 되었습니다.");
+    }
     else
-        Logger::Add("1. 힐링포션");
+    {
+        Logger::Add("1. 힐링포션 " + std::to_string(Product_[0]->GetPrice()) + "Point");
+    }
 
     if (Product_[1] == nullptr)
+    {
         Logger::Add("2. 품절 되었습니다.");
+    }
     else
-        Logger::Add("2. 공격력증가물약");
+    {
+        Logger::Add("2. 공격력증가물약 "+ std::to_string(Product_[1]->GetPrice()) + "Point");
+    }
     Logger::Add("3. 판매");
     Logger::Add("4. 나가기");
     Logger::Add("=============================");
