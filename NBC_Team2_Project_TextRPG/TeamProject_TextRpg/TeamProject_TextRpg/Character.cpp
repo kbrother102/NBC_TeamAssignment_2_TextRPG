@@ -2,6 +2,7 @@
 #include "Inventory.h"
 #include "StatComponent.h"
 #include "Action.h"
+#include "Logger.h"
 #include <memory>
 #include <cctype>
 #include <cassert>
@@ -50,17 +51,20 @@ bool Character::IsValidName(const std::string& name)
 {	//비어있으면 실격
 	if (name.empty())
 	{
+		Logger::Add(LogType::WARNING, "이름을 입력해 주세요.");
 		return false;
 	}
-	//16자 미만 제한
-	if (name.length() > 16)
+	//16자 미만 제한 -> 24바이트 미만으로 수정
+	if (name.length() > 24)
 	{
+		Logger::Add(LogType::WARNING, "이름이 너무 깁니다.");
 		return false;
 	}
 	//빈 공간이 있으면 실격
 	for (char c : name) {
 		if (std::isspace(c))
 		{
+			Logger::Add(LogType::WARNING, "공백은 사용할 수 없습니다.");
 			return false;
 		}
 	}

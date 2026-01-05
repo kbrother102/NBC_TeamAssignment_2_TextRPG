@@ -73,8 +73,11 @@ void GameManager::StartGame()
 
 void GameManager::PlayerInputLogic()
 {
-	Logger::Add(LogType::INFO, "이름을 입력해주세요 : ");
-	std::cin >> name_;
+	do {
+		Logger::Add(LogType::INFO, "이름을 입력해주세요 : ");
+		Console::Input(name_);
+	} while (Character::IsValidName(name_) == false);
+	
 }
 
 void GameManager::CreateCharacter()
