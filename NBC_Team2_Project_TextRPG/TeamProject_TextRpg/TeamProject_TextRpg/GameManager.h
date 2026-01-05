@@ -44,7 +44,7 @@ private:
 	bool IsLevel10();
 
 	// 상점 방문
-	bool OpenShop();
+	void OpenShop();
 
 	// === 게임 유틸 ===
 
@@ -55,6 +55,5 @@ private:
 	std::string name_;
 	Monster* curMons_ = nullptr;
 	MonsterSpawner mobSpawn_;
-	Shop* shop_;
 };
 
