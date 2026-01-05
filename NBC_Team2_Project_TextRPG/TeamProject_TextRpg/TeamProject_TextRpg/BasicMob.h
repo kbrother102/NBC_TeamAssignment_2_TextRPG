@@ -20,26 +20,40 @@ public:
 		monStat_->SetIsDead(true);
 		bIsBoss_ = false;
 	}
-	~BasicMob() override {}
-	//override
+	~BasicMob() override 
+	{
+		delete monAct_;
+	}
+	//--------------override-------------
 	void SpawnMob(int Level);
 	void TakeDamage(int dmg);
 	void UseSkill();
 
-	//getter
-	bool GetIsDead() const { return monStat_->GetIsDead(); }
-	int GetDamage() const { return monStat_->GetAttack(); }
-	std::string GetName() const { return name_; }
-	std::string GetType() { return monStat_->GetType(); }
 
-	//memberFunc
+	//getter
+		//string
+	std::string GetName() const { return name_; }
+
+		//int
+	int GetAttack() const { return monStat_->GetAttack(); }
+	int GetHealth() const { return monStat_->GetHp(); }
+	int GetGold() const { return monStat_->GetGold(); }
+	int GetExp() const { return monStat_->GetExp(); }
+
+		//bool
+	bool GetIsDead() const { return monStat_->GetIsDead(); }
+
+		//component
+	class StatComponent* GetStatComponent() { return monStat_; }
+	class Action* GetActionComponent() { return monAct_; }
+
+	//=========memberFunc================
 	void SetStat(int Level);
 	void SetStatBoss(int Level);
 	void SetStatHoYoung(int Level);
 	void SetStatHoYoungBoss(int Level);
+	std::string GetType() { return monStat_->GetType(); }
 
-	class StatComponent* GetStatComponent() { return monStat_; }
-	class Action* GetActionComponent() { return monAct_; }
 
 protected:
 	std::string name_;
