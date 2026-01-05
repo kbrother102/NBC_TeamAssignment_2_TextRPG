@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "Creature.h"
+#include "Action.h"
+#include "StatComponent.h"
 #include <string>
 
 class Action;
@@ -20,6 +22,6 @@ public:
 	virtual StatComponent* GetStatComponent() = 0;
 	virtual Action* GetActionComponent() = 0;
 protected:
-	StatComponent* monStat_;
-	Action* monAct_;
+	StatComponent* monStat_ = new StatComponent();
+	//Action* monAct_ = new Action();
 };
