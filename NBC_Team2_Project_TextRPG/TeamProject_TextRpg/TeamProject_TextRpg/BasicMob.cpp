@@ -175,39 +175,46 @@ void BasicMob::UseSkill()
 	case TuterName::SEUNGHYEONSUN:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "마이크를 먹을순 없고 자 이제 잘 들리시죠??");
+		Logger::Add(LogType::INFO, "보스공격력 10증가!");
 		monStat_->SetAttack(monStat_->GetAttack() + 10);
 		break;
 	case TuterName::GEUKMINKONG:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "난이도를 좀 더 올려도 되겠어요!");
+		Logger::Add(LogType::INFO, "보스공격력 15증가!");
 		monStat_->SetAttack(monStat_->GetAttack() + 15);
 		break;
 	case TuterName::EUNILPERK:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "안되는건 없습니다 여러분들은 할 수 있습니다.");
+		Logger::Add(LogType::INFO, "보스 공격력 15증가!");
 		monStat_->SetAttack(monStat_->GetAttack() + 15);
 		break;
 	case TuterName::CHANGMINKONG:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "잠시 배가고파서 삶은달걀 먹방을 좀 하겠습니다.");
+		Logger::Add(LogType::INFO, "보스체력 100 증가!");
 		monStat_->SetHp(monStat_->GetHp() + 100);
 		break;
 	case TuterName::BONGJAEKONG:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "여러분들이 문제를 잘 풀어주시는거같아서 좀 더 많은 문제를 준비했습니다!");
-		monStat_->SetHp(monStat_->GetHp() + 50);
+		Logger::Add(LogType::INFO, "보스체력 100 증가!");
+		monStat_->SetHp(monStat_->GetHp() + 100);
 		break;
 	case TuterName::JOEUNKONG:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "미니실습이랑 도전실습이 쉬우시다구요? 그렇다면 도전x도전 실습도 한번 도전해봅시다!");
+		Logger::Add(LogType::INFO, "보스체력 50 증가! 보스 공격력 10 증가!");
 		monStat_->SetHp(monStat_->GetHp() + 50);
 		monStat_->SetAttack(monStat_->GetAttack() + 10);
 		break;
 	case TuterName::HOYOUNGJOU:
 		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "코딩할때도 체력이중요합니다!!! 체력!!! 운동하십쇼!!!!");
-		monStat_->SetHp(monStat_->GetHp() + 200);
-		monStat_->SetAttack(monStat_->GetAttack() + 20);
+		Logger::Add(LogType::INFO, "보스체력 두배 증가! 공격력 절반 감소!");
+		monStat_->SetHp(monStat_->GetHp() * 2);
+		monStat_->SetAttack(monStat_->GetAttack() / 2);
 		break;
 	}
 }
@@ -302,7 +309,6 @@ void BasicMob::TakeDamage(int dmg)
 	if (monStat_->GetHp() <= 0)
 	{
 		monStat_->SetIsDead(true);
-		GetDie();
 	}
 	else return;
 }
