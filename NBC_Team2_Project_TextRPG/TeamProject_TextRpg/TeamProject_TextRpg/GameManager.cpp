@@ -27,6 +27,9 @@ void GameManager::Run()
 			{
 				delete player_;
 				player_ = nullptr;
+
+				delete curMons_;
+				curMons_ = nullptr;
 				break;
 			}
 			bool chooseMenu = true;
@@ -138,8 +141,6 @@ BattleResult GameManager::Battle()
 		Logger::Add(LogType::INFO, "전투에서 승리했습니다! 보상을 받으세요");
 		GiveReward();
 
-		delete curMons_;
-		curMons_ = nullptr;
 		return BattleResult::PlayerWin;
 	}
 	else
