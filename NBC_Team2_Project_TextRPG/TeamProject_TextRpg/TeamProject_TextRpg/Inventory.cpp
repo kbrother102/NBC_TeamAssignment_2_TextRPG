@@ -34,10 +34,26 @@ int Inventory::GetItemCount() const
 }
 
 const Item* Inventory::GetItem(int index) const
-{
+{	//유효 범위 체크
 	if (index < 0 || index >= items_.size())
 	{
 		return nullptr;
 	}
 	return items_[index].get();
+}
+
+//Item* Inventory::GetItem(int index)  //만약 아이템 수정이 필요해지면 주석 해제(내구도 등)
+//{	//유효 범위 체크
+//	if (index < 0 || index >= items_.size())
+//	{
+//		return nullptr;
+//	}
+//	return items_[index].get();
+//}
+
+void Inventory::RemoveItem(int index)
+{	//유효 범위 체크
+	if (index < 0 || index >= items_.size())
+		return;
+	items_[index].reset();//nullptr로 제거
 }
