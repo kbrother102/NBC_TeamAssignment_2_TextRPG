@@ -5,20 +5,19 @@
 #include "HealthPotion.h"
 #include "AttackBoost.h"
 #include "Inventory.h"
-
+#include "Logger.h"
 #include <memory>
+#include <string>
 
 void RewardManager::ProcessReward(Monster* Monster, Character* Player)
 {
     //몬스터 스탯 컴포넌트에서 경험치, 돈을 가져옴
     //GetExp() 는 몬스터의 경험치를 출력해주는 함수, component의 getexp()를 출력
-    //int MonsterExp = Monster->GetExp();
-   //int MonsterGold = Monster->GetGold();
+   int MonsterExp = Monster->GetExp();
+   int MonsterGold = Monster->GetGold();
 
-    //플레이어에게 추가
-    //Player->GainExp(Monster->GetExp());
-    //TODO : Character에 GainGold 있으면 주석해제
-    //Player->GainGold(Monster->GetGold())
+   Player->AddExp(Monster->GetExp());
+   Player->ChangeGold(Monster->GetGold());
 
     if (isItemDrop() == true)
     {
@@ -31,7 +30,7 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
         case ItemType::HealthPotion:
         {
             std::unique_ptr<class HealthPotion> potion = std::make_unique<class HealthPotion>();
-            
+            Logger::Add(LogType::INFO, potion->GetName() + "을 획득했다!");
             Player->GetInventory()->AddItem(std::move(potion));
             break;
         }
@@ -39,7 +38,7 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
         {
             
             std::unique_ptr<class AttackBoost> potion = std::make_unique<class AttackBoost>();
-            //TODO: 오류수정하기
+            Logger::Add(LogType::INFO, potion->GetName() + "을 획득했다!");
             Player->GetInventory()->AddItem(std::move(potion));
             break;
         }
