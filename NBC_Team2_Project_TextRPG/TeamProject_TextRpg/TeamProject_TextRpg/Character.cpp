@@ -65,17 +65,17 @@ const Inventory* Character::GetInventory() const
 	return inventory_.get();
 }
 
-void Character::GainGold(int amount)
-{
-	if (amount <= 0) return; // 이상값 방어
+//void Character::GainGold(int amount)
+//{
+//	if (amount <= 0) return; // 이상값 방어
+//
+//	stats_->GainGold(amount);
+//}
 
-	stats_->GainGold(amount);
-}
-
-void Character::SpendGold(int amount)
-{
-	return stats_->SpendGold(amount);
-}
+//void Character::SpendGold(int amount)
+//{
+//	return stats_->SpendGold(amount);
+//}
 
 void Character::ChangeGold(int amount)
 {
@@ -87,10 +87,10 @@ void Character::AddExp(int amount)
 	stats_->AddExp(amount);
 }
 
-void Character::AddGold(int amount)
-{
-	stats_->GainGold(amount);
-}
+//void Character::AddGold(int amount)
+//{
+//	stats_->GainGold(amount);
+//}
 
 
 //캐릭터 공격 함수

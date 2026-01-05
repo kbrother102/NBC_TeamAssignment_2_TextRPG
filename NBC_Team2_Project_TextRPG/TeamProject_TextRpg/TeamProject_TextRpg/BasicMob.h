@@ -39,10 +39,11 @@ public:
 	void SetStatHoYoungBoss(int Level);
 
 	class StatComponent* GetStatComponent() { return monStat_; }
-	//class Action* GetActionComponent() { return monAct_; }
+	class Action* GetActionComponent() { return monAct_; }
 
 protected:
 	std::string name_;
 	bool bIsBoss_;
+	Action* monAct_ = new Action(this);
 };
 

@@ -21,7 +21,7 @@ public:
 	//포인터 소멸자
 	~Character() = default;
 	//호출 시 경험치 획득(전투 승리 시)
-	void GainExp(int amount);
+	//void GainExp(int amount);
 	//피격 함수
 	void TakeDamage(int dmg);
 	//아이템 사용 함수
@@ -29,9 +29,9 @@ public:
 	//골드 변경
 	void ChangeGold(int amount);
 	//골드 획득
-	void GainGold(int amount);
+	//void GainGold(int amount);
 	//골드 사용
-	void SpendGold(int amount);
+	//void SpendGold(int amount);
 
 	StatComponent* GetStatComponent() override;
 	Inventory* GetInventory();

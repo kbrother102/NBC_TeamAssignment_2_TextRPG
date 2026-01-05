@@ -36,9 +36,6 @@
     <ClCompile Include="Monster.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Mob1.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="StatComponent.cpp">
       <Filter>소스 파일\Component</Filter>
     </ClCompile>
@@ -61,24 +58,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MonsterSpawner.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Mob2.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Mob3.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Mob4.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Mob5.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Mob6.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="SpacialMob.cpp">
       <Filter>소스 파일\Monster</Filter>
     </ClCompile>
     <ClCompile Include="AttackBoost.cpp">
@@ -107,9 +86,6 @@
     <ClInclude Include="Character.h">
       <Filter>소스 파일\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Mob1.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>소스 파일\Monster</Filter>
     </ClInclude>
@@ -135,24 +111,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MonsterSpawner.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Mob2.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Mob3.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Mob4.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Mob5.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Mob6.h">
-      <Filter>소스 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="SpacialMob.h">
       <Filter>소스 파일\Monster</Filter>
     </ClInclude>
     <ClInclude Include="AttackBoost.h">

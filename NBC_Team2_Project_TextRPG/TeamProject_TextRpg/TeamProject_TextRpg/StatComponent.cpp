@@ -200,14 +200,14 @@ void StatComponent::ChangeGold(int changeamount)
 }
 
 // [유지] 골드는 굳이 이름 없어도 되면 그대로 둠 (필요하면 여기도 name 추가 가능)
-void StatComponent::GainGold(int gainamount)
-{
-    gainamount = ClampZero(gainamount);
-    Gold_ += gainamount;
-}
-
-void StatComponent::SpendGold(int spendamount)
-{
-    if (spendamount > 0) spendamount = 0;
-    Gold_ += spendamount;
-}
+//void StatComponent::GainGold(int gainamount)
+//{
+//    gainamount = ClampZero(gainamount);
+//    Gold_ += gainamount;
+//}
+//
+//void StatComponent::SpendGold(int spendamount)
+//{
+//    if (spendamount > 0) spendamount = 0;
+//    Gold_ += spendamount;
+//}

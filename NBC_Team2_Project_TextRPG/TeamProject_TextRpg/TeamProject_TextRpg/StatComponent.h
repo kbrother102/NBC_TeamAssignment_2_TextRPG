@@ -46,10 +46,10 @@ public:
     // [기능] 골드 변경 (골드 획득은 양수, 상점 등에서 골드 사용은 음수)
     void ChangeGold(int chaingeamount);
     // GainGold  (더하기)     양수만 받아서 현재 골드에 양수를 더함 / 음수 입력시 0으로 받음
-    void GainGold(int gainamount);
+   // void GainGold(int gainamount);
 
     // SpendGold (뺴기)       음수만 받아서 현재 골드에 음수를 더함 / 양수 입력시 0으로 받음
-    void SpendGold(int spendamount);
+   // void SpendGold(int spendamount);
 
 
     // [Getter] (읽기 전용) ==========================================

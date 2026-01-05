@@ -23,5 +23,5 @@ public:
 	virtual Action* GetActionComponent() = 0;
 protected:
 	StatComponent* monStat_ = new StatComponent();
-	//Action* monAct_ = new Action();
+	
 };

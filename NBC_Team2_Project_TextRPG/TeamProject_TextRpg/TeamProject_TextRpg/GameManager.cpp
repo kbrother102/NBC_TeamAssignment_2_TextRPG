@@ -61,19 +61,13 @@ BattleResult GameManager::Battle()
 {
 	GetMonster(player_->GetLv()); // player의 레벨? monster의 레벨?
 
-	Action playeraction;
-	playeraction.SetOwner(player_);
-
-	Action monsteraction;
-	monsteraction.SetOwner(curMons_);
-
 	while (!(player_->IsDead()))
 	{
 		//TODO 몬스터~ 액션에 있는 다이함수 쓰기~
-		playeraction.Attack(curMons_);
+		
 		//if (curMons_->DieMob()) break;
 
-		monsteraction.Attack(player_);
+		
 	}
 
 	if (!(player_->IsDead()))
