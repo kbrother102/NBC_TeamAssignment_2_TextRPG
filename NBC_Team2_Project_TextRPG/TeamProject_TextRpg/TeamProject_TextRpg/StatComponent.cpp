@@ -182,10 +182,9 @@ void StatComponent::AddExp(int amount)
         Level_++;
 
         // 레벨업 보상
-        MaxHp_ += 20;
+        MaxHp_ += Level_ * 20;
         Hp_ = MaxHp_;
-        Attack_ += 3;
-        MaxExp_ += 50;
+        Attack_ += Level_ * 5;
 
         // 레벨업 축하 로그 (name 사용)
         Logger::Add(COMBAT, "====== [ 플레이어 레벨 업! (" + to_string(Level_) + ") ] ======");
@@ -198,7 +197,6 @@ void StatComponent::ChangeGold(int changeamount)
 {
     int FinalGold = GetGold() + changeamount;
     SetGold(FinalGold);
-    Logger::Add(INFO, to_string(changeamount) + " G를 획득했습니다. (현재: " + to_string(Gold_) + " G)");
 }
 
 // [유지] 골드는 굳이 이름 없어도 되면 그대로 둠 (필요하면 여기도 name 추가 가능)
@@ -206,12 +204,10 @@ void StatComponent::GainGold(int gainamount)
 {
     gainamount = ClampZero(gainamount);
     Gold_ += gainamount;
-    Logger::Add(INFO, to_string(gainamount) + " G를 획득했습니다. (현재: " + to_string(Gold_) + " G)");
 }
 
 void StatComponent::SpendGold(int spendamount)
 {
     if (spendamount > 0) spendamount = 0;
     Gold_ += spendamount;
-    Logger::Add(INFO, to_string(spendamount) + " G를 획득했습니다. (현재: " + to_string(Gold_) + " G)");
 }
