@@ -9,8 +9,7 @@ void Console::Input(int& outValue)
 
 void Console::Input(std::string& outValue)
 {
-    std::cin >> outValue;
-    ClearBuffer();
+    std::getline(std::cin, outValue);
 }
 
 void Console::ClearBuffer()
