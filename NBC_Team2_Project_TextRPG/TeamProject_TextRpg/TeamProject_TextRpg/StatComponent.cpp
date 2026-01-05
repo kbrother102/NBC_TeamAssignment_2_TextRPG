@@ -197,7 +197,7 @@ void StatComponent::AddExp(int amount)
         Attack_ += Level_ * 5;
 
         // 레벨업 축하 로그 (name 사용)
-        Logger::Add(COMBAT, "====== [ 플레이어 레벨 업! (" + to_string(Level_) + ") ] ======");
+        Logger::Add(EVENT, "====== [ 플레이어 레벨 업! (" + to_string(Level_) + ") ] ======");
     }
 }
 

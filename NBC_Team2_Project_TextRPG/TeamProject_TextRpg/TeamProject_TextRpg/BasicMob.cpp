@@ -4,7 +4,8 @@
 
 void BasicMob::SpawnMob(int Level)
 {
-	mobNum_ = Random::GetRandInt(0, 6);
+	//mobNum_ = Random::GetRandInt(0, 6);
+	mobNum_ = 6;
 	if ((monStat_->GetIsDead() == true))
 	{
 		switch ((TuterName)mobNum_)
@@ -122,7 +123,7 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "팔당으로 점프하신 조은튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
+				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
 					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "여러분 우리 혹여나 마주쳐도 아는척하지말아요...");
 			}
@@ -238,7 +239,7 @@ void BasicMob::SetStatBoss(int Level)
 void BasicMob::SetStatHoYoung(int Level)
 {
 	monStat_->SetMaxHp(Level * Random::GetRandInt(40, 60));
-	monStat_->SetAttack(Level * Random::GetRandInt(10, 20));
+	monStat_->SetAttack(Level * Random::GetRandInt(1, 40));
 	monStat_->SetHp(monStat_->GetMaxHp());
 	monStat_->SetIsDead(false);
 	monStat_->SetType("SpacialMob");
@@ -250,7 +251,7 @@ void BasicMob::SetStatHoYoung(int Level)
 void BasicMob::SetStatHoYoungBoss(int Level)
 {
 	monStat_->SetMaxHp(Level * Random::GetRandInt(100, 150));
-	monStat_->SetAttack(Level * Random::GetRandInt(25, 50));
+	monStat_->SetAttack(Level * Random::GetRandInt(1, 100));
 	monStat_->SetHp(monStat_->GetMaxHp());
 	monStat_->SetIsDead(false);
 	monStat_->SetType("SpacialBoss");
@@ -264,31 +265,24 @@ void BasicMob::GetDie()
 	switch ((TuterName)mobNum_)
 	{
 	case TuterName::SEUNGHYEONSUN:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "항상 그림을 그려서 코딩하시면 쉽게 접근하실수 있습니다 잊지마세요!");
 		break;
 	case TuterName::GEUKMINKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "잘하셨습니다! 여러분들 무사히 수료하시길 기원하겠습니다!");
 		break;
 	case TuterName::EUNILPERK:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "이제 여러분들께 기대를 해도 될거같아서 뿌듯하네요.");
 		break;
 	case TuterName::CHANGMINKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "좋습니다 여러분 그상태로 계속 가시면 됩니다!");
 		break;
 	case TuterName::BONGJAEKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "역시 여러분들은 해내실줄 알았습니다.");
 		break;
 	case TuterName::JOEUNKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "너무 잘하셔서 더이상 가르칠게 없을거같아요 나이스!");
 		break;
 	case TuterName::HOYOUNGJOU:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "같이 새천년 건강체조 하러 갑시다!!");
 		break;
 	}
@@ -303,6 +297,7 @@ void BasicMob::TakeDamage(int dmg)
 		UseSkill();
 		bUseSkill_ = true;
 	}
+	
 
 	if (monStat_->GetHp() <= 0)
 	{

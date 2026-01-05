@@ -19,6 +19,8 @@ public:
 	{
 		monStat_->SetIsDead(true);
 		bIsBoss_ = false;
+		bUseSkill_ = false;
+		mobNum_ = 10;
 	}
 	~BasicMob() override
 	{
