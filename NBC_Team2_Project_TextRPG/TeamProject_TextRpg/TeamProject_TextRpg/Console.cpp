@@ -3,12 +3,13 @@
 void Console::Input(int& outValue)
 {
     std::cin >> outValue;
+    ClearBuffer();
 
 }
 
 void Console::Input(std::string& outValue)
 {
-    std::cin >> outValue;
+    std::getline(std::cin, outValue);
 }
 
 void Console::ClearBuffer()

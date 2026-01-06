@@ -15,6 +15,7 @@ void RewardManager::ProcessReward(Monster* Monster, Character* Player)
     //GetExp() 는 몬스터의 경험치를 출력해주는 함수, component의 getexp()를 출력
    int MonsterExp = Monster->GetExp();
    int MonsterGold = Monster->GetGold();
+   Logger::Add(INFO, std::to_string(MonsterGold) + "Point를 얻었습니다!");
 
    Player->AddExp(Monster->GetExp());
    Player->ChangeGold(Monster->GetGold());

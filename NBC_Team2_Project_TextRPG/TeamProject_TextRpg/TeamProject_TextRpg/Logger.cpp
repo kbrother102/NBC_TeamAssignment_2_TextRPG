@@ -5,7 +5,9 @@
 
 // 색상 코드
 #define COLOR_RESET         "\033[0m"
-#define COLOR_RED           "\033[31m"
+#define COLOR_RED           "\033[31m"           // 적 공격 
+#define COLOR_BOLD_RED      "\033[1m\033[31m"    // 플레이어 공격 
+#define COLOR_BG_RED        "\033[41m\033[37m"   // 이외 전투
 #define COLOR_YELLOW        "\033[33m"
 #define COLOR_CYAN          "\033[36m"
 #define COLOR_GREEN         "\033[1m\033[32m"   // 밝은 녹색
@@ -48,8 +50,20 @@ void Logger::Add(LogType type, const string& msg)
 
     case COMBAT:
         Prefix = "[전투] ";
-        ColorCode = COLOR_RED;
+        ColorCode = COLOR_BOLD_RED;
         DelayMs = 200; // 전투 로그 딜레이 0.5초
+        break;
+
+    case COMBAT_PLAYER: // [플레이어가 공격]
+        Prefix = "[타격] ";
+        ColorCode = COLOR_BOLD_RED; 
+        DelayMs = 200;
+        break;
+
+    case COMBAT_ENEMY:  // [몬스터가 공격]
+        Prefix = "[피격] ";
+        ColorCode = COLOR_RED;
+        DelayMs = 200;
         break;
 
     case WARNING:

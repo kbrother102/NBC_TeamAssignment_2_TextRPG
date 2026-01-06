@@ -18,6 +18,7 @@ void GameManager::Run()
 		StartGame();
 		PlayerInputLogic();
 		CreateCharacter();
+		PlayerStatus();
 		while (true)
 		{
 			BattleResult result = Battle();
@@ -26,10 +27,41 @@ void GameManager::Run()
 			{
 				delete player_;
 				player_ = nullptr;
+
+				delete curMons_;
+				curMons_ = nullptr;
 				break;
 			}
-			DisplayInventory(player_);
-			OpenShop();
+			bool chooseMenu = true;
+			while (chooseMenu)
+			{
+				Logger::Add(LogType::INFO, "\n======= 마을 정비 =======");
+				Logger::Add(LogType::INFO, "1. 상태 확인 | 2. 인벤토리 | 3. 상점 | 4. 다음 전투 시작");
+
+
+				int choice;
+				Console::Input(choice);
+				
+				switch (choice)
+				{
+				case 1:
+					PlayerStatus(); // 내 상태 출력
+					break;
+				case 2:
+					DisplayInventory(player_); // 인벤토리 확인
+					break;
+				case 3:
+					OpenShop(); // 상점 이용
+					break;
+				case 4:
+					Logger::Add(LogType::INFO, "다음 전장으로 이동합니다.");
+					chooseMenu = false; // 정비 루프를 빠져나감
+					break;
+				default:
+					Logger::Add(LogType::WARNING, "잘못된 입력입니다.");
+					break;
+				}
+			}
 		}
 	}
 }
@@ -41,8 +73,11 @@ void GameManager::StartGame()
 
 void GameManager::PlayerInputLogic()
 {
-	Logger::Add(LogType::INFO, "이름을 입력해주세요 : ");
-	std::cin >> name_;
+	do {
+		Logger::Add(LogType::INFO, "이름을 입력해주세요 : ");
+		Console::Input(name_);
+	} while (Character::IsValidName(name_) == false);
+	
 }
 
 void GameManager::CreateCharacter()
@@ -51,6 +86,16 @@ void GameManager::CreateCharacter()
 	std::string nickname = "생성된 캐릭터 이름: " + player_->GetName();
 	Logger::Add(LogType::INFO, nickname);
 
+}
+
+void GameManager::PlayerStatus()
+{
+	Logger::Add(LogType::INFO,
+		"이름: " + player_->GetName() +
+		" | 체력: " + std::to_string(player_->GetStatComponent()->GetHp()) + "/" + std::to_string(player_->GetStatComponent()->GetMaxHp()) +
+		" | 경험치: " + std::to_string(player_->GetStatComponent()->GetExp()) +
+		" | 보유 골드: " + std::to_string(player_->GetStatComponent()->GetGold()) + "G"
+	);
 }
 
 void GameManager::SpawnMonster()
@@ -73,12 +118,13 @@ BattleResult GameManager::Battle()
 	while (!player_->IsDead() && !curMons_->GetIsDead())
 	{
 		// 플레이어 -> 몬스터 공격
+		player_->GetAction()->RandUseItem();
 		player_->GetAction()->Attack(curMons_);
 
 		// 몬스터 사망
 		if (curMons_->GetIsDead())
 		{
-			curMons_->GetActionComponent()->Die();
+			curMons_->GetDie();
 			break;
 		}
 
@@ -97,6 +143,7 @@ BattleResult GameManager::Battle()
 	{
 		Logger::Add(LogType::INFO, "전투에서 승리했습니다! 보상을 받으세요");
 		GiveReward();
+
 		return BattleResult::PlayerWin;
 	}
 	else
@@ -119,45 +166,30 @@ bool GameManager::IsLevel10()
 
 void GameManager::OpenShop()
 {
-	Logger::Add(LogType::INFO, "상점에 진입하시겠습니까? (1: 예 / 2: 아니오)");
-	int input;
-	Console::Input(input);
-
-	if (input == 1)
-	{
-		Shop shop;
-		shop.RunShop(player_);
-	}
+	Shop shop;
+	shop.RunShop(player_);
 }
 
 void GameManager::DisplayInventory(Character* player)
 {
-	Logger::Add(LogType::INFO, "인벤토리를 확인하시겠습니까? (1: 예 / 2: 아니오)");
+	// 재화 정보
+	int currentGold = player_->GetStatComponent()->GetGold();
+	Logger::Add(LogType::INFO, "보유 골드: " + std::to_string(currentGold) + " G");
 
-	int input;
-	Console::Input(input);
+	// 아이템 정보
+	Inventory* inventory = player_->GetInventory();
+	int itemCount = inventory->GetItemCount();
 
-	if (input == 1)
+	if (itemCount == 0)
 	{
-		// 재화 정보
-		int currentGold = player_->GetStatComponent()->GetGold();
-		Logger::Add("보유 골드: " + std::to_string(currentGold) + " G");
-
-		// 아이템 정보
-		Inventory* inventory = player_->GetInventory();
-		int itemCount = inventory->GetItemCount();
-
-		if (itemCount == 0)
+		Logger::Add(LogType::INFO, "가방이 비어 있습니다.");
+	}
+	else
+	{
+		for (int i = 0; i < itemCount; ++i)
 		{
-			Logger::Add("가방이 비어 있습니다.");
-		}
-		else
-		{
-			for (int i = 0; i < itemCount; ++i)
-			{
-				std::string itemName = inventory->GetItemName(i);
-				Logger::Add(std::to_string(i + 1) + ". " + itemName);
-			}
+			std::string itemName = inventory->GetItemName(i);
+			Logger::Add(std::to_string(i + 1) + ". " + itemName);
 		}
 	}
 }

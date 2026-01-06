@@ -30,6 +30,9 @@ private:
 	// 캐릭터 생성
 	void CreateCharacter();
 
+	// 플레이어 상태창
+	void PlayerStatus();
+
 	// 몬스터 생성
 	void SpawnMonster();
 	void GetMonster(int Level);

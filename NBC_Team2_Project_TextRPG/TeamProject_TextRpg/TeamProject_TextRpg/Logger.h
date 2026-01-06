@@ -35,6 +35,8 @@ enum LogType
 {
     INFO,
     COMBAT,
+    COMBAT_PLAYER, // [추가] 플레이어의 공격
+    COMBAT_ENEMY,  // [추가] 몬스터의 공격
     WARNING,
     TALK,
     EVENT,
