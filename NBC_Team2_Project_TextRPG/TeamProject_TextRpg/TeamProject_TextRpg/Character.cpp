@@ -62,7 +62,7 @@ bool Character::IsValidName(const std::string& name)
 	}
 	//빈 공간이 있으면 실격
 	for (char c : name) {
-		if (std::isspace(c))
+		if (std::isspace(static_cast<unsigned char>(c)))
 		{
 			Logger::Add(LogType::WARNING, "공백은 사용할 수 없습니다.");
 			return false;
