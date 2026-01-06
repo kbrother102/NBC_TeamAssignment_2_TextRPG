@@ -183,36 +183,44 @@ void Shop::RunShop(Character* Player)
 // TODO:  [UI] 기존 로그출력에서 - UI 매니저 출력으로 변경함 / run, sell, buy
 void Shop::RunShop(Character* player, UIManager* ui)
 {
-    // TODO: !!!!!! [핵심 수정] 상점 시작 시 물건 목록을 초기화(생성)해야 합니다. !!!!
-    // 이걸 안 하면 Product_ 벡터가 비어있어서 접근 시 오류가 납니다.
+    // 상점 시작 시 물건 목록 초기화
     Initialize();
 
     while (true)
     {
-        // 1. 화면 갱신 (메인 패널에 상점 메뉴 띄우기)
+        // 1. 화면 갱신
         ui->RenderShopMenu();
-
-        // (선택사항) 중앙에 상점 주인 그림 출력
-        // ui->RenderMonsterArt("shopkeeper.txt"); 
-
-        // 로그창 갱신 (안내 메시지)
         Logger::Add(LogType::INFO, "어서오세요! 무엇을 도와드릴까요?");
         ui->RenderLogs();
 
         // 2. 입력 받기
         std::string input = ui->InputString("선택하세요: ");
+
+        // 엔터만 쳤을 경우 무시
         if (input.empty()) continue;
 
-        int choice = std::stoi(input);
+        int choice = 0;
+
+        // =========================================================
+        // [핵심 수정] try-catch로 감싸서 프로그램 터짐 방지
+        // =========================================================
+        try
+        {
+            choice = std::stoi(input); // 여기서 문자가 들어오면 에러를 던짐 -> catch로 이동
+        }
+        catch (...) // 어떤 에러가 나더라도 여기로 옴
+        {
+            Logger::Add(LogType::WARNING, "숫자만 입력해 주세요!");
+            continue; // 루프의 처음(화면 갱신)으로 돌아감
+        }
+        // =========================================================
 
         if (choice == 1)
         {
-            //TODO : ui 매개변수 수정
             BuyItem(player, ui);
         }
         else if (choice == 2)
         {
-            //TODO : ui 매개변수 수정
             SellItem(player, ui);
         }
         else if (choice == 3)
