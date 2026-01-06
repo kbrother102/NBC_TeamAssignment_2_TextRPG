@@ -199,9 +199,6 @@ void GameManager::Run()
 				}
 			}
 
-
-
-
 		}
 	}
 }
@@ -212,10 +209,31 @@ void GameManager::StartGame()
 	// Logger::Add(LogType::INFO, "캠프 시작");
 
 	// TODO: [변경] UI 매니저실행
-	uiManager_->RenderTitleScreen();
+	while (true)
+	{
+		// 1. 타이틀 화면 그리기
+		uiManager_->RenderTitleScreen();
 
-	// 키 입력 대기 (아무 키나 누르면 넘어감)
-	_getch();
+		// 2. 키 입력 받기 (화면에 글자가 찍히지 않고 키값만 받음)
+		int input = _getch();
+
+		// 3. 입력값 검사
+		if (input == '1')
+		{
+			// 게임 시작 (반복문 탈출 -> Run 함수의 다음 단계로 진행)
+			break;
+		}
+		else if (input == '2')
+		{
+			// 게임 종료 (프로그램 강제 종료)
+			// UIManager 정리 등이 필요하다면 여기서 처리하거나,
+			// exit(0)은 즉시 꺼지므로 가장 확실한 방법입니다.
+			exit(0);
+		}
+
+		// 1, 2번 이외의 키(예: 스페이스바, 엔터, a 등)를 누르면
+		// 아무 일도 일어나지 않고 while문의 처음으로 돌아가서 다시 입력을 기다림
+	}
 }
 
 void GameManager::PlayerInputLogic()
