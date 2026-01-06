@@ -451,7 +451,7 @@ void UIManager::RenderStats(Character* player)
     GotoXY(x, y++); cout << "이  름 : " << player->GetName() << "      ";
     GotoXY(x, y++); cout << "레  벨 : " << player->GetLv() << "      ";
     GotoXY(x, y++); cout << "코딩력 : " << player->GetAttack() << "      ";
-    GotoXY(x, y++); cout << "포인트 : " << player->GetGold() << " G    ";
+    GotoXY(x, y++); cout << "포인트 : " << player->GetGold() << " Point    ";
     GotoXY(x, y++); cout << "정신력 : " << player->GetHp() << " / " << player->GetMaxHp() << "      ";
     // [HP 게이지바] ---------------------------------------------------
     // 1. 게이지 길이 계산 (최대 체력 대비 현재 체력 비율)
