@@ -225,7 +225,7 @@ void UIManager::RenderTitleScreen()
         int maxLen = 0;
 
         // =========================================================
-        // [핵심 수정] 출력 전에 UTF-8 모드로 변경해야 깨지지 않습니다!
+        // 출력 전에 UTF-8 모드로 변경해야 깨지지 않습니다!
         UINT oldCp = GetConsoleOutputCP();
         SetConsoleOutputCP(CP_UTF8);
 
@@ -254,7 +254,7 @@ void UIManager::RenderTitleScreen()
         cout << "\033[0m"; // 색상 리셋
 
         // =========================================================
-        // [핵심 수정] 출력이 끝나면 원래 인코딩으로 복구합니다.
+        // 출력이 끝나면 원래 인코딩으로 복구합니다.
         SetConsoleOutputCP(oldCp);
     }
 
@@ -406,8 +406,15 @@ void UIManager::RenderMainPanel(string title, const vector<string>& menus)
         cout << menus[i];
     }
 }
-void UIManager::RenderMonsterArt(string fileName)
+
+void UIManager::RenderMonsterArt(string fileName, bool isHidden)
 {
+    if (isHidden == true)
+    {
+        RenderHiddenBossArt(fileName); // 히든 보스 전용 함수 실행 (왼쪽부터 꽉 채움)
+        return; // 여기서 함수 종료! (아래 코드는 실행 안 함)
+    }
+
     ifstream file(fileName);
     if (!file.is_open()) return; // 파일 없으면 무시
 
@@ -650,7 +657,7 @@ void UIManager::RenderLogs()
     }
 }
 
-// @@@@@@@@@@@@ [미구현] 히든 몬스터 출현
+// @@@@@@@@@@@@ 히든 몬스터 출현
 void UIManager::RenderHiddenBossArt(string fileName)
 {
     // ---------------------------------------------------------
@@ -818,8 +825,8 @@ void UIManager::RenderBattleMode()
         "      [ ! ]      ",
         " ",
         "    전투중에는   ",
-        "    메뉴 기능을  ",
-        "   사용 불가합니다 ",
+        "    메뉴 기능이  ",
+        "    제한 됩니다 ",
         " ",
         "   승리하여 강의실로 ",
         "    돌아가세요!    "

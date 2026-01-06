@@ -52,7 +52,7 @@ public:
     void RenderLogs();
 
     // [핵심] 텍스트 파일 아스키 아트 로더 (중앙 박스용)
-    void RenderMonsterArt(std::string fileName);
+    void RenderMonsterArt(std::string fileName, bool isHidden = false);
     void RenderHiddenBossArt(std::string fileName);
 
 private:
@@ -60,36 +60,36 @@ private:
 
     // 레이아웃 상수 (16:9 와이드 비율 / 가로 2배 법칙 적용)
     // ---------------------------------------------------------
-    const int SCREEN_WIDTH = 172;
-    const int SCREEN_HEIGHT = 62;
+    const int SCREEN_WIDTH = 222;
+    const int SCREEN_HEIGHT = 82;
 
     // 1. 메인 박스 (좌측)
     const int MAIN_BOX_X = 0;
     const int MAIN_BOX_Y = 1;
-    const int MAIN_BOX_W = 60;
-    const int MAIN_BOX_H = 30;
+    const int MAIN_BOX_W = 58;
+    const int MAIN_BOX_H = 50;
 
     // 2-1. 몬스터/그림 박스 (중앙)
-    const int MONSTER_BOX_X = 60;
+    const int MONSTER_BOX_X = 58;
     const int MONSTER_BOX_Y = 1;
-    const int MONSTER_BOX_W = 60; // 가로를 넓게 잡음 
-    const int MONSTER_BOX_H = 30;
+    const int MONSTER_BOX_W = 102; // 가로를 넓게 잡음 
+    const int MONSTER_BOX_H = 50;
 
     // 2-2. 몬스터 스탯 박스 (좌상단)
-    const int M_STAT_BOX_X = 120;
+    const int M_STAT_BOX_X = 160;
     const int M_STAT_BOX_Y = 1; // 플레이어 박스 위 시작
-    const int M_STAT_BOX_W = 50;
-    const int M_STAT_BOX_H = 9; // 나머지 높이 채움
+    const int M_STAT_BOX_W = 60;
+    const int M_STAT_BOX_H = 19; // 나머지 높이 채움
 
     // 3. 스텟 박스 (우측)
-    const int STAT_BOX_X = 120;
-    const int STAT_BOX_Y = 11;
-    const int STAT_BOX_W = 50;
-    const int STAT_BOX_H = 20;
+    const int STAT_BOX_X = 160;
+    const int STAT_BOX_Y = 21;
+    const int STAT_BOX_W = 60;
+    const int STAT_BOX_H = 30;
 
     // 4. 로그 박스 (하단)
     const int LOG_BOX_X = 0;
-    const int LOG_BOX_Y = 31;
-    const int LOG_BOX_W = 170;
+    const int LOG_BOX_Y = 51;
+    const int LOG_BOX_W = 220;
     const int LOG_BOX_H = 30;
 };
