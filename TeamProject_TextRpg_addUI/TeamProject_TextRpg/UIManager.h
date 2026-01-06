@@ -8,6 +8,11 @@
 class Character;
 class Monster;
 
+struct Color
+{
+    int r, g, b;
+};
+
 class UIManager
 {
 public:
@@ -21,6 +26,7 @@ public:
     void InitSystem();      // [1] 창 크기, 폰트 설정 (프로그램 켜자마자 1번만 실행)
     void RenderGameUI();    // [2] 게임용 박스들 그리기 (게임 시작하면 실행)
     void RenderTitleScreen(); // [3] 타이틀 화면
+    void RenderGradientArt(std::string fileName, Color startColor, Color endColor); // [4] 그래디언트 컬러 타이틀
 
     // [유틸] UI 안 망가지게 문자열 입력받는 함수
     std::string InputString(std::string prompt, int customY = -1, int customX = -1);

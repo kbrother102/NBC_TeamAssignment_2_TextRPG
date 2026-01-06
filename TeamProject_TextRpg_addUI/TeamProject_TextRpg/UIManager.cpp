@@ -49,6 +49,69 @@ int GetVisualLength(const std::string& str)
     return length;
 }
 
+// RGB 값으로 색상 출력 / RGB 변환 / 그라데이션 계산 / 그라데이션 출력
+string GetANSIColor(int r, int g, int b)
+{
+    return "\033[38;2;" + to_string(r) + ";" + to_string(g) + ";" + to_string(b) + "m";
+}
+string GetGradientColor(Color start, Color end, float ratio)
+{
+    int r = (int)(start.r + (end.r - start.r) * ratio);
+    int g = (int)(start.g + (end.g - start.g) * ratio);
+    int b = (int)(start.b + (end.b - start.b) * ratio);
+    return GetANSIColor(r, g, b);
+}
+void UIManager::RenderGradientArt(string fileName, Color startColor, Color endColor)
+{
+    // 1. 파일 읽기
+    ifstream file(fileName);
+    if (!file.is_open()) return;
+
+    vector<string> lines;
+    string line;
+    int maxLen = 0;
+
+    // UTF-8 모드 설정 (깨짐 방지)
+    UINT oldCp = GetConsoleOutputCP();
+    SetConsoleOutputCP(CP_UTF8);
+
+    while (getline(file, line))
+    {
+        lines.push_back(line);
+        int len = GetVisualLength(line);
+        if (len > maxLen) maxLen = len;
+    }
+    file.close();
+
+    // 2. 출력 위치 계산 (화면 중앙)
+    // (헤더에 SCREEN_WIDTH가 정의되어 있다고 가정)
+    int startX = (SCREEN_WIDTH - maxLen) / 2;
+    if (startX < 0) startX = 0;
+    int startY = 5; // 상단 여백 (조절 가능)
+
+    int totalLines = lines.size();
+
+    // 3. 그라데이션 출력 루프
+    for (int i = 0; i < totalLines; i++)
+    {
+        // 현재 줄이 전체에서 몇 퍼센트 위치인지 계산 (0.0 ~ 1.0)
+        float ratio = (float)i / (float)(totalLines - 1);
+        if (totalLines <= 1) ratio = 0; // 한 줄짜리 파일 예외처리
+
+        // 그라데이션 색상 코드 가져오기
+        string colorCode = GetGradientColor(startColor, endColor, ratio);
+
+        // 좌표 이동
+        GotoXY(startX, startY + i);
+
+        // [색상 적용] -> [출력] -> [색상 리셋]
+        cout << colorCode << lines[i] << "\033[0m";
+    }
+
+    // 4. 인코딩 복구
+    SetConsoleOutputCP(oldCp);
+}
+
 //공백찾기 함수 [UI 덮어씌우기 연출 - 히든보스 전용]
 int GetCurrentCursorX()
 {
@@ -145,7 +208,14 @@ void UIManager::RenderTitleScreen()
     // 1. 전체 테두리 그리기
     DrawBox(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1, " TEXT CONSOL RPG ");
 
-    // 2. 타이틀 로고 출력
+    // 2. 타이틀 로고 출력 (그라데이션)
+    Color purple = { 255, 0, 255 };
+    Color cyan = { 0, 255, 255 };
+    RenderGradientArt("title.txt", purple, cyan);
+
+    // 2. 타이틀 로고 출력 (단색) / 주석처리
+    /*
+ 
     ifstream file("title.txt");
     if (file.is_open())
     {
@@ -174,7 +244,7 @@ void UIManager::RenderTitleScreen()
         int startY = 0;
 
         // 노란색으로 출력
-        cout << "\033[93m";
+        // cout << "\033[93m";
         for (size_t i = 0; i < lines.size(); i++)
         {
             GotoXY(startX, startY + i);
@@ -186,6 +256,8 @@ void UIManager::RenderTitleScreen()
         // [핵심 수정] 출력이 끝나면 원래 인코딩으로 복구합니다.
         SetConsoleOutputCP(oldCp);
     }
+
+    */
 
     // 3. 메뉴 출력 (여기부터는 다시 일반 영문/한글이므로 UTF-8 모드 끄고 출력)
     // (위에서 oldCp로 복구했으므로 정상 출력됩니다)
