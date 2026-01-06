@@ -448,12 +448,11 @@ void UIManager::RenderStats(Character* player)
     int y = STAT_BOX_Y + 2;
 
     // 잔상 제거를 위해 뒤에 공백 추가
-    GotoXY(x, y++); cout << "NAME : " << player->GetName() << "      ";
-    GotoXY(x, y++); cout << "TYPE : " << player->GetType() << "      "; // 직업/타입
-    GotoXY(x, y++); cout << "LV   : " << player->GetLv() << "      ";
-    GotoXY(x, y++); cout << "ATK  : " << player->GetAttack() << "      ";
-    GotoXY(x, y++); cout << "GOLD : " << player->GetGold() << " G    ";
-    GotoXY(x, y++); cout << "HP   : " << player->GetHp() << " / " << player->GetMaxHp() << "      ";
+    GotoXY(x, y++); cout << "이  름 : " << player->GetName() << "      ";
+    GotoXY(x, y++); cout << "레  벨 : " << player->GetLv() << "      ";
+    GotoXY(x, y++); cout << "코딩력 : " << player->GetAttack() << "      ";
+    GotoXY(x, y++); cout << "포인트 : " << player->GetGold() << " G    ";
+    GotoXY(x, y++); cout << "정신력 : " << player->GetHp() << " / " << player->GetMaxHp() << "      ";
     // [HP 게이지바] ---------------------------------------------------
     // 1. 게이지 길이 계산 (최대 체력 대비 현재 체력 비율)
     int barLen = 0;
@@ -525,7 +524,7 @@ void UIManager::RenderMonsterStats(Monster* monster)
     // 2. 몬스터 정보 출력
     // (잔상 방지를 위해 뒤에 공백을 충분히 둡니다)
     GotoXY(x, y++);
-    cout << "NAME : ";
+    cout << "이 름 : ";
 
     // 최대 길이 제한 (약 30칸 제한)
     int maxAllowedWidth = 26;
@@ -571,10 +570,10 @@ void UIManager::RenderMonsterStats(Monster* monster)
     }
 
     GotoXY(x, y++);
-    cout << "ATK  : " << MonsterAttack << "          "; // 뒤에 공백 추가
+    cout << "코드리뷰 시간 : " << MonsterAttack << "          "; // 뒤에 공백 추가
 
     GotoXY(x, y++);
-    cout << "HP   : " << MonsterCurHp << " / " << MonsterMaxHp << "        "; // 뒤에 공백 추가
+    cout << "남은 과제량   : " << MonsterCurHp << " / " << MonsterMaxHp << "        "; // 뒤에 공백 추가
 
     // (선택사항) 체력바 그리기
     // 비율 계산: (현재체력 * 10) / 최대체력
@@ -585,13 +584,13 @@ void UIManager::RenderMonsterStats(Monster* monster)
     }
 
     GotoXY(x, y++);
-    std::cout << "       [";
+    std::cout << "        [";
     for (int i = 0; i < 10; i++)
     {
         if (i < barLen) std::cout << "■"; // 찬 체력
         else std::cout << "□"; // 빈 체력
     }
-    std::cout << "]     ";
+    std::cout << "]    ";
 }
 void UIManager::RenderLogs()
 {
@@ -802,10 +801,10 @@ void UIManager::RenderHiddenBossArt(string fileName)
 void UIManager::RenderVillageMenu()
 {
     std::vector<std::string> menus = {
-        "1. 상태 확인",
-        "2. 인벤토리",
-        "3. 상점 이용",
-        "4. 던전 입장"
+        "1. 상 태 확 인",
+        "2. 인 벤 토 리",
+        "3. 상 점 이 용",
+        "4. 던 전 입 장"
     };
 
     RenderMainPanel(" VILLAGE ", menus);

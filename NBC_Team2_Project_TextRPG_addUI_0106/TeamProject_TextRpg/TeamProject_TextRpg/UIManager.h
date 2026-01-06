@@ -19,6 +19,8 @@ public:
     UIManager();
     ~UIManager();
 
+    void GotoXY(int x, int y);
+
     // UI초기화
     void Init();
 
@@ -54,7 +56,6 @@ public:
     void RenderHiddenBossArt(std::string fileName);
 
 private:
-    void GotoXY(int x, int y);
     void DrawBox(int x, int y, int h, int w, std::string title);
 
     // 레이아웃 상수 (16:9 와이드 비율 / 가로 2배 법칙 적용)
