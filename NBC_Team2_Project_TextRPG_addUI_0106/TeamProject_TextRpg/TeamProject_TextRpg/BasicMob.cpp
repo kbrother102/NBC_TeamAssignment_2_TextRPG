@@ -5,7 +5,7 @@
 // TODO 몬스터 이름 (txt 파일 링크용)
 const std::string TUTOR_IDS[] = {
 	"seunghyeon",
-	" Pointeukmin",
+	"geukmin",
 	"eunil",
 	"changmin",
 	"bongjae",
