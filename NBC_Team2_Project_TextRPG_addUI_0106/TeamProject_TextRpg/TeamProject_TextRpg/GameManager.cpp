@@ -258,13 +258,13 @@ void GameManager::PlayerInputLogic()
 		// 2. 에러 메시지가 있다면 입력창 위에 빨간색으로 출력
 		if (!errorMsg.empty())
 		{
-			// 입력창(38)보다 2칸 위(36)에 출력
-			uiManager_->GotoXY(75, 36);
+			// 입력창(38)보다 94, 48)에 출력
+			uiManager_->GotoXY(94, 48);
 			std::cout << "\033[31m[오류] " << errorMsg << "\033[0m"; // 빨간색 ANSI 코드
 		}
 
-		// 3. 입력 받기 (좌표 75, 38)
-		name_ = uiManager_->InputString("이름을 입력해주세요 ", 75, 38);
+		// 3. 입력 받기 (좌표 94, 50)
+		name_ = uiManager_->InputString("이름을 입력해주세요 ", 94, 50);
 
 		// ====================================================
 		// [직접 유효성 검사]
@@ -364,11 +364,25 @@ BattleResult GameManager::Battle()
 	// TODO [UI] 전투 메뉴창 잠금 (UI매니저로 전투중 텍스트 출력)
 	uiManager_->RenderBattleMode();
 
+	// TODO: 히든 보스 여부 체크
+	bool isSpecialBoss = false;
+
 	// TODO: [UI] 몬스터 이미지 출력
 	if (curMons_ != nullptr)
 	{
-		uiManager_->RenderMonsterArt(curMons_->GetImagePath());
+		std::string path = curMons_->GetImagePath();
+
+		// [핵심] 파일 이름이 "boss_hoyoung.txt"이면 히든 보스로 판정
+		if (path == "boss_hoyoung.txt")
+		{
+			isSpecialBoss = true;
+		}
+
+		// isSpecialBoss가 true면 왼쪽부터 꽉 차게, false면 오른쪽 박스에만 그림
+		uiManager_->RenderMonsterArt(path, isSpecialBoss);
 	}
+
+	
 
 	// TODO: [UI] 몬스터 스탯창 표시
 	uiManager_->RenderMonsterStats(curMons_);
@@ -410,8 +424,11 @@ BattleResult GameManager::Battle()
 		}
 	}
 
-	// TODO: [UI] 전투 종료 처리 (몬스터 정보창 지우기)
-	uiManager_->RenderMonsterArt("empty.txt");
+	// TODO: [UI] 전투 종료 처리 (히든보스 아닐경우 몬스터 정보창 지우기)
+	if (isSpecialBoss == false)
+	{
+		uiManager_->RenderMonsterArt("empty.txt", false);
+	}
 
 
 	if (!(player_->IsDead()))
