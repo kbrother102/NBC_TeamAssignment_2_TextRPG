@@ -8,7 +8,9 @@ class Monster;
 enum class BattleResult
 {
 	PlayerWin,
-	PlayerLose
+	PlayerLose,
+	GameClear,
+	ExitGame
 };
 
 
@@ -40,11 +42,9 @@ private:
 	// 전투 로직
 	BattleResult Battle();
 
+
 	// 보상 시스템
 	void GiveReward();
-
-	// 레벨 10인지 판단
-	bool IsLevel10();
 
 	// 상점 방문
 	void OpenShop();
