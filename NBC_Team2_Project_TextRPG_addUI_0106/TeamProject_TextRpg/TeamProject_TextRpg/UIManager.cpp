@@ -3,6 +3,7 @@
 #include "Character.h" 
 #include "Monster.h"
 #include "StatComponent.h"
+#include <iostream>
 
 // [LOG] 로그 출력용 색상 코드 정의
 #define COLOR_RESET         "\033[0m"
@@ -506,91 +507,92 @@ void UIManager::RenderMonsterStats(Monster* monster)
     // 1. 몬스터가 없으면(nullptr) 내용을 지움
     if (monster == nullptr)
     {
-        // 몬스터가 없으면 빈 공백으로 덮어써서 지우기
-        for (int i = 0; i < 6; i++) // 6줄 정도 지움
+        for (int i = 0; i < 6; i++)
         {
             GotoXY(x, y + i);
-            cout << string(width, ' ');
+            std::cout << std::string(width, ' ');
         }
         return;
     }
 
-    string mName = monster->GetName();
     string MonsterName = monster->GetName();
     int MonsterAttack = monster->GetAttack();
     int MonsterCurHp = monster->GetHealth();
     int MonsterMaxHp = monster->GetMaxHealth();
 
-    // 2. 몬스터 정보 출력
-    // (잔상 방지를 위해 뒤에 공백을 충분히 둡니다)
-    GotoXY(x, y++);
-    cout << "이 름 : ";
+    GotoXY(x, y);
+    // 먼저 해당 줄을 공백으로 꽉 채워서 지워버림
+    std::cout << std::string(width, ' ');
 
-    // 최대 길이 제한 (약 30칸 제한)
-    int maxAllowedWidth = 26;
-    int visualLen = GetVisualLength(mName);
+    // 다시 앞으로 커서 이동
+    GotoXY(x, y);
+    std::cout << "이 름 : ";
 
-    if (visualLen > maxAllowedWidth)
+    // 이름이 들어갈 수 있는 최대 공간 (전체 폭 - "이 름 : " 길이)
+    int maxNameSpace = width - 8;
+    int currentVisualLen = 0;
+    string safeName = "";
+
+    // 한글 깨짐 방지하면서 길이 계산
+    int i = 0;
+    while (i < MonsterName.length())
     {
-        string safeName = "";
-        int currentLen = 0;
-        int i = 0;
+        unsigned char c = MonsterName[i];
+        int charByte = 0;
+        int charVisual = 0;
 
-        while (i < mName.length())
+        if (c < 0x80) { charByte = 1; charVisual = 1; } // 영문/숫자
+        else { charByte = 3; charVisual = 2; }          // 한글 (UTF-8 보통 3바이트)
+
+        // 만약 이 글자를 더했을 때 칸을 넘치면 중단하고 ".." 붙임
+        if (currentVisualLen + charVisual > maxNameSpace - 2)
         {
-            unsigned char c = mName[i];
-            int charByteLen = 0;
-            int charVisualLen = 0;
-
-            // 바이트 길이 계산 (UTF-8 기준)
-            if (c < 0x80) { charByteLen = 1; charVisualLen = 1; }
-            else if ((c & 0xE0) == 0xC0) { charByteLen = 2; charVisualLen = 2; }
-            else if ((c & 0xF0) == 0xE0) { charByteLen = 3; charVisualLen = 2; }
-            else if ((c & 0xF8) == 0xF0) { charByteLen = 4; charVisualLen = 2; }
-            else { charByteLen = 1; charVisualLen = 1; } // 예외
-
-            // 만약 이 글자를 더했을 때 최대 너비를 넘으면 중단
-            if (currentLen + charVisualLen > maxAllowedWidth - 2) // ".." 공간 확보
-                break;
-
-            safeName += mName.substr(i, charByteLen);
-            currentLen += charVisualLen;
-            i += charByteLen;
+            safeName += "..";
+            break;
         }
 
-        cout << safeName << "..";
-        // 남은 공간 공백 채우기
-        cout << string(maxAllowedWidth - (currentLen + 2), ' ');
-    }
-    else
-    {
-        // 이름이 짧으면 그냥 출력하고, 남은 공간을 공백으로 싹 지움
-        cout << mName;
-        cout << string(maxAllowedWidth - visualLen, ' ');
+        // 글자 추가
+        for (int k = 0; k < charByte; k++)
+        {
+            if (i + k < MonsterName.length()) safeName += MonsterName[i + k];
+        }
+
+        currentVisualLen += charVisual;
+        i += charByte;
     }
 
-    GotoXY(x, y++);
+    std::cout << safeName;
+    y++; // 다음 줄로
+
+    GotoXY(x, y);
+    std::cout << std::string(width, ' '); // 줄 지우기
+    GotoXY(x, y);
     cout << "코드리뷰 시간 : " << MonsterAttack << "          "; // 뒤에 공백 추가
+    y++;
 
-    GotoXY(x, y++);
+    GotoXY(x, y);
+    std::cout << std::string(width, ' '); // 줄 지우기
+    GotoXY(x, y);
     cout << "남은 과제량   : " << MonsterCurHp << " / " << MonsterMaxHp << "        "; // 뒤에 공백 추가
+    y++;
 
-    // (선택사항) 체력바 그리기
-    // 비율 계산: (현재체력 * 10) / 최대체력
+    // 체력바 그리기 -  비율 계산: (현재체력 * 10) / 최대체력
     int barLen = 0;
-    if (monster->GetMaxHealth() > 0)
-    {
-        barLen = (monster->GetHealth() * 10) / monster->GetMaxHealth();
-    }
+    if (MonsterMaxHp > 0) barLen = (MonsterCurHp * 10) / MonsterMaxHp;
+    if (barLen > 10) barLen = 10;
+    if (barLen < 0) barLen = 0;
 
-    GotoXY(x, y++);
+    GotoXY(x, y);
+    std::cout << std::string(width, ' ');
+    GotoXY(x, y);
+
     std::cout << "        [";
-    for (int i = 0; i < 10; i++)
+    for (int j = 0; j < 10; j++)
     {
-        if (i < barLen) std::cout << "■"; // 찬 체력
-        else std::cout << "□"; // 빈 체력
+        if (j < barLen) std::cout << "■";
+        else std::cout << "□";
     }
-    std::cout << "]    ";
+    std::cout << "]";
 }
 void UIManager::RenderLogs()
 {
@@ -804,7 +806,7 @@ void UIManager::RenderVillageMenu()
         "1. 상 태 확 인",
         "2. 인 벤 토 리",
         "3. 상 점 이 용",
-        "4. 던 전 입 장"
+        "4. 튜터실 입장"
     };
 
     RenderMainPanel(" VILLAGE ", menus);
