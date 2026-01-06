@@ -28,7 +28,7 @@ void Shop::ShowItemList()
     }
     else
     {
-        Logger::Add("1. 힐링포션 " + std::to_string(Product_[0]->GetPrice()) + "Point");
+        Logger::Add("1. 홍삼 스틱 " + std::to_string(Product_[0]->GetPrice()) + "Point");
     }
 
     if (Product_[1] == nullptr)
@@ -37,7 +37,7 @@ void Shop::ShowItemList()
     }
     else
     {
-        Logger::Add("2. 공격력증가물약 "+ std::to_string(Product_[1]->GetPrice()) + "Point");
+        Logger::Add("2. 핫식스 "+ std::to_string(Product_[1]->GetPrice()) + "Point");
     }
     Logger::Add("3. 판매");
     Logger::Add("4. 나가기");
@@ -114,7 +114,7 @@ void Shop::BuyItem(Character* Player)
             }
             else
             {
-                Logger::Add(LogType::WARNING, "돈이 부족합니다.");
+                Logger::Add(LogType::WARNING, "포인트가 부족합니다.");
             }
         }
         else
@@ -134,7 +134,7 @@ void Shop::BuyItem(Character* Player)
             }
             else
             {
-                Logger::Add(LogType::WARNING, "돈이 부족합니다.");
+                Logger::Add(LogType::WARNING, "포인트가 부족합니다.");
             }
         }
         else

@@ -17,8 +17,8 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "마이크가 불안정한 승현튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "보스 -" + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "아...아... 제 목소리 잘 들리시나요??");
 			}
 			else
@@ -26,8 +26,8 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 0;
 				SetStat(Level);
 				name_ = "포인터 강의해주시는 승현튜터님";
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "일반 - " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 			}
 			break;
 		case TuterName::GEUKMINKONG:
@@ -38,8 +38,8 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "코드리뷰를 시작한 극민튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "보스 -" + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "이 코드가 이게 최선일까요?? 한번 더 생각해보셨나요??");
 			}
 			else
@@ -47,8 +47,8 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 1;
 				SetStat(Level);
 				name_ = "튜터링 해주시는 극민튜터님";
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "일반 - " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 			}
 			break;
 		case TuterName::EUNILPERK:
@@ -59,8 +59,8 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "기대를 안하는 은일튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "보스 -" + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "저는 여러분들께 아무런 기대도 하지 않습니다.");
 			}
 			else
@@ -68,8 +68,8 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 2;
 				SetStat(Level);
 				name_ = "공룡을 탄 은일튜터님";
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "일반 - " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 			}
 			break;
 		case TuterName::CHANGMINKONG:
@@ -80,8 +80,8 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "키부츠지 창민";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "보스 -" + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "이 아이..왠지모르게 익숙한 냄새가...C++호흡의 냄새가!!");
 			}
 			else
@@ -89,8 +89,8 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 3;
 				SetStat(Level);
 				name_ = "(닮은살걀)무언가를 먹방중인 창민튜터님";
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "일반 - " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 			}
 			break;
 		case TuterName::BONGJAEKONG:
@@ -101,8 +101,8 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "모자를 벗은 봉재튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "보스 -" + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "조금 진지해질필요가 있겠네요.");
 			}
 			else
@@ -110,8 +110,8 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 4;
 				SetStat(Level);
 				name_ = "모자를 쓴 봉재튜터님";
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "일반 - " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 			}
 			break;
 		case TuterName::JOEUNKONG:
@@ -122,8 +122,8 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "팔당으로 점프하신 조은튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::INFO, "보스몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "보스 -- " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::TALK, "여러분 우리 혹여나 마주쳐도 아는척하지말아요...");
 			}
 			else
@@ -131,8 +131,8 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 5;
 				SetStat(Level);
 				name_ = "가상배경의 조은튜터님";
-				Logger::Add(LogType::INFO, "일반몬스터 : " + GetName() +
-					"출현! 목표코딩력 : " + std::to_string(monStat_->GetHp()) + " 과제량 : " + std::to_string(monStat_->GetAttack()));
+				Logger::Add(LogType::INFO, "일반 - " + GetName() +
+					"출현! 남은 과제량 : " + std::to_string(monStat_->GetHp()) + " 코드 리뷰 시간 : " + std::to_string(monStat_->GetAttack()));
 			}
 			break;
 
@@ -144,7 +144,7 @@ void BasicMob::SpawnMob(int Level)
 				name_ = "풀무장한 호영튜터님";
 				bIsBoss_ = true;
 				bUseSkill_ = false;
-				Logger::Add(LogType::WARNING, "특수 보스몬스터 : " + GetName() +
+				Logger::Add(LogType::WARNING, "특수 보스 -" + GetName() +
 					"출현! 체력 : " + std::to_string(monStat_->GetHp()) + " 물리력 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::WARNING, "여러분들의 정신상태를 고칠 필요가 있겠네요.");
 			}
@@ -153,7 +153,7 @@ void BasicMob::SpawnMob(int Level)
 				mobNum_ = 6;
 				SetStatHoYoung(Level);
 				name_ = "건강체조를 시작한 호영튜터님";
-				Logger::Add(LogType::WARNING, "특수 일반몬스터 : " + GetName() +
+				Logger::Add(LogType::WARNING, "특수 일반 - " + GetName() +
 					"출현! 체력 : " + std::to_string(monStat_->GetHp()) + " 물리력 : " + std::to_string(monStat_->GetAttack()));
 				Logger::Add(LogType::WARNING, "안녕하세요 조호영튜터입니다.");
 			}
@@ -172,46 +172,46 @@ void BasicMob::UseSkill()
 	switch ((TuterName)mobNum_)
 	{
 	case TuterName::SEUNGHYEONSUN:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "마이크를 먹을순 없고 자 이제 잘 들리시죠??");
-		Logger::Add(LogType::INFO, "보스공격력 10증가!");
+		Logger::Add(LogType::INFO, "코드 리뷰 시간 100증가!");
 		monStat_->SetAttack(monStat_->GetAttack() + 100);
 		break;
 	case TuterName::GEUKMINKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "난이도를 좀 더 올려도 되겠어요!");
-		Logger::Add(LogType::INFO, "보스공격력 15증가!");
+		Logger::Add(LogType::INFO, "코드 리뷰 시간 150증가!");
 		monStat_->SetAttack(monStat_->GetAttack() + 150);
 		break;
 	case TuterName::EUNILPERK:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "안되는건 없습니다 여러분들은 할 수 있습니다.");
-		Logger::Add(LogType::INFO, "보스 공격력 15증가!");
+		Logger::Add(LogType::INFO, "코드 리뷰 시간 100증가!");
 		monStat_->SetAttack(monStat_->GetAttack() + 100);
 		break;
 	case TuterName::CHANGMINKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "상현1 창민객체 조창민 소환!");
-		Logger::Add(LogType::INFO, "보스체력 1000 증가!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 1000 증가!");
 		monStat_->SetHp(monStat_->GetHp() + 1000);
 		break;
 	case TuterName::BONGJAEKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "여러분들이 문제를 잘 풀어주시는거같아서 좀 더 많은 문제를 준비했습니다!");
-		Logger::Add(LogType::INFO, "보스체력 100 증가!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 500 증가!");
 		monStat_->SetHp(monStat_->GetHp() + 500);
 		break;
 	case TuterName::JOEUNKONG:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "미니실습이랑 도전실습이 쉬우시다구요? 그렇다면 도전x도전 실습도 한번 도전해봅시다!");
-		Logger::Add(LogType::INFO, "보스체력 50 증가! 보스 공격력 10 증가!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 300 증가! 코드 리뷰 시간 70 증가!");
 		monStat_->SetHp(monStat_->GetHp() + 300);
 		monStat_->SetAttack(monStat_->GetAttack() + 70);
 		break;
 	case TuterName::HOYOUNGJOU:
-		Logger::Add(LogType::INFO, "보스체력 절반이하! 스킬발동!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 절반이하! 스킬발동!");
 		Logger::Add(LogType::TALK, "천! 리! 행! 군!");
-		Logger::Add(LogType::INFO, "보스체력 두배 증가! 공격력 절반 감소!");
+		Logger::Add(LogType::INFO, "보스 - 과제량 두배 증가! 코드 리뷰 시간 절반 감소!");
 		monStat_->SetHp(monStat_->GetHp() * 2);
 		monStat_->SetAttack(monStat_->GetAttack() / 2);
 		break;
