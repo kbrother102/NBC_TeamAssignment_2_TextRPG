@@ -32,6 +32,7 @@ public:
 	virtual void SpawnMob(int level) = 0;
 	virtual void UseSkill() = 0;
 	virtual void GetDie() = 0;
+	virtual void PlayerKillText();
 
 	// TODO: [UI] 이미지 경로 Getter/Setter 추가
 	std::string GetImagePath() const { return imagePath_; }

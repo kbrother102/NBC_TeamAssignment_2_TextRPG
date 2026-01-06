@@ -31,6 +31,7 @@ public:
 	void TakeDamage(int dmg);
 	void UseSkill();
 	void GetDie();
+	void PlayerKillText();
 
 
 	//getter
@@ -62,7 +63,6 @@ public:
 	void SetStatBoss(int Level);
 	void SetStatHoYoung(int Level);
 	void SetStatHoYoungBoss(int Level);
-	void PlayerKillText();
 	std::string GetType() { return monStat_->GetType(); }
 
 

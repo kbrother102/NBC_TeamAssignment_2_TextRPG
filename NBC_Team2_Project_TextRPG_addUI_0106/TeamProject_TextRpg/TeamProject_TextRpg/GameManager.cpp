@@ -420,6 +420,7 @@ BattleResult GameManager::Battle()
 		if (player_->IsDead())
 		{
 			player_->GetAction()->Die();
+			curMons_->PlayerKillText();
 			break;
 		}
 	}
