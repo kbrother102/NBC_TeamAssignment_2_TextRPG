@@ -46,8 +46,8 @@ void GameManager::Run()
 			bool chooseMenu = true;
 			while (chooseMenu)
 			{
-				Logger::Add(LogType::INFO, "\n======= 마을 정비 =======");
-				Logger::Add(LogType::INFO, "1. 상태 확인 | 2. 인벤토리 | 3. 상점 | 4. 다음 전투 시작");
+				Logger::Add(LogType::INFO, "\n======= 2조 룸 =======");
+				Logger::Add(LogType::INFO, "1. 상태 확인 | 2. 인벤토리 | 3. 포인트샵 | 4. 다음 튜터링 시작");
 
 
 				int choice;
@@ -65,7 +65,7 @@ void GameManager::Run()
 					OpenShop(); // 상점 이용
 					break;
 				case 4:
-					Logger::Add(LogType::INFO, "다음 전장으로 이동합니다.");
+					Logger::Add(LogType::INFO, "다음 튜터실로 이동합니다.");
 					chooseMenu = false; // 정비 루프를 빠져나감
 					break;
 				default:
@@ -79,7 +79,7 @@ void GameManager::Run()
 
 void GameManager::StartGame()
 {
-	Logger::Add(LogType::INFO, "게임시작");
+	Logger::Add(LogType::INFO, "캠프 시작");
 }
 
 void GameManager::PlayerInputLogic()
@@ -94,7 +94,7 @@ void GameManager::PlayerInputLogic()
 void GameManager::CreateCharacter()
 {
 	player_ = new Character(name_);
-	std::string nickname = "생성된 캐릭터 이름: " + player_->GetName();
+	std::string nickname = "참가한 학생 이름: " + player_->GetName();
 	Logger::Add(LogType::INFO, nickname);
 
 }
@@ -103,11 +103,11 @@ void GameManager::PlayerStatus()
 {
 	Logger::Add(LogType::INFO,
 		"이름: " + player_->GetName() +
-		" | 체력: " + std::to_string(player_->GetStatComponent()->GetHp()) + "/" + std::to_string(player_->GetStatComponent()->GetMaxHp()) +
+		" | 정신력: " + std::to_string(player_->GetStatComponent()->GetHp()) + "/" + std::to_string(player_->GetStatComponent()->GetMaxHp()) +
 		" | 경험치: " + std::to_string(player_->GetStatComponent()->GetExp()) +
-		" | 공격력: " + std::to_string(player_->GetStatComponent()->GetAttack()) +
+		" | 코딩력: " + std::to_string(player_->GetStatComponent()->GetAttack()) +
 		" | 레벨: " + std::to_string(player_->GetStatComponent()->GetLevel()) +
-		" | 보유 골드: " + std::to_string(player_->GetStatComponent()->GetGold()) + "G"
+		" | 보유 포인트: " + std::to_string(player_->GetStatComponent()->GetGold()) + " Point"
 	);
 }
 
@@ -157,8 +157,8 @@ BattleResult GameManager::Battle()
 
 		if (player_->GetLv() == 10)
 		{
-			Logger::Add(LogType::INFO, "보스를 처리하였습니다!");
-			Logger::Add(LogType::INFO, "메인으로 돌아가시겠습니까? 예: 1, 아니요: 2");
+			Logger::Add(LogType::INFO, "훌륭하게 수료하였습니다!");
+			Logger::Add(LogType::INFO, "시간을 되돌려 다시 시작하시겠습니까? 예: 1, 아니요: 2");
 
 			int input;
 			Console::Input(input);
@@ -174,7 +174,7 @@ BattleResult GameManager::Battle()
 			}
 		}
 
-		Logger::Add(LogType::INFO, "전투에서 승리했습니다! 보상을 받으세요");
+		Logger::Add(LogType::INFO, "과제를 모두 완료했습니다! 보상을 받으세요! ");
 		GiveReward();
 
 		return BattleResult::PlayerWin;
@@ -183,7 +183,7 @@ BattleResult GameManager::Battle()
 	}
 	else
 	{
-		Logger::Add(LogType::INFO, "전투에서 패배했습니다. 메인으로 돌아갑니다.");
+		Logger::Add(LogType::INFO, "정신이 붕괴했습니다. 기억을 잃고 처음으로 돌아갑니다.");
 		return BattleResult::PlayerLose;
 	}
 
@@ -204,7 +204,7 @@ void GameManager::DisplayInventory(Character* player)
 {
 	// 재화 정보
 	int currentGold = player_->GetStatComponent()->GetGold();
-	Logger::Add(LogType::INFO, "보유 골드: " + std::to_string(currentGold) + " G");
+	Logger::Add(LogType::INFO, "보유 포인트: " + std::to_string(currentGold) + " Point");
 
 	// 아이템 정보
 	Inventory* inventory = player_->GetInventory();

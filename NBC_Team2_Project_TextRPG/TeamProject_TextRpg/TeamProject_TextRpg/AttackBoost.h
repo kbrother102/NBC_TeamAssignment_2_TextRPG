@@ -4,7 +4,7 @@
 class AttackBoost : public Item
 {
 public:
-    AttackBoost() : Item("공격력 증폭제", 30) {}
+    AttackBoost() : Item("핫식스", 30) {}
 
     bool Use(StatComponent& stats) override;
 };
