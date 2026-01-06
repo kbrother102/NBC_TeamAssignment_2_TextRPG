@@ -23,7 +23,7 @@ void GameManager::Run()
 		{
 			BattleResult result = Battle();
 
-			if ((result == BattleResult::PlayerLose))
+			if ((result == BattleResult::PlayerLose || result == BattleResult::GameClear))
 			{
 				delete player_;
 				player_ = nullptr;
@@ -32,6 +32,17 @@ void GameManager::Run()
 				curMons_ = nullptr;
 				break;
 			}
+
+			if (result == BattleResult::ExitGame)
+			{
+				delete player_;
+				player_ = nullptr;
+
+				delete curMons_;
+				curMons_ = nullptr;
+				return;
+			}
+
 			bool chooseMenu = true;
 			while (chooseMenu)
 			{
@@ -73,8 +84,11 @@ void GameManager::StartGame()
 
 void GameManager::PlayerInputLogic()
 {
-	Logger::Add(LogType::INFO, "이름을 입력해주세요 : ");
-	std::cin >> name_;
+	do {
+		Logger::Add(LogType::INFO, "이름을 입력해주세요 : ");
+		Console::Input(name_);
+	} while (Character::IsValidName(name_) == false);
+
 }
 
 void GameManager::CreateCharacter()
@@ -91,6 +105,8 @@ void GameManager::PlayerStatus()
 		"이름: " + player_->GetName() +
 		" | 체력: " + std::to_string(player_->GetStatComponent()->GetHp()) + "/" + std::to_string(player_->GetStatComponent()->GetMaxHp()) +
 		" | 경험치: " + std::to_string(player_->GetStatComponent()->GetExp()) +
+		" | 공격력: " + std::to_string(player_->GetStatComponent()->GetAttack()) +
+		" | 레벨: " + std::to_string(player_->GetStatComponent()->GetLevel()) +
 		" | 보유 골드: " + std::to_string(player_->GetStatComponent()->GetGold()) + "G"
 	);
 }
@@ -138,10 +154,32 @@ BattleResult GameManager::Battle()
 
 	if (!(player_->IsDead()))
 	{
+
+		if (player_->GetLv() == 10)
+		{
+			Logger::Add(LogType::INFO, "보스를 처리하였습니다!");
+			Logger::Add(LogType::INFO, "메인으로 돌아가시겠습니까? 예: 1, 아니요: 2");
+
+			int input;
+			Console::Input(input);
+			switch (input)
+			{
+			case 1:
+				return BattleResult::GameClear;
+			case 2:
+				return BattleResult::ExitGame;
+			default:
+				Logger::Add(LogType::WARNING, "메인으로 돌아갑니다.");
+				return BattleResult::GameClear;
+			}
+		}
+
 		Logger::Add(LogType::INFO, "전투에서 승리했습니다! 보상을 받으세요");
 		GiveReward();
 
 		return BattleResult::PlayerWin;
+
+
 	}
 	else
 	{
@@ -154,11 +192,6 @@ BattleResult GameManager::Battle()
 void GameManager::GiveReward()
 {
 	RewardManager::GetInstance().ProcessReward(curMons_, player_);
-}
-
-bool GameManager::IsLevel10()
-{
-	return true;
 }
 
 void GameManager::OpenShop()

@@ -85,10 +85,12 @@ void Action::RandUseItem()
 	}
     
 	//아이템 개수가 0인지 체크
-    if (inventory->GetItemCount() == 0)   
+    if (inventory->IsEmpty() ==true)   
      {
           return;
      }
+
+    
 	//TODO: 30% 확률로 아이템 사용한 뒤 로그 출력
 	//0~99까지 일정한 확률 랜덤 생성
     int r = Random::GetRandInt(0, 99);
@@ -97,15 +99,23 @@ void Action::RandUseItem()
     {
 
         //인벤토리에서 0~에서 인벤토리 사이즈만큼의 랜덤을 돌려 아이템 선택;
-       int random = Random::GetRandInt(0, inventory->GetItemCount()-1);
+        
+        int random = Random::GetRandInt(0, inventory->GetItemCount() - 1);
         //아이템을 랜덤으로 선택한것을 저장.
-       const Item* item = inventory->GetItem(random);
+        const Item* item = inventory->GetItem(random);
+        //nullptr라면 다시 뽑기
+       while(item==nullptr)
+       {
+           random = Random::GetRandInt(0, inventory->GetItemCount() - 1);
+           item = inventory->GetItem(random);
+       }
+
 	   std::string itemName = item->GetName();
 	   StatComponent* stats = owner_->GetStatComponent();
-        if(!item)
-        {
-            return;
-		}
+  //      if(!item)
+  //      {
+  //          return;
+		//}
 
         if(stats->GetMaxHp() == stats->GetHp() && itemName == "회복 포션")
         {
@@ -115,10 +125,11 @@ void Action::RandUseItem()
         inventory->UseItem(random, *owner_->GetStatComponent());
 
         //로그 아이템을 사용했다 구현
+        Logger::Add(LogType::INFO, owner_->GetName() + "가 " + itemName + "을(를) 사용했다!");
         if (itemName == "회복 포션")
         {
 			Logger::Add(LogType::INFO, "체력이 회복되었다!" );
-			Logger::Add(LogType::INFO, std::to_string(stats->GetMaxHp()) +" : " + std::to_string(stats->GetHp()));
+			Logger::Add(LogType::INFO, std::to_string(stats->GetMaxHp()) +" / " + std::to_string(stats->GetHp()));
         }
 
         if (itemName == "공격력 증폭제")
@@ -126,7 +137,7 @@ void Action::RandUseItem()
             Logger::Add(LogType::INFO, "코딩력이 증가했다!");
 			Logger::Add(LogType::INFO, std::to_string(beforeAttack) + "-> " + std::to_string(stats->GetAttack()));
         }
-        Logger::Add(LogType::INFO, owner_->GetName() + "가 " + itemName + "을(를) 사용했다!");
+        
         
 
     }

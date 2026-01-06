@@ -17,8 +17,10 @@ public://직접 아이템을 사용하기 위한 함수
 	//bool SpendGold(int amount);
 
 	std::string GetItemName(int index) const;
-	//빈칸 체크용 함수(였던것)
-	//bool IsEmptySlot(int index) const;
+	
+
+	//모든 원소가 nullptr 일 경우 true 하나라도 템이 있으면 false를 반환하는 함수
+	bool IsEmpty() const;
 	
 	//Shop과 연계되는 함수 sell은 반환이 필요하니(판매 가능?불가능?) bool로 전환이 더 유리
 	void RemoveItem(int index);
